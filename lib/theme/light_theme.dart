@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'theme_colors.dart';
 
-final darkThemeData = ThemeData(
+final lightThemeData = ThemeData(
   scaffoldBackgroundColor: kDarkBackgroundColor,
   fontFamily: "SFProDisplay",
   appBarTheme: const AppBarTheme(
@@ -35,8 +35,8 @@ final darkThemeData = ThemeData(
       color: kDarkTextPrimaryColor,
     ),
     headline5: const TextStyle(
-      fontSize: 28,
-      letterSpacing: 0.25,
+      fontSize: 26,
+      letterSpacing: 0,
       fontWeight: FontWeight.bold,
       color: kDarkTextPrimaryColor,
     ),
