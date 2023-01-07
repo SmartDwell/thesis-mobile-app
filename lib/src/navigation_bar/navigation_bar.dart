@@ -21,11 +21,6 @@ class ThesisNavigationBar extends StatelessWidget {
       MorePage(),
     ];
     final selectedPageNotifier = ValueNotifier<int>(0);
-    const labelStyle = TextStyle(
-      fontSize: 12,
-      letterSpacing: 0,
-      fontWeight: FontWeight.w600,
-    );
     return ValueListenableBuilder<int>(
       valueListenable: selectedPageNotifier,
       builder: (context, selectedPage, child) {
@@ -33,13 +28,6 @@ class ThesisNavigationBar extends StatelessWidget {
           body: pages[selectedPage],
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: selectedPage,
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            selectedItemColor: kPrimaryLightColor,
-            unselectedItemColor: kGray1Color,
-            showUnselectedLabels: true,
-            selectedLabelStyle: labelStyle.copyWith(color: kPrimaryLightColor),
-            unselectedLabelStyle: labelStyle.copyWith(color: kGray1Color),
-            type: BottomNavigationBarType.fixed,
             onTap: (index) => selectedPageNotifier.value = index,
             items: [
               BottomNavigationBarItem(

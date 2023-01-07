@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/extension/formatted_message.dart';
 import '../../../../core/repositories/tokens_repository.dart';
 import '../repositories/auth_repository.dart';
 import 'auth_event.dart';
@@ -45,7 +46,6 @@ class AuthBloc extends Bloc<AuthBaseEvent, AuthBaseState> {
   }
 
   Stream<AuthBaseState> _mapAuthSuccessEventToState() async* {
-    yield const AuthLoadingState();
     yield const AuthAuthenticatedState();
   }
 
@@ -64,9 +64,9 @@ class AuthBloc extends Bloc<AuthBaseEvent, AuthBaseState> {
         ticketDto.ticketId,
         ticketDto.name,
       );
-    } catch (e) {
-      debugPrint(e.toString());
-      yield AuthLoginFailureState(e.toString());
+    } on Exception catch (e) {
+      debugPrint(e.getMessage);
+      yield AuthLoginFailureState(e.getMessage);
     }
   }
 
@@ -83,9 +83,9 @@ class AuthBloc extends Bloc<AuthBaseEvent, AuthBaseState> {
         tokensDto.refreshToken,
       );
       yield const AuthSuccessCodeVerifyState();
-    } catch (e) {
-      debugPrint(e.toString());
-      yield AuthLoginFailureState(e.toString());
+    } on Exception catch (e) {
+      debugPrint(e.getMessage);
+      yield AuthLoginFailureState(e.getMessage);
     }
   }
 }

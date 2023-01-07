@@ -122,6 +122,11 @@ class DioHelper {
       ));
     }
 
+    client.options.followRedirects = false;
+    client.options.validateStatus = (status) {
+      return true;
+    };
+
     return client;
   }
 }

@@ -44,7 +44,7 @@ class IntroductionScreen extends StatelessWidget {
                     ),
                     Text(
                       tempItems[index].title,
-                      style: Theme.of(context).textTheme.headline5,
+                      style: Theme.of(context).textTheme.headline4,
                     ),
                     const SizedBox(height: 12),
                     Text(
@@ -62,15 +62,16 @@ class IntroductionScreen extends StatelessWidget {
               return Material(
                 color: Colors.transparent,
                 child: DotsIndicator(
-                    dotsCount: tempItems.length,
-                    position: value.toDouble(),
-                    onTap: (position) {
-                      pageController.animateToPage(
-                        position.toInt(),
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn,
-                      );
-                    }),
+                  dotsCount: tempItems.length,
+                  position: value.toDouble(),
+                  onTap: (position) {
+                    pageController.animateToPage(
+                      position.toInt(),
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeIn,
+                    );
+                  },
+                ),
               );
             },
           ),

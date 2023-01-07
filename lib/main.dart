@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:no_context_navigation/no_context_navigation.dart';
 import 'package:provider/provider.dart';
 
+import 'core/helpers/message_helper.dart';
 import 'core/repositories/tokens_repository.dart';
 import 'src/navigation_bar/navigation_bar.dart';
 import 'src/welcome/auth/bloc/auth_index.dart';
@@ -46,6 +47,7 @@ class ThesisAppConfigurator extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        scaffoldMessengerKey: MessageHelper.rootScaffoldMessengerKey,
         title: 'Thesis mobile app',
         navigatorKey: NavigationService.navigationKey,
         onGenerateRoute: (RouteSettings settings) {
