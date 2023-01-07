@@ -27,6 +27,39 @@ final darkThemeData = ThemeData(
       color: kGray2Color,
     ),
   ),
+  textSelectionTheme: TextSelectionThemeData(
+    cursorColor: kPrimaryColor,
+    selectionColor: kPrimaryColor.withOpacity(0.25),
+    selectionHandleColor: kPrimaryColor,
+  ),
+  inputDecorationTheme: InputDecorationTheme(
+    labelStyle: const TextStyle(
+      fontSize: 16,
+      letterSpacing: 0.15,
+      fontWeight: FontWeight.w600,
+      color: kDarkTextPrimaryColor,
+    ),
+    hintStyle: TextStyle(
+      fontSize: 16,
+      letterSpacing: 0.1,
+      fontWeight: FontWeight.w400,
+      color: kDarkTextSecondaryColor.withOpacity(0.5),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: kDarkTextSecondaryColor.withOpacity(0.25),
+        width: 2,
+      ),
+      borderRadius: BorderRadius.circular(16),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: kDarkTextSecondaryColor.withOpacity(0.25),
+        width: 2,
+      ),
+      borderRadius: BorderRadius.circular(16),
+    ),
+  ),
   textTheme: TextTheme(
     headline4: const TextStyle(
       fontSize: 34,

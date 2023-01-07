@@ -1,0 +1,4 @@
+enum AuthWidgetStates {
+  AuthLogin,
+  AuthCode,
+}
