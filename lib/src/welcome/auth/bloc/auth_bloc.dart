@@ -85,7 +85,7 @@ class AuthBloc extends Bloc<AuthBaseEvent, AuthBaseState> {
       yield const AuthSuccessCodeVerifyState();
     } on Exception catch (e) {
       debugPrint(e.getMessage);
-      yield AuthLoginFailureState(e.getMessage);
+      yield AuthCodeFailureState(e.getMessage);
     }
   }
 }

@@ -27,7 +27,7 @@ class AuthCodeScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is AuthSuccessCodeVerifyState) {
           bloc.add(const AuthSuccessEvent());
-          //Navigator.pushReplacementNamed(context, '/navbar');
+          Navigator.pushReplacementNamed(context, '/navbar');
         }
 
         if (state is AuthCodeFailureState) {
@@ -128,15 +128,16 @@ class _AuthCodeTitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Здравствуйте, $username! Подтвердите смс-код.',
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
         const SizedBox(height: 16),
         Text(
           'Вам был отправлен смс-код. Введите его для подтверждения личности.',
-          style: Theme.of(context).textTheme.subtitle2,
+          style: Theme.of(context).textTheme.titleSmall,
         ),
         const SizedBox(height: 25),
         TextFormField(
@@ -155,7 +156,7 @@ class _AuthCodeTitleWidget extends StatelessWidget {
               padding: const EdgeInsets.only(top: 12.0),
               child: Text(
                 error,
-                style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: Theme.of(context).errorColor,
                     ),
               ),

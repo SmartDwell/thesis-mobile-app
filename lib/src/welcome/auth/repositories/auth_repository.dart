@@ -53,10 +53,9 @@ class AuthRepository {
         case 400:
           throw Exception('Переданы некорректные данные');
         case 404:
-          throw Exception(
-              'Пользователь с данной почтой или номером телефона не найден');
+          throw Exception('Время действия смс-кода истекло');
         case 409:
-          throw Exception('Передан некорректный секретный код');
+          throw Exception('Передан некорректный смс-код');
         default:
           throw Exception('Что-то пошло не так');
       }

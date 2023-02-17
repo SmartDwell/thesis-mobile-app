@@ -40,7 +40,7 @@ class MessageHelper {
                   message,
                   style: TextStyle(
                     fontSize: fontSize,
-                    color: Theme.of(context).textTheme.subtitle1?.color,
+                    color: Theme.of(context).textTheme.titleMedium?.color,
                   ),
                 ),
               ),
@@ -123,7 +123,7 @@ class MessageHelper {
                 message,
                 style: TextStyle(
                   fontSize: 16,
-                  color: Theme.of(context).textTheme.subtitle1?.color,
+                  color: Theme.of(context).textTheme.titleMedium?.color,
                 ),
               ),
               Align(

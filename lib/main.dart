@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import 'core/helpers/message_helper.dart';
 import 'core/repositories/tokens_repository.dart';
+import 'core/splash_screen.dart';
 import 'src/navigation_bar/navigation_bar.dart';
 import 'src/welcome/auth/bloc/auth_index.dart';
 import 'src/welcome/auth/repositories/auth_repository.dart';
@@ -79,6 +80,25 @@ class ThesisApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const WelcomeScreen();
+    final authBloc = BlocProvider.of<AuthBloc>(context)
+      ..add(const AuthStartedEvent());
+    return BlocListener<AuthBloc, AuthBaseState>(
+      bloc: authBloc,
+      listener: (context, state) {},
+      child: BlocBuilder<AuthBloc, AuthBaseState>(
+        bloc: authBloc,
+        builder: (context, state) {
+          if (state is AuthAuthenticatedState) {
+            return const ThesisNavigationBar();
+          }
+
+          if (state is AuthUnauthenticatedState) {
+            return const WelcomeScreen();
+          }
+
+          return const SplashScreen();
+        },
+      ),
+    );
   }
 }

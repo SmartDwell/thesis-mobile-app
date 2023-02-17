@@ -10,7 +10,7 @@ import '../repositories/tokens_repository.dart';
 class DioHelper {
   static final _host = Platform.isAndroid ? '10.0.2.2' : '127.0.0.1';
   static final _localBaseUrl = "https://$_host:7001/api";
-  //static const String _baseUrl = 'http://194.99.22.243/api';
+  static const String _baseUrl = 'http://194.99.22.243:1480/api';
 
   static Future<Response> getData({
     required String url,
@@ -65,9 +65,10 @@ class DioHelper {
   ) {
     final client = Dio(
       BaseOptions(
-        baseUrl: _localBaseUrl,
-        connectTimeout: 5000,
-        receiveTimeout: 3000,
+        baseUrl: _baseUrl,
+        receiveDataWhenStatusError: true,
+        connectTimeout: 60 * 1000,
+        receiveTimeout: 60 * 1000,
       ),
     );
 

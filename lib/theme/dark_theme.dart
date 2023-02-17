@@ -17,80 +17,81 @@ final darkThemeData = ThemeData(
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarColor: kDarkTextPrimaryColor,
       statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.light,
     ),
   ),
   textTheme: TextTheme(
-    headline1: const TextStyle(
+    displayLarge: const TextStyle(
       fontSize: 64,
       fontWeight: FontWeight.w900,
       letterSpacing: -1.5,
       color: kDarkTextPrimaryColor,
     ),
-    headline2: const TextStyle(
+    displayMedium: const TextStyle(
       fontSize: 48,
       fontWeight: FontWeight.w800,
       letterSpacing: -0.5,
       color: kDarkTextPrimaryColor,
     ),
-    headline3: const TextStyle(
+    displaySmall: const TextStyle(
       fontSize: 36,
       fontWeight: FontWeight.w700,
       color: kDarkTextPrimaryColor,
     ),
-    headline4: const TextStyle(
+    headlineMedium: const TextStyle(
       fontSize: 28,
       fontWeight: FontWeight.w600,
       letterSpacing: 0.25,
       color: kDarkTextPrimaryColor,
     ),
-    headline5: const TextStyle(
+    headlineSmall: const TextStyle(
       fontSize: 20,
       fontWeight: FontWeight.w600,
       color: kDarkTextPrimaryColor,
     ),
-    headline6: const TextStyle(
+    titleLarge: const TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w600,
       letterSpacing: 0.15,
       color: kDarkTextPrimaryColor,
     ),
-    subtitle1: const TextStyle(
+    titleMedium: const TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.15,
       color: kDarkTextPrimaryColor,
     ),
-    subtitle2: TextStyle(
+    titleSmall: TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.1,
       color: kDarkTextSecondaryColor,
     ),
-    bodyText1: const TextStyle(
+    bodyLarge: const TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.5,
       color: kDarkTextPrimaryColor,
     ),
-    bodyText2: TextStyle(
+    bodyMedium: TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.25,
       color: kDarkTextSecondaryColor,
     ),
-    button: const TextStyle(
+    labelLarge: const TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w600,
       letterSpacing: 1.25,
       color: kDarkTextPrimaryColor,
     ),
-    caption: TextStyle(
+    bodySmall: TextStyle(
       fontSize: 12,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.4,
       color: kDarkTextSecondaryColor,
     ),
-    overline: TextStyle(
+    labelSmall: TextStyle(
       fontSize: 10,
       fontWeight: FontWeight.w400,
       letterSpacing: 1.5,

@@ -44,12 +44,12 @@ class IntroductionScreen extends StatelessWidget {
                     ),
                     Text(
                       tempItems[index].title,
-                      style: Theme.of(context).textTheme.headline4,
+                      style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     const SizedBox(height: 12),
                     Text(
                       tempItems[index].description,
-                      style: Theme.of(context).textTheme.subtitle2,
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ],
                 );

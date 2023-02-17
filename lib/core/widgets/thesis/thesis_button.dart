@@ -93,9 +93,9 @@ class _ThesisButtonContent extends StatelessWidget {
                   style: isDisabled
                       ? Theme.of(context)
                           .textTheme
-                          .subtitle1!
+                          .titleMedium!
                           .copyWith(fontWeight: FontWeight.w600)
-                      : Theme.of(context).textTheme.subtitle1,
+                      : Theme.of(context).textTheme.labelLarge,
                 )
               : child,
     );
