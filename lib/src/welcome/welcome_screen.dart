@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../core/widgets/thesis/thesis_bottom_sheep.dart';
 import '../../core/widgets/thesis/thesis_button.dart';
-import 'auth/screens/auth_login_screen.dart';
 import 'introduction/introduction_screen.dart';
+import 'login/screens/login_request_code_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -20,7 +20,7 @@ class WelcomeScreen extends StatelessWidget {
             ThesisButton.fromText(
               onPressed: () => ThesisBottomSheep.show(
                 context,
-                child: const AuthLoginScreen(),
+                child: const LoginRequestCodeScreen(),
               ),
               text: 'Войти',
             ),

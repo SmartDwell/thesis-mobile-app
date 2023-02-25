@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/widgets/thesis/thesis_base_page.dart';
 import '../../../../core/widgets/thesis/thesis_button.dart';
-import '../bloc/auth_index.dart';
+import '../bloc/login_bloc.dart';
+import '../login_scope.dart';
 
 class AuthCodeScreen extends StatelessWidget {
   const AuthCodeScreen({
@@ -21,20 +22,12 @@ class AuthCodeScreen extends StatelessWidget {
     final codeIsSendingNotifier = ValueNotifier<bool>(false);
     final codeController = TextEditingController();
     final errorNotifier = ValueNotifier<String>('');
-    final bloc = BlocProvider.of<AuthBloc>(context);
-    return BlocListener<AuthBloc, AuthBaseState>(
-      bloc: bloc,
-      listener: (context, state) {
-        if (state is AuthSuccessCodeVerifyState) {
-          bloc.add(const AuthSuccessEvent());
-          Navigator.pushReplacementNamed(context, '/navbar');
-        }
-
-        if (state is AuthCodeFailureState) {
-          errorNotifier.value = state.message;
-        }
-        codeIsSendingNotifier.value = false;
-      },
+    return BlocListener<LoginBloc, LoginState>(
+      listener: (context, state) => state.mapOrNull(
+        successVerifyCode: (state) =>
+            Navigator.pushReplacementNamed(context, '/navbar'),
+        failureVerifyCode: (state) => errorNotifier.value = state.message,
+      ),
       child: ThesisBasePage(
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
@@ -51,7 +44,6 @@ class AuthCodeScreen extends StatelessWidget {
               _AuthCodeButtonWidget(
                 codeEmptyNotifier: codeEmptyNotifier,
                 codeIsSendingNotifier: codeIsSendingNotifier,
-                bloc: bloc,
                 ticketId: ticketId,
                 codeController: codeController,
               ),
@@ -68,14 +60,13 @@ class _AuthCodeButtonWidget extends StatelessWidget {
     Key? key,
     required this.codeEmptyNotifier,
     required this.codeIsSendingNotifier,
-    required this.bloc,
     required this.ticketId,
     required this.codeController,
   }) : super(key: key);
 
   final ValueNotifier<bool> codeEmptyNotifier;
   final ValueNotifier<bool> codeIsSendingNotifier;
-  final AuthBloc bloc;
+
   final String ticketId;
   final TextEditingController codeController;
 
@@ -84,27 +75,19 @@ class _AuthCodeButtonWidget extends StatelessWidget {
     return ValueListenableBuilder<bool>(
       valueListenable: codeEmptyNotifier,
       builder: (context, codeIsEmpty, child) {
-        return ValueListenableBuilder<bool>(
-          valueListenable: codeIsSendingNotifier,
-          builder: (context, codeIsSending, child) {
-            return ThesisButton.fromText(
-              isDisabled: codeIsEmpty,
-              isLoading: codeIsSending,
-              onPressed: () {
-                codeIsSendingNotifier.value = true;
-                if (!codeIsEmpty && !codeIsSending) {
-                  bloc.add(
-                    AuthVerifyCodeEvent(
-                      ticketId,
-                      codeController.text,
-                    ),
-                  );
-                }
-                codeIsSendingNotifier.value = false;
-              },
-              text: 'Войти',
-            );
+        return ThesisButton.fromText(
+          isDisabled: codeIsEmpty,
+          onPressed: () async {
+            codeIsSendingNotifier.value = true;
+            if (!codeIsEmpty) {
+              LoginScope.verifyCode(
+                context,
+                tickedId: ticketId,
+                code: codeController.text,
+              );
+            }
           },
+          text: 'Войти',
         );
       },
     );

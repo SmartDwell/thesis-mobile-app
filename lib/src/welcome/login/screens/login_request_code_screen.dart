@@ -5,11 +5,12 @@ import 'package:validators/validators.dart';
 import '../../../../core/widgets/thesis/thesis_base_page.dart';
 import '../../../../core/widgets/thesis/thesis_bottom_sheep.dart';
 import '../../../../core/widgets/thesis/thesis_button.dart';
-import '../bloc/auth_index.dart';
-import 'auth_code_screen.dart';
+import '../bloc/login_bloc.dart';
+import '../login_scope.dart';
+import 'login_verify_code_screen.dart';
 
-class AuthLoginScreen extends StatelessWidget {
-  const AuthLoginScreen({super.key});
+class LoginRequestCodeScreen extends StatelessWidget {
+  const LoginRequestCodeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,26 +19,20 @@ class AuthLoginScreen extends StatelessWidget {
     final loginController = TextEditingController(text: 'seljmov@list.ru');
     final formFieldKey = GlobalKey<FormFieldState>();
     final errorNotifier = ValueNotifier<String>('');
-    final bloc = BlocProvider.of<AuthBloc>(context);
-    return BlocListener<AuthBloc, AuthBaseState>(
-      bloc: bloc,
-      listener: (context, state) {
-        errorNotifier.value = '';
-        if (state is AuthSuccessLoginVerifyState) {
-          ThesisBottomSheep.show(
-            context,
-            child: AuthCodeScreen(
-              ticketId: state.ticketId,
-              username: state.username,
-            ),
-          );
-        }
-
-        if (state is AuthLoginFailureState) {
-          errorNotifier.value = state.message;
-        }
-        loginIsSendingNotifier.value = false;
-      },
+    //final bloc = BlocProvider.of<AuthBloc>(context);
+    return BlocListener<LoginBloc, LoginState>(
+      //bloc: bloc,
+      // loginIsSendingNotifier.value = false;
+      listener: (context, state) => state.mapOrNull(
+        successRequestCode: (state) => ThesisBottomSheep.show(
+          context,
+          child: AuthCodeScreen(
+            ticketId: state.tickedId,
+            username: state.username,
+          ),
+        ),
+        failureRequestCode: (state) => errorNotifier.value = state.message,
+      ),
       child: ThesisBasePage(
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
@@ -54,7 +49,6 @@ class AuthLoginScreen extends StatelessWidget {
               _AuthLoginButtonWidget(
                 loginEmptyNotifier: loginEmptyNotifier,
                 loginIsSendingNotifier: loginIsSendingNotifier,
-                bloc: bloc,
                 loginController: loginController,
                 formFieldKey: formFieldKey,
               ),
@@ -71,14 +65,12 @@ class _AuthLoginButtonWidget extends StatelessWidget {
     Key? key,
     required this.loginEmptyNotifier,
     required this.loginIsSendingNotifier,
-    required this.bloc,
     required this.loginController,
     required this.formFieldKey,
   }) : super(key: key);
 
   final ValueNotifier<bool> loginEmptyNotifier;
   final ValueNotifier<bool> loginIsSendingNotifier;
-  final AuthBloc bloc;
   final TextEditingController loginController;
   final GlobalKey<FormFieldState> formFieldKey;
 
@@ -87,27 +79,17 @@ class _AuthLoginButtonWidget extends StatelessWidget {
     return ValueListenableBuilder<bool>(
       valueListenable: loginEmptyNotifier,
       builder: (context, loginIsEmpty, child) {
-        return ValueListenableBuilder<bool>(
-          valueListenable: loginIsSendingNotifier,
-          builder: (context, loginIsSending, child) {
-            return ThesisButton.fromText(
-              isDisabled: loginIsEmpty,
-              isLoading: loginIsSending,
-              onPressed: () {
-                loginIsSendingNotifier.value = true;
-                if (formFieldKey.currentState?.validate() ?? false) {
-                  bloc.add(
-                    AuthRequestCodeEvent(
-                      loginController.text,
-                    ),
-                  );
-                } else {
-                  loginIsSendingNotifier.value = false;
-                }
-              },
-              text: 'Продолжить',
-            );
+        return ThesisButton.fromText(
+          isDisabled: loginIsEmpty,
+          onPressed: () async {
+            if (formFieldKey.currentState?.validate() ?? false) {
+              LoginScope.requestCode(
+                context,
+                login: loginController.text,
+              );
+            }
           },
+          text: 'Продолжить',
         );
       },
     );

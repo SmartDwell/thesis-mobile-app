@@ -1,11 +1,16 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-import '../helpers/dio_helper.dart';
+import '../../helpers/dio_helper.dart';
+import 'tokens_repository.dart';
 
-class TokensRepository {
-  final String _accessToken = '_access_token';
-  final String _refreshToken = '_refresh_token';
+/// Репозиторий работы с токенами
+@immutable
+class TokensRepositoryImpl implements TokensRepository {
+  String get _accessToken => TokensRepository.accessTokenKey;
+  String get _refreshToken => TokensRepository.refreshTokenKey;
 
+  @override
   Future<void> saveTokens(String accessToken, String refreshToken) async {
     const storage = FlutterSecureStorage(
       aOptions: AndroidOptions(
@@ -17,6 +22,7 @@ class TokensRepository {
     await storage.write(key: _refreshToken, value: refreshToken);
   }
 
+  @override
   Future<String?> getAccessToken() async {
     const storage = FlutterSecureStorage(
       aOptions: AndroidOptions(
@@ -27,6 +33,7 @@ class TokensRepository {
     return storage.read(key: _accessToken);
   }
 
+  @override
   Future<String?> getRefreshToken() async {
     const storage = FlutterSecureStorage(
       aOptions: AndroidOptions(
@@ -37,6 +44,7 @@ class TokensRepository {
     return storage.read(key: _refreshToken);
   }
 
+  @override
   Future<void> deleteTokens() async {
     const storage = FlutterSecureStorage(
       aOptions: AndroidOptions(
@@ -48,7 +56,8 @@ class TokensRepository {
     await storage.delete(key: _refreshToken);
   }
 
-  Future<void> updateTokensFromServer() async {
+  @override
+  Future<bool> updateTokensFromServer() async {
     final data = {
       'refreshToken': await getRefreshToken(),
     };
@@ -64,7 +73,7 @@ class TokensRepository {
         response.data['accessToken'],
         response.data['refreshToken'],
       );
-      return;
+      return true;
     }
 
     await deleteTokens();

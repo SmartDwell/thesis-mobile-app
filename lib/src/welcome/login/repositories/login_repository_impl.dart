@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-
 import '../../../../core/helpers/dio_helper.dart';
-import '../contacts/ticket_dto/ticket_dto.dart';
-import '../contacts/tokens_dto/tokens_dto.dart';
+import '../../contacts/tokens_dto/tokens_dto.dart';
+import '../../contacts/ticket_dto/ticket_dto.dart';
+import 'login_repository.dart';
 
-class AuthRepository {
+class LoginRepositoryImpl implements LoginRepository {
+  @override
   Future<TicketDto> requestCode(String login) async {
     try {
       final data = {
@@ -29,11 +29,11 @@ class AuthRepository {
           throw Exception('Что-то пошло не так');
       }
     } catch (e) {
-      debugPrint('AuthRepository -> requestCode: $e');
       rethrow;
     }
   }
 
+  @override
   Future<TokensDto> verifyCode(String ticketId, String code) async {
     try {
       final data = {
@@ -60,7 +60,6 @@ class AuthRepository {
           throw Exception('Что-то пошло не так');
       }
     } catch (e) {
-      debugPrint('AuthRepository -> verifyCode: $e');
       rethrow;
     }
   }

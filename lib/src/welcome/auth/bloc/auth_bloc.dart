@@ -1,91 +1,43 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../core/extension/formatted_message.dart';
-import '../../../../core/repositories/tokens_repository.dart';
-import '../repositories/auth_repository.dart';
-import 'auth_event.dart';
-import 'auth_state.dart';
+import '../../../../core/repositories/tokens/tokens_repository.dart';
 
-class AuthBloc extends Bloc<AuthBaseEvent, AuthBaseState> {
+part 'auth_bloc.freezed.dart';
+
+class AuthBloc extends Bloc<AuthEvent, AuthState> {
+  final TokensRepository _tokensRepository;
+
   AuthBloc({
-    required AuthBaseState initialState,
-    required this.tokensRepository,
-    required this.authRepository,
-  }) : super(initialState);
-
-  final TokensRepository tokensRepository;
-  final AuthRepository authRepository;
-
-  @override
-  Stream<AuthBaseState> mapEventToState(AuthBaseEvent event) async* {
-    debugPrint('AuthBloc: $event');
-    if (event is AuthStartedEvent) {
-      yield* _mapAuthStartedEventToState();
-    } else if (event is AuthSuccessEvent) {
-      yield* _mapAuthSuccessEventToState();
-    } else if (event is AuthLogOutEvent) {
-      yield* _mapAuthLogOutEventToState();
-    }
-
-    if (event is AuthRequestCodeEvent) {
-      yield* _mapAuthRequestCodeEventToState(event);
-    } else if (event is AuthVerifyCodeEvent) {
-      yield* _mapAuthVerifyCodeEventToState(event);
-    }
+    required AuthState initialState,
+    required TokensRepository tokensRepository,
+  })  : _tokensRepository = tokensRepository,
+        super(initialState) {
+    on<AuthEvent>(
+      (event, emit) => event.map(
+        start: (event) => _start(event, emit),
+      ),
+    );
   }
 
-  Stream<AuthBaseState> _mapAuthStartedEventToState() async* {
-    yield const AuthLoadingState();
-    final token = await tokensRepository.getAccessToken();
-    if (token != null) {
-      yield const AuthAuthenticatedState();
-    } else {
-      yield const AuthUnauthenticatedState();
-    }
+  Future<void> _start(_AuthStartEvent event, Emitter<AuthState> emit) async {
+    emit(const AuthState.loading());
+    final accessToken = await _tokensRepository.getAccessToken();
+    emit(accessToken == null || accessToken.isEmpty
+        ? const AuthState.unauthenticated()
+        : const AuthState.authenticated());
   }
+}
 
-  Stream<AuthBaseState> _mapAuthSuccessEventToState() async* {
-    yield const AuthAuthenticatedState();
-  }
+@freezed
+abstract class AuthEvent with _$AuthEvent {
+  const factory AuthEvent.start() = _AuthStartEvent;
+}
 
-  Stream<AuthBaseState> _mapAuthLogOutEventToState() async* {
-    yield const AuthLoadingState();
-    await tokensRepository.deleteTokens();
-    yield const AuthUnauthenticatedState();
-  }
-
-  Stream<AuthBaseState> _mapAuthRequestCodeEventToState(
-    AuthRequestCodeEvent event,
-  ) async* {
-    try {
-      final ticketDto = await authRepository.requestCode(event.login);
-      yield AuthSuccessLoginVerifyState(
-        ticketDto.ticketId,
-        ticketDto.name,
-      );
-    } on Exception catch (e) {
-      debugPrint(e.getMessage);
-      yield AuthLoginFailureState(e.getMessage);
-    }
-  }
-
-  Stream<AuthBaseState> _mapAuthVerifyCodeEventToState(
-    AuthVerifyCodeEvent event,
-  ) async* {
-    try {
-      final tokensDto = await authRepository.verifyCode(
-        event.ticketId,
-        event.code,
-      );
-      await tokensRepository.saveTokens(
-        tokensDto.accessToken,
-        tokensDto.refreshToken,
-      );
-      yield const AuthSuccessCodeVerifyState();
-    } on Exception catch (e) {
-      debugPrint(e.getMessage);
-      yield AuthCodeFailureState(e.getMessage);
-    }
-  }
+@freezed
+abstract class AuthState with _$AuthState {
+  const factory AuthState.initial() = _AuthInitialState;
+  const factory AuthState.loading() = _AuthLoadingState;
+  const factory AuthState.authenticated() = _AuthAuthenticatedState;
+  const factory AuthState.unauthenticated() = _AuthUnauthenticatedState;
 }

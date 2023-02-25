@@ -4,13 +4,12 @@ import '../../../theme/theme_colors.dart';
 import 'thesis_progress_bar.dart';
 
 class ThesisButton extends StatelessWidget {
-  const ThesisButton({
+  ThesisButton({
     super.key,
     required this.child,
     this.text,
     required this.onPressed,
     this.isDisabled = false,
-    this.isLoading = false,
   });
 
   factory ThesisButton.fromText({
@@ -26,7 +25,6 @@ class ThesisButton extends StatelessWidget {
       text: text,
       onPressed: onPressed,
       isDisabled: isDisabled,
-      isLoading: isLoading,
     );
   }
 
@@ -34,37 +32,48 @@ class ThesisButton extends StatelessWidget {
   final String? text;
   final void Function() onPressed;
   final bool isDisabled;
-  final bool isLoading;
-
-  bool get isButtonDisabled => isDisabled || isLoading;
+  final ValueNotifier<bool> isLoadingNotifier = ValueNotifier<bool>(false);
 
   @override
   Widget build(BuildContext context) {
     final buttonWidth = MediaQuery.of(context).size.width;
-    return ElevatedButton(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(
-          isButtonDisabled ? kGray2Color : kPrimaryColor,
-        ),
-        foregroundColor: MaterialStateProperty.all<Color>(
-          isButtonDisabled ? kGray1Color : kDarkTextPrimaryColor,
-        ),
-        fixedSize: MaterialStateProperty.all<Size>(
-          Size(buttonWidth, 56),
-        ),
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16.0),
+    return ValueListenableBuilder(
+      valueListenable: isLoadingNotifier,
+      builder: (context, isLoading, child) {
+        return ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(
+              isDisabled || isLoading ? kGray2Color : kPrimaryColor,
+            ),
+            foregroundColor: MaterialStateProperty.all<Color>(
+              isDisabled || isLoading ? kGray1Color : kDarkTextPrimaryColor,
+            ),
+            fixedSize: MaterialStateProperty.all<Size>(
+              Size(buttonWidth, 56),
+            ),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+            ),
           ),
-        ),
-      ),
-      onPressed: isDisabled ? null : onPressed,
-      child: _ThesisButtonContent(
-        child: child,
-        text: text,
-        isLoading: isLoading,
-        isDisabled: isDisabled,
-      ),
+          onPressed: isDisabled
+              ? null
+              : () async {
+                  isLoadingNotifier.value = true;
+                  await Future.delayed(
+                    const Duration(milliseconds: 500),
+                    () => onPressed(),
+                  ).whenComplete(() => isLoadingNotifier.value = false);
+                },
+          child: _ThesisButtonContent(
+            child: child,
+            text: text,
+            isLoading: isLoading,
+            isDisabled: isDisabled,
+          ),
+        );
+      },
     );
   }
 }

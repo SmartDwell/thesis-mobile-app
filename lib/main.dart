@@ -1,16 +1,22 @@
 import 'dart:io';
 
+import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:no_context_navigation/no_context_navigation.dart';
 import 'package:provider/provider.dart';
 
+import 'core/bloc/bloc_global_observer.dart';
 import 'core/helpers/message_helper.dart';
-import 'core/repositories/tokens_repository.dart';
+import 'core/repositories/tokens/tokens_repository_impl.dart';
 import 'core/splash_screen.dart';
+import 'core/widgets/thesis/hud/thesis_hud.dart';
+import 'core/widgets/thesis/hud/thesis_hud_notifier.dart';
 import 'src/navigation_bar/navigation_bar.dart';
-import 'src/welcome/auth/bloc/auth_index.dart';
-import 'src/welcome/auth/repositories/auth_repository.dart';
+import 'src/welcome/auth/auth_scope.dart';
+import 'src/welcome/auth/bloc/auth_bloc.dart';
+import 'src/welcome/login/bloc/login_bloc.dart';
+import 'src/welcome/login/repositories/login_repository_impl.dart';
 import 'src/welcome/welcome_screen.dart';
 import 'theme/dark_theme.dart';
 import 'theme/light_theme.dart';
@@ -28,6 +34,8 @@ class MyHttpOverrides extends HttpOverrides {
 
 void main() {
   HttpOverrides.global = MyHttpOverrides();
+  Bloc.observer = BlocGlobalObserver();
+  Bloc.transformer = bloc_concurrency.sequential();
   runApp(const ThesisAppConfigurator());
 }
 
@@ -40,11 +48,20 @@ class ThesisAppConfigurator extends StatelessWidget {
       providers: [
         BlocProvider<AuthBloc>(
           create: (context) => AuthBloc(
-            initialState: const AuthInitialState(),
-            tokensRepository: TokensRepository(),
-            authRepository: AuthRepository(),
+            initialState: const AuthState.initial(),
+            tokensRepository: TokensRepositoryImpl(),
           ),
         ),
+        BlocProvider<LoginBloc>(
+          create: (context) => LoginBloc(
+            initialState: const LoginState.loading(),
+            tokensRepository: TokensRepositoryImpl(),
+            loginRepository: LoginRepositoryImpl(),
+          ),
+        ),
+        ChangeNotifierProvider<ThesisHudNotifier>(
+          create: (context) => ThesisHudNotifier(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -69,7 +86,7 @@ class ThesisAppConfigurator extends StatelessWidget {
         theme: lightThemeData,
         darkTheme: darkThemeData,
         themeMode: ThemeMode.dark,
-        home: const ThesisApp(),
+        home: const ThesisHud(child: ThesisApp()),
       ),
     );
   }
@@ -80,24 +97,12 @@ class ThesisApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authBloc = BlocProvider.of<AuthBloc>(context)
-      ..add(const AuthStartedEvent());
-    return BlocListener<AuthBloc, AuthBaseState>(
-      bloc: authBloc,
-      listener: (context, state) {},
-      child: BlocBuilder<AuthBloc, AuthBaseState>(
-        bloc: authBloc,
-        builder: (context, state) {
-          if (state is AuthAuthenticatedState) {
-            return const ThesisNavigationBar();
-          }
-
-          if (state is AuthUnauthenticatedState) {
-            return const WelcomeScreen();
-          }
-
-          return const SplashScreen();
-        },
+    AuthScope.start(context);
+    return BlocBuilder<AuthBloc, AuthState>(
+      builder: (context, state) => state.maybeMap(
+        authenticated: (_) => const ThesisNavigationBar(),
+        unauthenticated: (_) => const WelcomeScreen(),
+        orElse: () => const SplashScreen(),
       ),
     );
   }
