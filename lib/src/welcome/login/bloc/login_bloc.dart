@@ -7,6 +7,7 @@ import '../repositories/login_repository.dart';
 
 part 'login_bloc.freezed.dart';
 
+/// Блок логина
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final TokensRepository _tokensRepository;
   final LoginRepository _loginRepository;
@@ -63,33 +64,42 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 }
 
+/// События логина
 @freezed
 abstract class LoginEvent with _$LoginEvent {
+  /// Событие запроса кода
   const factory LoginEvent.requestCode({
     required String login,
   }) = _LoginRequestCodeEvent;
 
+  /// Событие верификации кода
   const factory LoginEvent.verifyCode({
     required String tickedId,
     required String code,
   }) = _LoginVerifyCodeEvent;
 }
 
+/// Состояния логина
 @freezed
 abstract class LoginState with _$LoginState {
+  /// Состояние загрузки
   const factory LoginState.loading() = _LoginLoadingState;
 
+  /// Состояние удачного запроса кода
   const factory LoginState.successRequestCode({
     required String tickedId,
     required String username,
   }) = _LoginSuccessRequestCodeState;
 
+  /// Состояние удачной верификации кода
   const factory LoginState.successVerifyCode() = _LoginSuccessVerifyCodeState;
 
+  /// Состояние удачного запроса кода
   const factory LoginState.failureRequestCode({
     required String message,
   }) = _LoginFailureRequestCodeState;
 
+  /// Состояние неудачной верификации кода
   const factory LoginState.failureVerifyCode({
     required String message,
   }) = _LoginFailureVerifyCodeState;

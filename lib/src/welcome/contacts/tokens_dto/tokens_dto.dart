@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'tokens_dto.freezed.dart';
 part 'tokens_dto.g.dart';
 
+/// Модель токенов
 @freezed
 class TokensDto with _$TokensDto {
   const factory TokensDto({

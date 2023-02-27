@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'theme_colors.dart';
 
+/// Светлая тема
 final lightThemeData = ThemeData(
   scaffoldBackgroundColor: kDarkBackgroundColor,
   fontFamily: "SFProDisplay",

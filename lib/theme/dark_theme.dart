@@ -9,6 +9,7 @@ const _navigationBarStyle = TextStyle(
   fontWeight: FontWeight.w600,
 );
 
+/// Темная тема
 final darkThemeData = ThemeData(
   scaffoldBackgroundColor: kDarkBackgroundColor,
   fontFamily: "SFProDisplay",

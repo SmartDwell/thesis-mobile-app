@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Компонент базовой страницы
 class ThesisBasePage extends StatelessWidget {
   const ThesisBasePage({
     super.key,

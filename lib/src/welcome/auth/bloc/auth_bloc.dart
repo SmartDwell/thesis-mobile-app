@@ -5,6 +5,7 @@ import '../../../../core/repositories/tokens/tokens_repository.dart';
 
 part 'auth_bloc.freezed.dart';
 
+/// Блок авторизации
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final TokensRepository _tokensRepository;
 
@@ -33,15 +34,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 }
 
+/// События авторизации
 @freezed
 abstract class AuthEvent with _$AuthEvent {
+  /// Событие начала авторизации
   const factory AuthEvent.start() = _AuthStartEvent;
 }
 
+/// Состояния авторизации
 @freezed
 abstract class AuthState with _$AuthState {
+  /// Состояние инициализации
   const factory AuthState.initial() = _AuthInitialState;
+
+  /// Состояние загрузки
   const factory AuthState.loading() = _AuthLoadingState;
+
+  /// Состояние авторизованности пользователя
   const factory AuthState.authenticated() = _AuthAuthenticatedState;
+
+  /// Состояние неавторизованности пользователя
   const factory AuthState.unauthenticated() = _AuthUnauthenticatedState;
 }

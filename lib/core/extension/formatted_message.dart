@@ -1,3 +1,4 @@
+/// Расширение для получения обработанного текста исключения
 extension FormattedMessage on Exception {
   String get getMessage {
     if (this.toString().startsWith("Exception: ")) {

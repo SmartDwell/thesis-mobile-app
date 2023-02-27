@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Страница заявок
 class RequestsPage extends StatelessWidget {
   const RequestsPage({super.key});
 

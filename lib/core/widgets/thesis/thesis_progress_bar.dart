@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../theme/theme_colors.dart';
 
+/// Компонент прогресс-бара
 class ThesisProgressBar extends StatelessWidget {
   const ThesisProgressBar({
     Key? key,

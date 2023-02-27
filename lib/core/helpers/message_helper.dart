@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../theme/theme_colors.dart';
 
+/// Помощник работы с Snackbar-сообщениями
 class MessageHelper {
   static final GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey =
       GlobalKey<ScaffoldMessengerState>();
@@ -51,6 +52,7 @@ class MessageHelper {
     );
   }
 
+  /// Отобразить кастомное сообщение
   static void showCustomMessage({
     required BuildContext context,
     required Widget child,

@@ -9,6 +9,7 @@ import '../bloc/login_bloc.dart';
 import '../login_scope.dart';
 import 'login_verify_code_screen.dart';
 
+/// Страница запроса кода авторизации
 class LoginRequestCodeScreen extends StatelessWidget {
   const LoginRequestCodeScreen({super.key});
 
@@ -22,7 +23,7 @@ class LoginRequestCodeScreen extends StatelessWidget {
       listener: (context, state) => state.mapOrNull(
         successRequestCode: (state) => ThesisBottomSheep.show(
           context,
-          child: AuthCodeScreen(
+          child: LoginVerifyCodeScreen(
             ticketId: state.tickedId,
             username: state.username,
           ),
@@ -35,14 +36,14 @@ class LoginRequestCodeScreen extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.75,
           child: Column(
             children: [
-              _AuthLoginTitleWidget(
+              _LoginTitleWidget(
                 loginController: loginController,
                 loginEmptyNotifier: loginEmptyNotifier,
                 errorNotifier: errorNotifier,
                 formFieldKey: formFieldKey,
               ),
               const Spacer(),
-              _AuthLoginButtonWidget(
+              _LoginButtonWidget(
                 loginEmptyNotifier: loginEmptyNotifier,
                 loginController: loginController,
                 formFieldKey: formFieldKey,
@@ -55,8 +56,8 @@ class LoginRequestCodeScreen extends StatelessWidget {
   }
 }
 
-class _AuthLoginButtonWidget extends StatelessWidget {
-  const _AuthLoginButtonWidget({
+class _LoginButtonWidget extends StatelessWidget {
+  const _LoginButtonWidget({
     Key? key,
     required this.loginEmptyNotifier,
     required this.loginController,
@@ -89,8 +90,8 @@ class _AuthLoginButtonWidget extends StatelessWidget {
   }
 }
 
-class _AuthLoginTitleWidget extends StatelessWidget {
-  const _AuthLoginTitleWidget({
+class _LoginTitleWidget extends StatelessWidget {
+  const _LoginTitleWidget({
     Key? key,
     required this.loginController,
     required this.loginEmptyNotifier,

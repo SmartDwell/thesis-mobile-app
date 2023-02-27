@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'types/introduction_item.dart';
 import 'widgets/bounds_widget.dart';
 
+/// Экран вводной страницы
 class IntroductionScreen extends StatelessWidget {
   const IntroductionScreen({super.key});
 

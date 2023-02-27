@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../theme/theme_colors.dart';
 import 'thesis_progress_bar.dart';
 
+/// Компонент базовой кнопки
 class ThesisButton extends StatelessWidget {
   ThesisButton({
     super.key,
@@ -12,6 +13,7 @@ class ThesisButton extends StatelessWidget {
     this.isDisabled = false,
   });
 
+  /// Кнопка из текста
   factory ThesisButton.fromText({
     Key? key,
     required String text,

@@ -5,6 +5,7 @@ import '../../core/widgets/thesis/thesis_button.dart';
 import 'introduction/introduction_screen.dart';
 import 'login/screens/login_request_code_screen.dart';
 
+/// Домашняя страница
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 

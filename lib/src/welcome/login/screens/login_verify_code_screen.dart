@@ -6,8 +6,9 @@ import '../../../../core/widgets/thesis/thesis_button.dart';
 import '../bloc/login_bloc.dart';
 import '../login_scope.dart';
 
-class AuthCodeScreen extends StatelessWidget {
-  const AuthCodeScreen({
+/// Страница запроса кода авторизации
+class LoginVerifyCodeScreen extends StatelessWidget {
+  const LoginVerifyCodeScreen({
     super.key,
     required this.ticketId,
     required this.username,
@@ -33,14 +34,14 @@ class AuthCodeScreen extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.75,
           child: Column(
             children: [
-              _AuthCodeTitleWidget(
+              _LoginTitleWidget(
                 username: username,
                 codeController: codeController,
                 codeEmptyNotifier: codeEmptyNotifier,
                 errorNotifier: errorNotifier,
               ),
               const Spacer(),
-              _AuthCodeButtonWidget(
+              _LoginButtonWidget(
                 codeEmptyNotifier: codeEmptyNotifier,
                 ticketId: ticketId,
                 codeController: codeController,
@@ -53,8 +54,8 @@ class AuthCodeScreen extends StatelessWidget {
   }
 }
 
-class _AuthCodeButtonWidget extends StatelessWidget {
-  const _AuthCodeButtonWidget({
+class _LoginButtonWidget extends StatelessWidget {
+  const _LoginButtonWidget({
     Key? key,
     required this.codeEmptyNotifier,
     required this.ticketId,
@@ -88,8 +89,8 @@ class _AuthCodeButtonWidget extends StatelessWidget {
   }
 }
 
-class _AuthCodeTitleWidget extends StatelessWidget {
-  const _AuthCodeTitleWidget({
+class _LoginTitleWidget extends StatelessWidget {
+  const _LoginTitleWidget({
     Key? key,
     required this.username,
     required this.codeController,

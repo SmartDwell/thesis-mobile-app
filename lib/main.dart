@@ -37,6 +37,7 @@ void main() {
   runApp(const ThesisAppConfigurator());
 }
 
+/// Класс конфигурации приложения
 class ThesisAppConfigurator extends StatelessWidget {
   const ThesisAppConfigurator({Key? key}) : super(key: key);
 
@@ -87,6 +88,7 @@ class ThesisAppConfigurator extends StatelessWidget {
   }
 }
 
+/// Класс приложения
 class ThesisApp extends StatelessWidget {
   const ThesisApp({super.key});
 

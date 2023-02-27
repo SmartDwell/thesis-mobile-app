@@ -8,6 +8,7 @@ import '../more/more_page.dart';
 import '../requests/requests_page.dart';
 import '../services/services_page.dart';
 
+/// Компонент нижней навигации
 class ThesisNavigationBar extends StatelessWidget {
   const ThesisNavigationBar({super.key});
 

@@ -3,6 +3,7 @@ import '../../contacts/tokens_dto/tokens_dto.dart';
 import '../../contacts/ticket_dto/ticket_dto.dart';
 import 'login_repository.dart';
 
+/// Репозиторий авторизации
 class LoginRepositoryImpl implements LoginRepository {
   @override
   Future<TicketDto> requestCode(String login) async {

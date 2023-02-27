@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Страница доступа
 class AccessPage extends StatelessWidget {
   const AccessPage({super.key});
 

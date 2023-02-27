@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Страница услуг
 class ServicesPage extends StatelessWidget {
   const ServicesPage({super.key});
 

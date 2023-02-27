@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Страница главное
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 

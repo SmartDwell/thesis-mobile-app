@@ -7,11 +7,13 @@ import 'package:no_context_navigation/no_context_navigation.dart';
 
 import '../repositories/tokens/tokens_repository_impl.dart';
 
+/// Помощник работы с Dio
 abstract class DioHelper {
   static final _host = Platform.isAndroid ? '10.0.2.2' : '127.0.0.1';
   static final _localBaseUrl = "https://$_host:7001/api";
   static const String _baseUrl = 'http://194.99.22.243:1480/api';
 
+  /// Получить данные
   static Future<Response> getData({
     required String url,
     required Map<String, dynamic> query,
@@ -24,6 +26,7 @@ abstract class DioHelper {
     return await dio.get(url, queryParameters: query);
   }
 
+  /// Отправить данные
   static Future<Response> postData({
     required String url,
     dynamic data,
@@ -36,6 +39,7 @@ abstract class DioHelper {
     return await dio.post(url, data: data);
   }
 
+  /// Изменить данные
   static Future<Response> patchData({
     required String url,
     dynamic data,
@@ -48,6 +52,7 @@ abstract class DioHelper {
     return await dio.patch(url, data: data);
   }
 
+  /// Удалить данные
   static Future<Response> deleteData({
     required String url,
     Map<String, dynamic>? headers,
@@ -59,6 +64,7 @@ abstract class DioHelper {
     return await dio.delete(url);
   }
 
+  /// Получить клиент с найстройками
   static Dio getDioClient(
     bool useLoggerInterceptor,
     bool useAuthErrorInterceptor,
