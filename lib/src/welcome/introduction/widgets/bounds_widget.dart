@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../theme/theme_colors.dart';
+import '../../../../theme/theme_colors.dart';
 
 class BoundsWidget extends StatelessWidget {
   const BoundsWidget({

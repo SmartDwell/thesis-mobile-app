@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../theme/theme_colors.dart';
+
+/// Компонент прогресс-бара
 class ThesisProgressBar extends StatelessWidget {
   const ThesisProgressBar({
     Key? key,
@@ -16,7 +19,7 @@ class ThesisProgressBar extends StatelessWidget {
       width: size.width,
       height: size.height,
       child: CircularProgressIndicator(
-        color: color ?? Theme.of(context).primaryColor,
+        color: color ?? kDarkTextPrimaryColor,
         strokeWidth: 2.5,
       ),
     );

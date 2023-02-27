@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../theme/theme_colors.dart';
 
+/// Экран загрузки
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 

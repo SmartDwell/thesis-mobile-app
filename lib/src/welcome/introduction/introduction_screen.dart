@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'types/introduction_item.dart';
 import 'widgets/bounds_widget.dart';
 
+/// Экран вводной страницы
 class IntroductionScreen extends StatelessWidget {
   const IntroductionScreen({super.key});
 
@@ -44,12 +45,12 @@ class IntroductionScreen extends StatelessWidget {
                     ),
                     Text(
                       tempItems[index].title,
-                      style: Theme.of(context).textTheme.headline5,
+                      style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     const SizedBox(height: 12),
                     Text(
                       tempItems[index].description,
-                      style: Theme.of(context).textTheme.subtitle2,
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ],
                 );
@@ -62,15 +63,16 @@ class IntroductionScreen extends StatelessWidget {
               return Material(
                 color: Colors.transparent,
                 child: DotsIndicator(
-                    dotsCount: tempItems.length,
-                    position: value.toDouble(),
-                    onTap: (position) {
-                      pageController.animateToPage(
-                        position.toInt(),
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn,
-                      );
-                    }),
+                  dotsCount: tempItems.length,
+                  position: value.toDouble(),
+                  onTap: (position) {
+                    pageController.animateToPage(
+                      position.toInt(),
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeIn,
+                    );
+                  },
+                ),
               );
             },
           ),
