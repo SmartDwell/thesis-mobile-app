@@ -38,6 +38,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       ));
     } on Exception catch (e) {
       emit(LoginState.failureRequestCode(message: e.getMessage));
+      rethrow;
     }
   }
 
@@ -57,6 +58,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       emit(const LoginState.successVerifyCode());
     } on Exception catch (e) {
       emit(LoginState.failureVerifyCode(message: e.getMessage));
+      rethrow;
     }
   }
 }

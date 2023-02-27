@@ -15,14 +15,10 @@ class LoginRequestCodeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginEmptyNotifier = ValueNotifier<bool>(false);
-    final loginIsSendingNotifier = ValueNotifier<bool>(false);
     final loginController = TextEditingController(text: 'seljmov@list.ru');
     final formFieldKey = GlobalKey<FormFieldState>();
     final errorNotifier = ValueNotifier<String>('');
-    //final bloc = BlocProvider.of<AuthBloc>(context);
     return BlocListener<LoginBloc, LoginState>(
-      //bloc: bloc,
-      // loginIsSendingNotifier.value = false;
       listener: (context, state) => state.mapOrNull(
         successRequestCode: (state) => ThesisBottomSheep.show(
           context,
@@ -48,7 +44,6 @@ class LoginRequestCodeScreen extends StatelessWidget {
               const Spacer(),
               _AuthLoginButtonWidget(
                 loginEmptyNotifier: loginEmptyNotifier,
-                loginIsSendingNotifier: loginIsSendingNotifier,
                 loginController: loginController,
                 formFieldKey: formFieldKey,
               ),
@@ -64,13 +59,11 @@ class _AuthLoginButtonWidget extends StatelessWidget {
   const _AuthLoginButtonWidget({
     Key? key,
     required this.loginEmptyNotifier,
-    required this.loginIsSendingNotifier,
     required this.loginController,
     required this.formFieldKey,
   }) : super(key: key);
 
   final ValueNotifier<bool> loginEmptyNotifier;
-  final ValueNotifier<bool> loginIsSendingNotifier;
   final TextEditingController loginController;
   final GlobalKey<FormFieldState> formFieldKey;
 
@@ -137,7 +130,6 @@ class _AuthLoginTitleWidget extends StatelessWidget {
           validator: _textFieldValidator,
           decoration: const InputDecoration(
             hintText: 'Почта или номер телефона',
-            //errorText: 'Поле не может быть пустым',
           ),
         ),
         ValueListenableBuilder<String>(

@@ -1,7 +1,11 @@
 import 'dart:io' show Platform;
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_pretty_dio_logger/flutter_pretty_dio_logger.dart';
+import 'package:no_context_navigation/no_context_navigation.dart';
+
+import '../repositories/tokens/tokens_repository_impl.dart';
 
 abstract class DioHelper {
   static final _host = Platform.isAndroid ? '10.0.2.2' : '127.0.0.1';
@@ -80,45 +84,46 @@ abstract class DioHelper {
       );
     }
 
-    // TODO: разрешить проблемы
-    // if (useAuthErrorInterceptor) {
-    //   client.interceptors.add(InterceptorsWrapper(
-    //     onError: (DioError error, handler) async {
-    //       if (error.response?.statusCode == 401) {
-    //         try {
-    //           await TokensRepository().updateTokensFromServer();
+    if (useAuthErrorInterceptor) {
+      client.interceptors.add(InterceptorsWrapper(
+        onError: (DioError error, handler) async {
+          if (error.response?.statusCode == 401) {
+            try {
+              final tokensRepository = TokensRepositoryImpl();
+              await tokensRepository.updateTokensFromServer();
 
-    //           final options = Options(
-    //             method: error.requestOptions.method,
-    //             headers: error.requestOptions.headers,
-    //             responseType: error.requestOptions.responseType,
-    //           );
+              final options = Options(
+                method: error.requestOptions.method,
+                headers: error.requestOptions.headers,
+                responseType: error.requestOptions.responseType,
+              );
 
-    //           final accessToken = await TokensRepository().getAccessToken();
-    //           final headers = error.requestOptions.headers;
-    //           if (headers.containsKey('access_token')) {
-    //             headers['Authorization'] = 'Bearer: $accessToken';
-    //             options.headers = headers;
-    //           }
+              final accessToken = await tokensRepository.getAccessToken();
+              final headers = error.requestOptions.headers;
+              if (headers.containsKey('access_token')) {
+                headers['Authorization'] = 'Bearer: $accessToken';
+                options.headers = headers;
+              }
 
-    //           final response = await Dio().request<dynamic>(
-    //             error.requestOptions.path,
-    //             data: error.requestOptions.data,
-    //             queryParameters: error.requestOptions.queryParameters,
-    //             options: options,
-    //           );
+              final response = await Dio().request<dynamic>(
+                error.requestOptions.path,
+                data: error.requestOptions.data,
+                queryParameters: error.requestOptions.queryParameters,
+                options: options,
+              );
 
-    //           debugPrint("Refresh-токен успешно обновлен.");
-    //           return handler.resolve(response);
-    //         } on DioError catch (e) {
-    //           debugPrint("DioInterceptorError -> $e");
-    //           debugPrint("Refresh-токен не обновлен.");
-    //           navService.pushNamedAndRemoveUntil('/welcome');
-    //         }
-    //       }
-    //     },
-    //   ));
-    // }
+              debugPrint("Refresh-токен успешно обновлен.");
+              return handler.resolve(response);
+            } on DioError catch (e) {
+              debugPrint("DioInterceptorError -> $e");
+              debugPrint("Refresh-токен не обновлен.");
+              navService.pushNamedAndRemoveUntil('/welcome');
+              rethrow;
+            }
+          }
+        },
+      ));
+    }
 
     client.options.followRedirects = false;
     client.options.validateStatus = (status) {

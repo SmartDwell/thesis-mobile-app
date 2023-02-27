@@ -21,11 +21,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future<void> _start(_AuthStartEvent event, Emitter<AuthState> emit) async {
-    emit(const AuthState.loading());
-    final accessToken = await _tokensRepository.getAccessToken();
-    emit(accessToken == null || accessToken.isEmpty
-        ? const AuthState.unauthenticated()
-        : const AuthState.authenticated());
+    try {
+      emit(const AuthState.loading());
+      final accessToken = await _tokensRepository.getAccessToken();
+      emit(accessToken == null || accessToken.isEmpty
+          ? const AuthState.unauthenticated()
+          : const AuthState.authenticated());
+    } on Exception catch (_) {
+      rethrow;
+    }
   }
 }
 

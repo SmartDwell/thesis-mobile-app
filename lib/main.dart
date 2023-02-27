@@ -10,8 +10,6 @@ import 'core/bloc/bloc_global_observer.dart';
 import 'core/helpers/message_helper.dart';
 import 'core/repositories/tokens/tokens_repository_impl.dart';
 import 'core/splash_screen.dart';
-import 'core/widgets/thesis/hud/thesis_hud.dart';
-import 'core/widgets/thesis/hud/thesis_hud_notifier.dart';
 import 'src/navigation_bar/navigation_bar.dart';
 import 'src/welcome/auth/auth_scope.dart';
 import 'src/welcome/auth/bloc/auth_bloc.dart';
@@ -59,9 +57,6 @@ class ThesisAppConfigurator extends StatelessWidget {
             loginRepository: LoginRepositoryImpl(),
           ),
         ),
-        ChangeNotifierProvider<ThesisHudNotifier>(
-          create: (context) => ThesisHudNotifier(),
-        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -86,7 +81,7 @@ class ThesisAppConfigurator extends StatelessWidget {
         theme: lightThemeData,
         darkTheme: darkThemeData,
         themeMode: ThemeMode.dark,
-        home: const ThesisHud(child: ThesisApp()),
+        home: const ThesisApp(),
       ),
     );
   }

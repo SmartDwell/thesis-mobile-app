@@ -19,7 +19,6 @@ class AuthCodeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final codeEmptyNotifier = ValueNotifier<bool>(false);
-    final codeIsSendingNotifier = ValueNotifier<bool>(false);
     final codeController = TextEditingController();
     final errorNotifier = ValueNotifier<String>('');
     return BlocListener<LoginBloc, LoginState>(
@@ -43,7 +42,6 @@ class AuthCodeScreen extends StatelessWidget {
               const Spacer(),
               _AuthCodeButtonWidget(
                 codeEmptyNotifier: codeEmptyNotifier,
-                codeIsSendingNotifier: codeIsSendingNotifier,
                 ticketId: ticketId,
                 codeController: codeController,
               ),
@@ -59,14 +57,11 @@ class _AuthCodeButtonWidget extends StatelessWidget {
   const _AuthCodeButtonWidget({
     Key? key,
     required this.codeEmptyNotifier,
-    required this.codeIsSendingNotifier,
     required this.ticketId,
     required this.codeController,
   }) : super(key: key);
 
   final ValueNotifier<bool> codeEmptyNotifier;
-  final ValueNotifier<bool> codeIsSendingNotifier;
-
   final String ticketId;
   final TextEditingController codeController;
 
@@ -78,7 +73,6 @@ class _AuthCodeButtonWidget extends StatelessWidget {
         return ThesisButton.fromText(
           isDisabled: codeIsEmpty,
           onPressed: () async {
-            codeIsSendingNotifier.value = true;
             if (!codeIsEmpty) {
               LoginScope.verifyCode(
                 context,
