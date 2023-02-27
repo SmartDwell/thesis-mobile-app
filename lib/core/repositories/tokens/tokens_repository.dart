@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+/// Интерфейс репозиторий работы с токенами
 abstract class TokensRepository {
   @protected
   static const String accessTokenKey = '_access_token';
