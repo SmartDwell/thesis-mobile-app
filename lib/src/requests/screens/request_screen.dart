@@ -3,12 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/widgets/pages/thesis_base_page.dart';
 import '../../../core/widgets/pages/thesis_empty_page.dart';
-import '../../../core/widgets/thesis/thesis_staggered_list.dart';
 import '../bloc/request_bloc.dart';
 import '../bloc/request_scope.dart';
-import '../contracts/request_dto/request_dto.dart';
-import '../widgets/request_card.dart';
 import '../widgets/request_shimmer.dart';
+import 'request_tab_screen.dart';
 
 class RequestScreen extends StatefulWidget {
   const RequestScreen({super.key});
@@ -26,6 +24,7 @@ class _RequestScreenState extends State<RequestScreen> {
         initial: (value) => RequestScope.load(context),
       ),
       child: ThesisBasePage(
+        padding: EdgeInsets.zero,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -43,9 +42,8 @@ class _RequestScreenState extends State<RequestScreen> {
                   description:
                       "Чтобы создать заявку, нажмите кнопку “+” ниже и заполните все данные",
                 ),
-                loaded: (state) => ThesisStaggeredList<RequestDto>(
-                  items: state.requests,
-                  renderChild: (request) => RequestCard(request: request),
+                loaded: (state) => RequestTabScreen(
+                  requests: state.requests,
                 ),
                 orElse: () => const RequestShimmer(),
               ),

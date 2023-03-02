@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,16 +33,24 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting('ru_RU', null);
   HttpOverrides.global = MyHttpOverrides();
   Bloc.observer = BlocGlobalObserver();
   Bloc.transformer = bloc_concurrency.sequential();
-  runApp(const ThesisAppConfigurator());
+  runApp(const ThesisAppConfigurator(
+    darkThemeInitial: true,
+  ));
 }
 
 /// Класс конфигурации приложения
 class ThesisAppConfigurator extends StatelessWidget {
-  const ThesisAppConfigurator({Key? key}) : super(key: key);
+  const ThesisAppConfigurator({
+    Key? key,
+    required this.darkThemeInitial,
+  }) : super(key: key);
+
+  final bool darkThemeInitial;
 
   @override
   Widget build(BuildContext context) {
@@ -61,30 +70,35 @@ class ThesisAppConfigurator extends StatelessWidget {
           ),
         ),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        scaffoldMessengerKey: MessageHelper.rootScaffoldMessengerKey,
-        title: 'Thesis mobile app',
-        navigatorKey: NavigationService.navigationKey,
-        onGenerateRoute: (RouteSettings settings) {
-          switch (settings.name) {
-            case '/welcome':
-              return MaterialPageRoute(
-                builder: (context) => const WelcomeScreen(),
-              );
-            default:
-              return null;
-          }
-        },
-        routes: {
-          "/start": (context) => const ThesisApp(),
-          "/welcome": (context) => const WelcomeScreen(),
-          "/navbar": (context) => const ThesisNavigationBar(),
-        },
-        theme: lightThemeData,
-        darkTheme: darkThemeData,
-        themeMode: ThemeMode.dark,
-        home: const ThesisApp(),
+      child: AdaptiveTheme(
+        light: lightThemeData,
+        dark: darkThemeData,
+        initial:
+            darkThemeInitial ? AdaptiveThemeMode.dark : AdaptiveThemeMode.light,
+        builder: (light, dark) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          scaffoldMessengerKey: MessageHelper.rootScaffoldMessengerKey,
+          title: 'Thesis mobile app',
+          navigatorKey: NavigationService.navigationKey,
+          onGenerateRoute: (RouteSettings settings) {
+            switch (settings.name) {
+              case '/welcome':
+                return MaterialPageRoute(
+                  builder: (context) => const WelcomeScreen(),
+                );
+              default:
+                return null;
+            }
+          },
+          routes: {
+            "/start": (context) => const ThesisApp(),
+            "/welcome": (context) => const WelcomeScreen(),
+            "/navbar": (context) => const ThesisNavigationBar(),
+          },
+          theme: light,
+          darkTheme: dark,
+          home: const ThesisApp(),
+        ),
       ),
     );
   }
