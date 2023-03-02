@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:validators/validators.dart';
 
-import '../../../../core/widgets/thesis/thesis_base_page.dart';
+import '../../../../core/widgets/pages/thesis_base_page.dart';
 import '../../../../core/widgets/thesis/thesis_bottom_sheep.dart';
 import '../../../../core/widgets/thesis/thesis_button.dart';
 import '../bloc/login_bloc.dart';

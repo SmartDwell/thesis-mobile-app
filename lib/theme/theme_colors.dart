@@ -13,9 +13,11 @@ final kDarkTextSecondaryColor = const Color(0xFFE2E2E2).withOpacity(0.75);
 
 const kGray1Color = Color(0xFF8E8E93);
 const kGray2Color = Color(0xFF636366);
+const kGray3Color = Color(0xFF3A3A3C);
 
 const kRedColor = Color(0xFFFF453A);
 const kBlueColor = Color(0xFF007AFF);
 const kTealColor = Color(0xFF5AC8FA);
 const kGreenColor = Color(0xFF34C759);
+const kOrangeColor = Color(0xFFFF9500);
 const kIndigoColor = Color(0xFF5856D6);

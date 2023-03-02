@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:no_context_navigation/no_context_navigation.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'core/bloc/bloc_global_observer.dart';
 import 'core/helpers/message_helper.dart';
@@ -30,7 +31,8 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 
-void main() {
+Future<void> main() async {
+  await initializeDateFormatting('ru_RU', null);
   HttpOverrides.global = MyHttpOverrides();
   Bloc.observer = BlocGlobalObserver();
   Bloc.transformer = bloc_concurrency.sequential();

@@ -15,6 +15,7 @@ final darkThemeData = ThemeData(
   fontFamily: "SFProDisplay",
   appBarTheme: const AppBarTheme(
     backgroundColor: kDarkBackgroundColor,
+    elevation: 0,
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarColor: kDarkTextPrimaryColor,
       statusBarIconBrightness: Brightness.light,
