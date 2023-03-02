@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/widgets/pages/thesis_base_page.dart';
 import '../../../core/widgets/pages/thesis_empty_page.dart';
+import '../../../core/widgets/thesis/thesis_staggered_list.dart';
 import '../bloc/request_bloc.dart';
 import '../bloc/request_scope.dart';
+import '../contracts/request_dto/request_dto.dart';
 import '../widgets/request_card.dart';
 import '../widgets/request_shimmer.dart';
 
@@ -41,11 +43,9 @@ class _RequestScreenState extends State<RequestScreen> {
                   description:
                       "Чтобы создать заявку, нажмите кнопку “+” ниже и заполните все данные",
                 ),
-                loaded: (state) => Column(
-                  children: List.generate(
-                    state.requests.length,
-                    (index) => RequestCard(request: state.requests[index]),
-                  ),
+                loaded: (state) => ThesisStaggeredList<RequestDto>(
+                  items: state.requests,
+                  renderChild: (request) => RequestCard(request: request),
                 ),
                 orElse: () => const RequestShimmer(),
               ),
