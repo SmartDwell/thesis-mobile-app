@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/widgets/pages/thesis_base_page.dart';
 import '../../../core/widgets/pages/thesis_empty_page.dart';
+import '../../../core/widgets/thesis/thesis_sliver_screen.dart';
 import '../bloc/request_bloc.dart';
 import '../bloc/request_scope.dart';
 import '../widgets/request_shimmer.dart';
@@ -25,30 +26,47 @@ class _RequestScreenState extends State<RequestScreen> {
       ),
       child: ThesisBasePage(
         padding: EdgeInsets.zero,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              'Ваши заявки',
-              style: Theme.of(context).textTheme.displaySmall,
-            ),
-            const SizedBox(height: 20),
-            BlocBuilder<RequestBloc, RequestState>(
-              builder: (context, state) => state.maybeMap(
-                empty: (state) => const ThesisEmptyPage(
-                  iconPath: "assets/images/icons/request.svg",
-                  title: "У вас нет активных заявок",
-                  description:
-                      "Чтобы создать заявку, нажмите кнопку “+” ниже и заполните все данные",
-                ),
-                loaded: (state) => RequestTabScreen(
-                  requests: state.requests,
-                ),
-                orElse: () => const RequestShimmer(),
+        child: ThesisSliverScreen(
+          title: 'Ваши заявки',
+          child: BlocBuilder<RequestBloc, RequestState>(
+            builder: (context, state) => state.maybeMap(
+              empty: (state) => const ThesisEmptyPage(
+                iconPath: "assets/images/icons/request.svg",
+                title: "У вас нет активных заявок",
+                description:
+                    "Чтобы создать заявку, нажмите кнопку “+” ниже и заполните все данные",
               ),
+              loaded: (state) => RequestTabScreen(
+                requests: state.requests,
+              ),
+              orElse: () => const RequestShimmer(),
             ),
-          ],
+          ),
+          // child: Column(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   crossAxisAlignment: CrossAxisAlignment.stretch,
+          //   children: [
+          //     Text(
+          //       'Ваши заявки',
+          //       style: Theme.of(context).textTheme.displaySmall,
+          //     ),
+          //     const SizedBox(height: 20),
+          //     BlocBuilder<RequestBloc, RequestState>(
+          //       builder: (context, state) => state.maybeMap(
+          //         empty: (state) => const ThesisEmptyPage(
+          //           iconPath: "assets/images/icons/request.svg",
+          //           title: "У вас нет активных заявок",
+          //           description:
+          //               "Чтобы создать заявку, нажмите кнопку “+” ниже и заполните все данные",
+          //         ),
+          //         loaded: (state) => RequestTabScreen(
+          //           requests: state.requests,
+          //         ),
+          //         orElse: () => const RequestShimmer(),
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ),
       ),
     );

@@ -11,8 +11,8 @@ class MockRequestRepositoryImpl implements RequestRepository {
 
   @override
   Future<List<RequestDto>> loadRequests() {
-    //return Future.value([]);
-    return Future.value(_storage);
+    final data = _storage + _storage;
+    return Future.value(data);
   }
 
   final _storage = [

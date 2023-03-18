@@ -69,6 +69,18 @@ final darkThemeData = ThemeData(
       letterSpacing: 0.1,
       color: kDarkTextSecondaryColor,
     ),
+    labelLarge: const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      letterSpacing: 1.25,
+      color: kDarkTextPrimaryColor,
+    ),
+    labelSmall: TextStyle(
+      fontSize: 10,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 1.5,
+      color: kDarkTextSecondaryColor,
+    ),
     bodyLarge: const TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w400,
@@ -81,22 +93,10 @@ final darkThemeData = ThemeData(
       letterSpacing: 0.25,
       color: kDarkTextSecondaryColor,
     ),
-    labelLarge: const TextStyle(
-      fontSize: 16,
-      fontWeight: FontWeight.w600,
-      letterSpacing: 1.25,
-      color: kDarkTextPrimaryColor,
-    ),
     bodySmall: TextStyle(
       fontSize: 12,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.4,
-      color: kDarkTextSecondaryColor,
-    ),
-    labelSmall: TextStyle(
-      fontSize: 10,
-      fontWeight: FontWeight.w400,
-      letterSpacing: 1.5,
       color: kDarkTextSecondaryColor,
     ),
   ),

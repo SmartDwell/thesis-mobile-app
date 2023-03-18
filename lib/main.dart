@@ -83,9 +83,7 @@ class ThesisAppConfigurator extends StatelessWidget {
           onGenerateRoute: (RouteSettings settings) {
             switch (settings.name) {
               case '/welcome':
-                return MaterialPageRoute(
-                  builder: (context) => const WelcomeScreen(),
-                );
+                return MaterialPageRoute(builder: (_) => const WelcomeScreen());
               default:
                 return null;
             }

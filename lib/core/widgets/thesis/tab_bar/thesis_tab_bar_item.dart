@@ -32,7 +32,11 @@ class ThesisTabBarItem extends StatelessWidget {
           title,
           style: isPicked
               ? AdaptiveTheme.of(context).theme.textTheme.labelLarge
-              : AdaptiveTheme.of(context).theme.textTheme.labelLarge,
+              : AdaptiveTheme.of(context)
+                  .theme
+                  .textTheme
+                  .labelLarge
+                  ?.copyWith(fontWeight: FontWeight.w400),
         ),
       ),
     );

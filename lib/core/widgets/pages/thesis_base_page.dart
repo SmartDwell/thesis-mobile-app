@@ -21,14 +21,7 @@ class ThesisBasePage extends StatelessWidget {
       onWillPop: onWillPop,
       child: GestureDetector(
         onTap: () => onTap ?? FocusScope.of(context).unfocus(),
-        child: SingleChildScrollView(
-          padding: padding ??
-              const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 30,
-              ),
-          child: child,
-        ),
+        child: child,
       ),
     );
   }
