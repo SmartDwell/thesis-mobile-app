@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../theme/theme_constants.dart';
 import 'thesis_tab_bar_item.dart';
 
 class ThesisTabBar extends StatelessWidget {
@@ -24,9 +23,6 @@ class ThesisTabBar extends StatelessWidget {
         return Column(
           children: [
             SingleChildScrollView(
-              padding: EdgeInsets.symmetric(
-                horizontal: kThemeDefaultPaddingHorizontal.horizontal / 2 + 6,
-              ),
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: List.generate(tabs.length, (index) {
@@ -49,10 +45,7 @@ class ThesisTabBar extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            Padding(
-              padding: kThemeDefaultPaddingHorizontal,
-              child: children[currentIndex],
-            ),
+            children[currentIndex],
           ],
         );
       },

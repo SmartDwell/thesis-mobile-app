@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -27,32 +28,30 @@ class ThesisSliverScreen extends StatelessWidget {
               duration: const Duration(milliseconds: 256),
               child: Visibility(
                 visible: !visibility && title.isNotEmpty,
-                child: Text(title),
+                child: Text(
+                  title,
+                  style:
+                      AdaptiveTheme.of(context).theme.textTheme.headlineSmall,
+                ),
               ),
             ),
           ),
           body: SingleChildScrollView(
+            padding: kThemeDefaultPaddingHorizontal,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: 8,
-                    left: kThemeDefaultPaddingHorizontal.left,
-                    right: kThemeDefaultPaddingHorizontal.right,
-                  ),
-                  child: VisibilityDetector(
-                    key: UniqueKey(),
-                    onVisibilityChanged: (visibilityInfo) {
-                      final count = visibilityInfo.visibleFraction;
-                      final isVisibility = count > 0.250;
-                      detector.value = isVisibility;
-                    },
-                    child: Text(
-                      'Ваши заявки',
-                      style: Theme.of(context).textTheme.displaySmall,
-                    ),
+                VisibilityDetector(
+                  key: UniqueKey(),
+                  onVisibilityChanged: (visibilityInfo) {
+                    final count = visibilityInfo.visibleFraction;
+                    final isVisibility = count > 0.250;
+                    detector.value = isVisibility;
+                  },
+                  child: Text(
+                    'Ваши заявки',
+                    style: Theme.of(context).textTheme.displaySmall,
                   ),
                 ),
                 Padding(

@@ -42,31 +42,6 @@ class _RequestScreenState extends State<RequestScreen> {
               orElse: () => const RequestShimmer(),
             ),
           ),
-          // child: Column(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   crossAxisAlignment: CrossAxisAlignment.stretch,
-          //   children: [
-          //     Text(
-          //       'Ваши заявки',
-          //       style: Theme.of(context).textTheme.displaySmall,
-          //     ),
-          //     const SizedBox(height: 20),
-          //     BlocBuilder<RequestBloc, RequestState>(
-          //       builder: (context, state) => state.maybeMap(
-          //         empty: (state) => const ThesisEmptyPage(
-          //           iconPath: "assets/images/icons/request.svg",
-          //           title: "У вас нет активных заявок",
-          //           description:
-          //               "Чтобы создать заявку, нажмите кнопку “+” ниже и заполните все данные",
-          //         ),
-          //         loaded: (state) => RequestTabScreen(
-          //           requests: state.requests,
-          //         ),
-          //         orElse: () => const RequestShimmer(),
-          //       ),
-          //     ),
-          //   ],
-          // ),
         ),
       ),
     );
