@@ -175,6 +175,7 @@ final darkThemeData = ThemeData(
   cardTheme: CardTheme(
     color: kDarkBackgroundSecondaryColor,
     elevation: 0,
+    margin: EdgeInsets.zero,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(12.0),
     ),

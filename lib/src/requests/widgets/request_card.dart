@@ -36,7 +36,8 @@ class RequestCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 8),
                     RequestStateCard(
-                      state: request.currentState,
+                      stateName: request.stateName,
+                      stateColor: request.stateColor,
                     ),
                   ],
                 ),

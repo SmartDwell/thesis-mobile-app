@@ -22,7 +22,7 @@ dependencies:
   flutter_bloc: ^8.1.2
   no_context_navigation: ^2.1.2
   freezed_annotation: ^2.2.0
-  json_annotation: ^4.7.0
+  json_annotation: ^4.8.0
   validators: ^3.0.0
   flutter_progress_hud: ^2.0.2
   bloc_concurrency: ^0.2.1

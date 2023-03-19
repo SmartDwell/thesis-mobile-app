@@ -30,13 +30,11 @@ class ThesisTabBarItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 14),
         child: Text(
           title,
-          style: isPicked
-              ? AdaptiveTheme.of(context).theme.textTheme.labelLarge
-              : AdaptiveTheme.of(context)
-                  .theme
-                  .textTheme
-                  .labelLarge
-                  ?.copyWith(fontWeight: FontWeight.w400),
+          style: AdaptiveTheme.of(context)
+              .theme
+              .textTheme
+              .labelLarge
+              ?.copyWith(fontWeight: FontWeight.w400),
         ),
       ),
     );

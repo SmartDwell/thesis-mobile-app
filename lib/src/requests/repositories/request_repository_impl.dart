@@ -1,8 +1,14 @@
+import 'package:flutter/material.dart';
+
+import '../../../core/helpers/dio_helper.dart';
+import '../../../core/repositories/tokens/tokens_repository_impl.dart';
 import '../contracts/request_dto/request_dto.dart';
 import '../widgets/request_states.dart';
 import 'request_repository.dart';
 
-class MockRequestRepositoryImpl implements IRequestRepository {
+class RequestRepositoryImpl implements IRequestRepository {
+  final _tokensRepository = TokensRepositoryImpl();
+
   @override
   Future<RequestDto> loadRequestById(String id) {
     final request = _storage.firstWhere((element) => element.id == id);
@@ -10,9 +16,36 @@ class MockRequestRepositoryImpl implements IRequestRepository {
   }
 
   @override
-  Future<List<RequestDto>> loadRequests() {
-    final data = _storage + _storage;
-    return Future.value(data);
+  Future<List<RequestDto>> loadRequests() async {
+    try {
+      final accessToken = await _tokensRepository.getAccessToken();
+      debugPrint(accessToken);
+      final response = await DioHelper.getData(
+        url: '/requests/ffd61783-3fb2-431a-b824-3f2afbef0a82',
+        headers: {
+          'Content-type': ' application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+      );
+
+      debugPrint('${response.statusCode}');
+      switch (response.statusCode) {
+        case 200:
+          return (response.data as List<dynamic>)
+              .map((e) => RequestDto.fromJson(e))
+              .toList();
+
+        case 400:
+          throw Exception('Передана некорректная почта или номер телефона');
+        case 404:
+          throw Exception(
+              'Пользователь с данной почтой или номером телефона не найден');
+        default:
+          throw Exception('Что-то пошло не так');
+      }
+    } catch (e) {
+      rethrow;
+    }
   }
 
   final _storage = [

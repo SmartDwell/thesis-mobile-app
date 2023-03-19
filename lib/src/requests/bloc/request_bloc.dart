@@ -7,11 +7,11 @@ import '../repositories/request_repository.dart';
 part 'request_bloc.freezed.dart';
 
 class RequestBloc extends Bloc<RequestEvent, RequestState> {
-  final RequestRepository _requestRepository;
+  final IRequestRepository _requestRepository;
 
   RequestBloc({
     required RequestState initialState,
-    required RequestRepository requestRepository,
+    required IRequestRepository requestRepository,
   })  : _requestRepository = requestRepository,
         super(initialState) {
     on<RequestEvent>(

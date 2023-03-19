@@ -36,10 +36,10 @@ Map<String, dynamic> _$$_RequestDtoToJson(_$_RequestDto instance) =>
     };
 
 const _$RequestStatesEnumMap = {
-  RequestStates.New: 'New',
-  RequestStates.InProgress: 'InProgress',
-  RequestStates.Completed: 'Completed',
-  RequestStates.UnderCompletion: 'UnderCompletion',
-  RequestStates.CancelledByResident: 'CancelledByResident',
-  RequestStates.RejectedByDispatcher: 'RejectedByDispatcher',
+  RequestStates.New: 0,
+  RequestStates.InProgress: 1,
+  RequestStates.Completed: 2,
+  RequestStates.UnderCompletion: 3,
+  RequestStates.CancelledByResident: 4,
+  RequestStates.RejectedByDispatcher: 5,
 };

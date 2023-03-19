@@ -16,14 +16,13 @@ abstract class DioHelper {
   /// Получить данные
   static Future<Response> getData({
     required String url,
-    required Map<String, dynamic> query,
     required Map<String, dynamic> headers,
     bool useLoggerInterceptor = true,
     bool useAuthErrorInterceptor = true,
   }) async {
     final dio = getDioClient(useLoggerInterceptor, useAuthErrorInterceptor);
     dio.options.headers = headers;
-    return await dio.get(url, queryParameters: query);
+    return await dio.get(url);
   }
 
   /// Отправить данные

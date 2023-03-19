@@ -4,7 +4,6 @@ import '../../../core/widgets/thesis/tab_bar/thesis_tab_bar.dart';
 import '../../../core/widgets/thesis/thesis_staggered_list.dart';
 import '../contracts/request_dto/request_dto.dart';
 import '../widgets/request_card.dart';
-import '../widgets/request_states.dart';
 
 class RequestTabScreen extends StatelessWidget {
   const RequestTabScreen({
@@ -16,23 +15,23 @@ class RequestTabScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final statuses = requests
-        .map((e) => RequestStateToString(e.currentState))
-        .toSet()
-        .toList();
+    final requestsByDateTime = requests.toList();
+    requestsByDateTime.sort(
+      (a, b) => b.created.compareTo(a.created),
+    );
+    final statuses =
+        requestsByDateTime.map((request) => request.stateName).toSet().toList();
     return ThesisTabBar(
       tabs: ["Все", ...statuses],
       children: [
         ThesisStaggeredList<RequestDto>(
-          items: requests,
+          items: requestsByDateTime,
           renderChild: (request) => RequestCard(request: request),
         ),
         ...List.generate(statuses.length, (index) {
           return ThesisStaggeredList<RequestDto>(
-            items: requests
-                .where((element) =>
-                    RequestStateToString(element.currentState) ==
-                    statuses[index])
+            items: requestsByDateTime
+                .where((request) => request.stateName == statuses[index])
                 .toList(),
             renderChild: (request) => RequestCard(request: request),
           );

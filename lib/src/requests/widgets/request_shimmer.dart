@@ -10,6 +10,7 @@ class RequestShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const int count = 8;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -17,7 +18,7 @@ class RequestShimmer extends StatelessWidget {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: List.generate(6, (index) {
+            children: List.generate(count * 2, (index) {
               return Padding(
                 padding: EdgeInsets.only(
                   right: index != 5 ? 8 : 0,
@@ -33,8 +34,10 @@ class RequestShimmer extends StatelessWidget {
                     ),
                   ),
                   child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 6,
+                      horizontal: 8,
+                    ),
                     child: Shimmer.fromColors(
                       baseColor: const Color(0xFFF3F3F3).withOpacity(0.2),
                       highlightColor: kDarkBackgroundTertiaryColor,
@@ -60,9 +63,9 @@ class RequestShimmer extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         ...List.generate(
-          4,
+          count,
           (index) => Padding(
-            padding: const EdgeInsets.only(bottom: 8),
+            padding: const EdgeInsets.only(bottom: 16),
             child: Card(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),

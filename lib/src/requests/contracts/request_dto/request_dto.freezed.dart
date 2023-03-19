@@ -202,7 +202,7 @@ class __$$_RequestDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_RequestDto implements _RequestDto {
+class _$_RequestDto extends _RequestDto {
   const _$_RequestDto(
       {required this.id,
       required this.number,
@@ -214,7 +214,8 @@ class _$_RequestDto implements _RequestDto {
       required this.incidentPointListAsString,
       required this.currentState})
       : _images = images,
-        _incidentPointList = incidentPointList;
+        _incidentPointList = incidentPointList,
+        super._();
 
   factory _$_RequestDto.fromJson(Map<String, dynamic> json) =>
       _$$_RequestDtoFromJson(json);
@@ -305,7 +306,7 @@ class _$_RequestDto implements _RequestDto {
   }
 }
 
-abstract class _RequestDto implements RequestDto {
+abstract class _RequestDto extends RequestDto {
   const factory _RequestDto(
       {required final String id,
       required final int number,
@@ -316,6 +317,7 @@ abstract class _RequestDto implements RequestDto {
       required final List<String> incidentPointList,
       required final String incidentPointListAsString,
       required final RequestStates currentState}) = _$_RequestDto;
+  const _RequestDto._() : super._();
 
   factory _RequestDto.fromJson(Map<String, dynamic> json) =
       _$_RequestDto.fromJson;

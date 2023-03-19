@@ -24,6 +24,7 @@ class ThesisNavigationBar extends StatelessWidget {
       valueListenable: selectedPageNotifier,
       builder: (context, selectedPage, child) {
         return Scaffold(
+          appBar: null,
           body: pages[selectedPage],
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: selectedPage,
