@@ -19,6 +19,7 @@ class RequestBloc extends Bloc<RequestEvent, RequestState> {
         load: (event) => _load(event, emit),
         refresh: (event) => _refresh(event, emit),
         loadSingle: (event) => _loadSingle(event, emit),
+        loadSingleById: (event) => null,
       ),
     );
   }
@@ -47,8 +48,7 @@ class RequestBloc extends Bloc<RequestEvent, RequestState> {
     Emitter<RequestState> emit,
   ) async {
     emit(const RequestState.loading());
-    final request = await _requestRepository.loadRequestById(event.requestId);
-    emit(RequestState.loadedSingle(request: request));
+    emit(RequestState.loadedSingle(request: event.requestDto));
   }
 }
 
@@ -57,8 +57,11 @@ abstract class RequestEvent with _$RequestEvent {
   const factory RequestEvent.load() = _RequestLoadEvent;
   const factory RequestEvent.refresh() = _RequestRefreshEvent;
   const factory RequestEvent.loadSingle({
-    required String requestId,
+    required RequestDto requestDto,
   }) = _RequestLoadSingleEvent;
+  const factory RequestEvent.loadSingleById({
+    required String requestId,
+  }) = _RequestLoadSingleByIdEvent;
 }
 
 @freezed

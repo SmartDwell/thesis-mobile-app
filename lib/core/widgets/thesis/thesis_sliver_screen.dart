@@ -50,7 +50,7 @@ class ThesisSliverScreen extends StatelessWidget {
                     detector.value = isVisibility;
                   },
                   child: Text(
-                    'Ваши заявки',
+                    title,
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                 ),

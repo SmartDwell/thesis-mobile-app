@@ -20,21 +20,24 @@ mixin _$RequestEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function() refresh,
-    required TResult Function(String requestId) loadSingle,
+    required TResult Function(RequestDto requestDto) loadSingle,
+    required TResult Function(String requestId) loadSingleById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function()? refresh,
-    TResult? Function(String requestId)? loadSingle,
+    TResult? Function(RequestDto requestDto)? loadSingle,
+    TResult? Function(String requestId)? loadSingleById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function()? refresh,
-    TResult Function(String requestId)? loadSingle,
+    TResult Function(RequestDto requestDto)? loadSingle,
+    TResult Function(String requestId)? loadSingleById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$RequestEvent {
     required TResult Function(_RequestLoadEvent value) load,
     required TResult Function(_RequestRefreshEvent value) refresh,
     required TResult Function(_RequestLoadSingleEvent value) loadSingle,
+    required TResult Function(_RequestLoadSingleByIdEvent value) loadSingleById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$RequestEvent {
     TResult? Function(_RequestLoadEvent value)? load,
     TResult? Function(_RequestRefreshEvent value)? refresh,
     TResult? Function(_RequestLoadSingleEvent value)? loadSingle,
+    TResult? Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$RequestEvent {
     TResult Function(_RequestLoadEvent value)? load,
     TResult Function(_RequestRefreshEvent value)? refresh,
     TResult Function(_RequestLoadSingleEvent value)? loadSingle,
+    TResult Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,7 +126,8 @@ class _$_RequestLoadEvent implements _RequestLoadEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function() refresh,
-    required TResult Function(String requestId) loadSingle,
+    required TResult Function(RequestDto requestDto) loadSingle,
+    required TResult Function(String requestId) loadSingleById,
   }) {
     return load();
   }
@@ -130,7 +137,8 @@ class _$_RequestLoadEvent implements _RequestLoadEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function()? refresh,
-    TResult? Function(String requestId)? loadSingle,
+    TResult? Function(RequestDto requestDto)? loadSingle,
+    TResult? Function(String requestId)? loadSingleById,
   }) {
     return load?.call();
   }
@@ -140,7 +148,8 @@ class _$_RequestLoadEvent implements _RequestLoadEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function()? refresh,
-    TResult Function(String requestId)? loadSingle,
+    TResult Function(RequestDto requestDto)? loadSingle,
+    TResult Function(String requestId)? loadSingleById,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -155,6 +164,7 @@ class _$_RequestLoadEvent implements _RequestLoadEvent {
     required TResult Function(_RequestLoadEvent value) load,
     required TResult Function(_RequestRefreshEvent value) refresh,
     required TResult Function(_RequestLoadSingleEvent value) loadSingle,
+    required TResult Function(_RequestLoadSingleByIdEvent value) loadSingleById,
   }) {
     return load(this);
   }
@@ -165,6 +175,7 @@ class _$_RequestLoadEvent implements _RequestLoadEvent {
     TResult? Function(_RequestLoadEvent value)? load,
     TResult? Function(_RequestRefreshEvent value)? refresh,
     TResult? Function(_RequestLoadSingleEvent value)? loadSingle,
+    TResult? Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
   }) {
     return load?.call(this);
   }
@@ -175,6 +186,7 @@ class _$_RequestLoadEvent implements _RequestLoadEvent {
     TResult Function(_RequestLoadEvent value)? load,
     TResult Function(_RequestRefreshEvent value)? refresh,
     TResult Function(_RequestLoadSingleEvent value)? loadSingle,
+    TResult Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -228,7 +240,8 @@ class _$_RequestRefreshEvent implements _RequestRefreshEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function() refresh,
-    required TResult Function(String requestId) loadSingle,
+    required TResult Function(RequestDto requestDto) loadSingle,
+    required TResult Function(String requestId) loadSingleById,
   }) {
     return refresh();
   }
@@ -238,7 +251,8 @@ class _$_RequestRefreshEvent implements _RequestRefreshEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function()? refresh,
-    TResult? Function(String requestId)? loadSingle,
+    TResult? Function(RequestDto requestDto)? loadSingle,
+    TResult? Function(String requestId)? loadSingleById,
   }) {
     return refresh?.call();
   }
@@ -248,7 +262,8 @@ class _$_RequestRefreshEvent implements _RequestRefreshEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function()? refresh,
-    TResult Function(String requestId)? loadSingle,
+    TResult Function(RequestDto requestDto)? loadSingle,
+    TResult Function(String requestId)? loadSingleById,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -263,6 +278,7 @@ class _$_RequestRefreshEvent implements _RequestRefreshEvent {
     required TResult Function(_RequestLoadEvent value) load,
     required TResult Function(_RequestRefreshEvent value) refresh,
     required TResult Function(_RequestLoadSingleEvent value) loadSingle,
+    required TResult Function(_RequestLoadSingleByIdEvent value) loadSingleById,
   }) {
     return refresh(this);
   }
@@ -273,6 +289,7 @@ class _$_RequestRefreshEvent implements _RequestRefreshEvent {
     TResult? Function(_RequestLoadEvent value)? load,
     TResult? Function(_RequestRefreshEvent value)? refresh,
     TResult? Function(_RequestLoadSingleEvent value)? loadSingle,
+    TResult? Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
   }) {
     return refresh?.call(this);
   }
@@ -283,6 +300,7 @@ class _$_RequestRefreshEvent implements _RequestRefreshEvent {
     TResult Function(_RequestLoadEvent value)? load,
     TResult Function(_RequestRefreshEvent value)? refresh,
     TResult Function(_RequestLoadSingleEvent value)? loadSingle,
+    TResult Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -302,7 +320,9 @@ abstract class _$$_RequestLoadSingleEventCopyWith<$Res> {
           $Res Function(_$_RequestLoadSingleEvent) then) =
       __$$_RequestLoadSingleEventCopyWithImpl<$Res>;
   @useResult
-  $Res call({String requestId});
+  $Res call({RequestDto requestDto});
+
+  $RequestDtoCopyWith<$Res> get requestDto;
 }
 
 /// @nodoc
@@ -316,28 +336,36 @@ class __$$_RequestLoadSingleEventCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? requestId = null,
+    Object? requestDto = null,
   }) {
     return _then(_$_RequestLoadSingleEvent(
-      requestId: null == requestId
-          ? _value.requestId
-          : requestId // ignore: cast_nullable_to_non_nullable
-              as String,
+      requestDto: null == requestDto
+          ? _value.requestDto
+          : requestDto // ignore: cast_nullable_to_non_nullable
+              as RequestDto,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RequestDtoCopyWith<$Res> get requestDto {
+    return $RequestDtoCopyWith<$Res>(_value.requestDto, (value) {
+      return _then(_value.copyWith(requestDto: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_RequestLoadSingleEvent implements _RequestLoadSingleEvent {
-  const _$_RequestLoadSingleEvent({required this.requestId});
+  const _$_RequestLoadSingleEvent({required this.requestDto});
 
   @override
-  final String requestId;
+  final RequestDto requestDto;
 
   @override
   String toString() {
-    return 'RequestEvent.loadSingle(requestId: $requestId)';
+    return 'RequestEvent.loadSingle(requestDto: $requestDto)';
   }
 
   @override
@@ -345,12 +373,12 @@ class _$_RequestLoadSingleEvent implements _RequestLoadSingleEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RequestLoadSingleEvent &&
-            (identical(other.requestId, requestId) ||
-                other.requestId == requestId));
+            (identical(other.requestDto, requestDto) ||
+                other.requestDto == requestDto));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, requestId);
+  int get hashCode => Object.hash(runtimeType, requestDto);
 
   @JsonKey(ignore: true)
   @override
@@ -364,9 +392,10 @@ class _$_RequestLoadSingleEvent implements _RequestLoadSingleEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function() refresh,
-    required TResult Function(String requestId) loadSingle,
+    required TResult Function(RequestDto requestDto) loadSingle,
+    required TResult Function(String requestId) loadSingleById,
   }) {
-    return loadSingle(requestId);
+    return loadSingle(requestDto);
   }
 
   @override
@@ -374,9 +403,10 @@ class _$_RequestLoadSingleEvent implements _RequestLoadSingleEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function()? refresh,
-    TResult? Function(String requestId)? loadSingle,
+    TResult? Function(RequestDto requestDto)? loadSingle,
+    TResult? Function(String requestId)? loadSingleById,
   }) {
-    return loadSingle?.call(requestId);
+    return loadSingle?.call(requestDto);
   }
 
   @override
@@ -384,11 +414,12 @@ class _$_RequestLoadSingleEvent implements _RequestLoadSingleEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function()? refresh,
-    TResult Function(String requestId)? loadSingle,
+    TResult Function(RequestDto requestDto)? loadSingle,
+    TResult Function(String requestId)? loadSingleById,
     required TResult orElse(),
   }) {
     if (loadSingle != null) {
-      return loadSingle(requestId);
+      return loadSingle(requestDto);
     }
     return orElse();
   }
@@ -399,6 +430,7 @@ class _$_RequestLoadSingleEvent implements _RequestLoadSingleEvent {
     required TResult Function(_RequestLoadEvent value) load,
     required TResult Function(_RequestRefreshEvent value) refresh,
     required TResult Function(_RequestLoadSingleEvent value) loadSingle,
+    required TResult Function(_RequestLoadSingleByIdEvent value) loadSingleById,
   }) {
     return loadSingle(this);
   }
@@ -409,6 +441,7 @@ class _$_RequestLoadSingleEvent implements _RequestLoadSingleEvent {
     TResult? Function(_RequestLoadEvent value)? load,
     TResult? Function(_RequestRefreshEvent value)? refresh,
     TResult? Function(_RequestLoadSingleEvent value)? loadSingle,
+    TResult? Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
   }) {
     return loadSingle?.call(this);
   }
@@ -419,6 +452,7 @@ class _$_RequestLoadSingleEvent implements _RequestLoadSingleEvent {
     TResult Function(_RequestLoadEvent value)? load,
     TResult Function(_RequestRefreshEvent value)? refresh,
     TResult Function(_RequestLoadSingleEvent value)? loadSingle,
+    TResult Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
     required TResult orElse(),
   }) {
     if (loadSingle != null) {
@@ -429,13 +463,163 @@ class _$_RequestLoadSingleEvent implements _RequestLoadSingleEvent {
 }
 
 abstract class _RequestLoadSingleEvent implements RequestEvent {
-  const factory _RequestLoadSingleEvent({required final String requestId}) =
-      _$_RequestLoadSingleEvent;
+  const factory _RequestLoadSingleEvent(
+      {required final RequestDto requestDto}) = _$_RequestLoadSingleEvent;
 
-  String get requestId;
+  RequestDto get requestDto;
   @JsonKey(ignore: true)
   _$$_RequestLoadSingleEventCopyWith<_$_RequestLoadSingleEvent> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_RequestLoadSingleByIdEventCopyWith<$Res> {
+  factory _$$_RequestLoadSingleByIdEventCopyWith(
+          _$_RequestLoadSingleByIdEvent value,
+          $Res Function(_$_RequestLoadSingleByIdEvent) then) =
+      __$$_RequestLoadSingleByIdEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String requestId});
+}
+
+/// @nodoc
+class __$$_RequestLoadSingleByIdEventCopyWithImpl<$Res>
+    extends _$RequestEventCopyWithImpl<$Res, _$_RequestLoadSingleByIdEvent>
+    implements _$$_RequestLoadSingleByIdEventCopyWith<$Res> {
+  __$$_RequestLoadSingleByIdEventCopyWithImpl(
+      _$_RequestLoadSingleByIdEvent _value,
+      $Res Function(_$_RequestLoadSingleByIdEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? requestId = null,
+  }) {
+    return _then(_$_RequestLoadSingleByIdEvent(
+      requestId: null == requestId
+          ? _value.requestId
+          : requestId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RequestLoadSingleByIdEvent implements _RequestLoadSingleByIdEvent {
+  const _$_RequestLoadSingleByIdEvent({required this.requestId});
+
+  @override
+  final String requestId;
+
+  @override
+  String toString() {
+    return 'RequestEvent.loadSingleById(requestId: $requestId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RequestLoadSingleByIdEvent &&
+            (identical(other.requestId, requestId) ||
+                other.requestId == requestId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, requestId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RequestLoadSingleByIdEventCopyWith<_$_RequestLoadSingleByIdEvent>
+      get copyWith => __$$_RequestLoadSingleByIdEventCopyWithImpl<
+          _$_RequestLoadSingleByIdEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function() refresh,
+    required TResult Function(RequestDto requestDto) loadSingle,
+    required TResult Function(String requestId) loadSingleById,
+  }) {
+    return loadSingleById(requestId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function()? refresh,
+    TResult? Function(RequestDto requestDto)? loadSingle,
+    TResult? Function(String requestId)? loadSingleById,
+  }) {
+    return loadSingleById?.call(requestId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function()? refresh,
+    TResult Function(RequestDto requestDto)? loadSingle,
+    TResult Function(String requestId)? loadSingleById,
+    required TResult orElse(),
+  }) {
+    if (loadSingleById != null) {
+      return loadSingleById(requestId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RequestLoadEvent value) load,
+    required TResult Function(_RequestRefreshEvent value) refresh,
+    required TResult Function(_RequestLoadSingleEvent value) loadSingle,
+    required TResult Function(_RequestLoadSingleByIdEvent value) loadSingleById,
+  }) {
+    return loadSingleById(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_RequestLoadEvent value)? load,
+    TResult? Function(_RequestRefreshEvent value)? refresh,
+    TResult? Function(_RequestLoadSingleEvent value)? loadSingle,
+    TResult? Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
+  }) {
+    return loadSingleById?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RequestLoadEvent value)? load,
+    TResult Function(_RequestRefreshEvent value)? refresh,
+    TResult Function(_RequestLoadSingleEvent value)? loadSingle,
+    TResult Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
+    required TResult orElse(),
+  }) {
+    if (loadSingleById != null) {
+      return loadSingleById(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RequestLoadSingleByIdEvent implements RequestEvent {
+  const factory _RequestLoadSingleByIdEvent({required final String requestId}) =
+      _$_RequestLoadSingleByIdEvent;
+
+  String get requestId;
+  @JsonKey(ignore: true)
+  _$$_RequestLoadSingleByIdEventCopyWith<_$_RequestLoadSingleByIdEvent>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

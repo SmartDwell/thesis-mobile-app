@@ -28,7 +28,6 @@ class RequestRepositoryImpl implements IRequestRepository {
         },
       );
 
-      debugPrint('${response.statusCode}');
       switch (response.statusCode) {
         case 200:
           return (response.data as List<dynamic>)

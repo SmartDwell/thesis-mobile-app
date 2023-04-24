@@ -7,6 +7,7 @@ import '../../../core/widgets/thesis/thesis_sliver_screen.dart';
 import '../bloc/request_bloc.dart';
 import '../bloc/request_scope.dart';
 import '../widgets/request_shimmer.dart';
+import 'request_details_screen.dart';
 import 'request_tab_screen.dart';
 
 class RequestScreen extends StatefulWidget {
@@ -22,7 +23,14 @@ class _RequestScreenState extends State<RequestScreen> {
     RequestScope.load(context);
     return BlocListener<RequestBloc, RequestState>(
       listener: (context, state) => state.mapOrNull(
-        initial: (value) => RequestScope.load(context),
+        initial: (state) => RequestScope.load(context),
+        loadedSingle: (state) => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                RequestDetailsScreen(requestDto: state.request),
+          ),
+        ),
       ),
       child: ThesisBasePage(
         padding: EdgeInsets.zero,

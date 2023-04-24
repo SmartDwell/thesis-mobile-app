@@ -13,6 +13,8 @@ abstract class DioHelper {
   static final _localBaseUrl = "https://$_host:7001/api";
   static const String _baseUrl = 'http://194.99.22.243:1480/api';
 
+  String get currentBaseUrl => _baseUrl;
+
   /// Получить данные
   static Future<Response> getData({
     required String url,
