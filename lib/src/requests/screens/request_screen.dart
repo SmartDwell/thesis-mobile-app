@@ -30,7 +30,7 @@ class _RequestScreenState extends State<RequestScreen> {
             builder: (context) =>
                 RequestDetailsScreen(requestDto: state.request),
           ),
-        ),
+        ).whenComplete(() => RequestScope.load(context)),
       ),
       child: ThesisBasePage(
         padding: EdgeInsets.zero,

@@ -5,10 +5,12 @@ class RequestStateCard extends StatelessWidget {
     super.key,
     required this.stateName,
     required this.stateColor,
+    this.showInfo = false,
   });
 
   final String stateName;
   final Color stateColor;
+  final bool showInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +21,29 @@ class RequestStateCard extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 8),
-        child: Center(
-          child: Text(
-            stateName,
-            style: const TextStyle(
-              color: Colors.white70,
-              fontWeight: FontWeight.w600,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              stateName,
+              style: TextStyle(
+                color: Colors.white.withOpacity(0.85),
+                fontWeight: FontWeight.w600,
+              ),
             ),
-          ),
+            Visibility(
+              visible: showInfo,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 4),
+                child: Icon(
+                  Icons.error,
+                  size: 18,
+                  color: Colors.white.withOpacity(0.85),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

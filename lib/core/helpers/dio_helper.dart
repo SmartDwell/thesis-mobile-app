@@ -1,5 +1,3 @@
-import 'dart:io' show Platform;
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_pretty_dio_logger/flutter_pretty_dio_logger.dart';
@@ -9,11 +7,11 @@ import '../repositories/tokens/tokens_repository_impl.dart';
 
 /// Помощник работы с Dio
 abstract class DioHelper {
-  static final _host = Platform.isAndroid ? '10.0.2.2' : '127.0.0.1';
-  static final _localBaseUrl = "https://$_host:7001/api";
+  //static final _host = Platform.isAndroid ? '10.0.2.2' : '127.0.0.1';
+  //static final _localBaseUrl = "https://$_host:7001/api";
   static const String _baseUrl = 'http://194.99.22.243:1480/api';
 
-  String get currentBaseUrl => _baseUrl;
+  static String get baseUrl => _baseUrl;
 
   /// Получить данные
   static Future<Response> getData({

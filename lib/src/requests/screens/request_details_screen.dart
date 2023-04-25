@@ -2,9 +2,12 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../core/constants.dart';
+import '../../../core/helpers/dio_helper.dart';
 import '../../../core/widgets/thesis/thesis_images_carousel.dart';
 import '../../../theme/theme_constants.dart';
 import '../contracts/request_dto/request_dto.dart';
+import '../widgets/request_state_card.dart';
 
 class RequestDetailsScreen extends StatelessWidget {
   const RequestDetailsScreen({
@@ -31,21 +34,37 @@ class RequestDetailsScreen extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios),
         ),
       ),
-      // TODO: Поправить ссылку
       body: SingleChildScrollView(
         child: Column(
           children: [
             ThesisImagesCarousel(
               images: requestDto.images
-                  .map((image) => "http://194.99.22.243:1480/api/images/$image")
+                  .map((imageId) => "${DioHelper.baseUrl}/images/$imageId")
                   .toList(),
             ),
+            const SizedBox(height: 24),
             Padding(
               padding: kThemeDefaultPaddingHorizontal,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      RequestStateCard(
+                        stateName: requestDto.stateName,
+                        stateColor: requestDto.stateColor,
+                        showInfo: true,
+                      ),
+                      Text(
+                        kDateTimeFormatter.format(requestDto.created),
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
                   Text(
                     requestDto.title,
                     style: AdaptiveTheme.of(context)
