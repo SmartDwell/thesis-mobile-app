@@ -1,18 +1,18 @@
+import '../contracts/request_comment_dto/request_comment_dto.dart';
 import '../contracts/request_dto/request_dto.dart';
 import '../widgets/request_states.dart';
 import 'request_repository.dart';
 
 class MockRequestRepositoryImpl implements IRequestRepository {
   @override
-  Future<RequestDto> loadRequestById(String id) {
-    final request = _storage.firstWhere((element) => element.id == id);
-    return Future.value(request);
-  }
-
-  @override
   Future<List<RequestDto>> loadRequests() {
     final data = _storage + _storage;
     return Future.value(data);
+  }
+
+  @override
+  Future<List<RequestCommentDto>> loadRequestComments(String id) {
+    return Future.value([]);
   }
 
   final _storage = [

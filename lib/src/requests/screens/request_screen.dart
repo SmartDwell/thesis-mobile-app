@@ -7,7 +7,7 @@ import '../../../core/widgets/thesis/thesis_sliver_screen.dart';
 import '../bloc/request_bloc.dart';
 import '../bloc/request_scope.dart';
 import '../widgets/request_shimmer.dart';
-import 'request_details_screen.dart';
+import 'details/request_details_screen.dart';
 import 'request_tab_screen.dart';
 
 class RequestScreen extends StatefulWidget {

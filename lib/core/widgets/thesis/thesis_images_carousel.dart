@@ -88,7 +88,7 @@ class ThesisImagesCarousel extends StatelessWidget {
                   child: ValueListenableBuilder(
                     valueListenable: carouselIndexNotifier,
                     builder: (context, currentIndex, child) {
-                      return Text("${currentIndex + 1} / ${images.length}");
+                      return Text("${currentIndex + 1} из ${images.length}");
                     },
                   ),
                 ),

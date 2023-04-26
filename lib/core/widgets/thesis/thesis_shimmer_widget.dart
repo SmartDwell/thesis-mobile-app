@@ -8,14 +8,17 @@ class ThesisShimmerWidget extends StatelessWidget {
     super.key,
     required this.width,
     required this.height,
+    this.borderRadius,
   });
 
   final double width;
   final double height;
+  final BorderRadiusGeometry? borderRadius;
 
   const ThesisShimmerWidget.rectangle({
     this.width = double.infinity,
     required this.height,
+    this.borderRadius,
   });
 
   @override
@@ -25,7 +28,7 @@ class ThesisShimmerWidget extends StatelessWidget {
       highlightColor: kDarkBackgroundTertiaryColor,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: borderRadius ?? BorderRadius.circular(4),
           color: kDarkBackgroundSecondaryColor,
         ),
         width: width,

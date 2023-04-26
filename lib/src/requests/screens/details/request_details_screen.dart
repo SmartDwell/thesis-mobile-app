@@ -2,12 +2,13 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../core/constants.dart';
-import '../../../core/helpers/dio_helper.dart';
-import '../../../core/widgets/thesis/thesis_images_carousel.dart';
-import '../../../theme/theme_constants.dart';
-import '../contracts/request_dto/request_dto.dart';
-import '../widgets/request_state_card.dart';
+import '../../../../core/widgets/thesis/thesis_images_carousel.dart';
+import '../../../../core/constants.dart';
+import '../../../../core/helpers/dio_helper.dart';
+import '../../../../theme/theme_constants.dart';
+import '../../contracts/request_dto/request_dto.dart';
+import '../../widgets/request_state_card.dart';
+import 'comments/request_comments_widget.dart';
 
 class RequestDetailsScreen extends StatelessWidget {
   const RequestDetailsScreen({
@@ -59,7 +60,7 @@ class RequestDetailsScreen extends StatelessWidget {
                         showInfo: true,
                       ),
                       Text(
-                        kDateTimeFormatter.format(requestDto.created),
+                        kDateFormatter.format(requestDto.created),
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ],
@@ -98,6 +99,9 @@ class RequestDetailsScreen extends StatelessWidget {
                     style:
                         AdaptiveTheme.of(context).theme.textTheme.titleMedium,
                   ),
+                  const SizedBox(height: 32),
+                  RequestCommentsWidget(requestId: requestDto.id),
+                  const SizedBox(height: 64),
                 ],
               ),
             ),
