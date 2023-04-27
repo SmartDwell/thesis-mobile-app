@@ -7,12 +7,14 @@ import 'thesis_progress_bar.dart';
 class ThesisButtonOptions {
   final bool isOutline;
   final double borderRadius;
+  final double? width;
   final double height;
   final TextStyle? titleStyle;
 
   const ThesisButtonOptions({
     this.isOutline = false,
     this.borderRadius = 16,
+    this.width,
     this.height = 56,
     this.titleStyle,
   });
@@ -78,7 +80,7 @@ class ThesisButton extends StatelessWidget {
             //           : kDarkTextPrimaryColor,
             // ),
             fixedSize: MaterialStateProperty.all<Size>(
-              Size(buttonWidth, options.height),
+              Size(options.width ?? buttonWidth, options.height),
             ),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(

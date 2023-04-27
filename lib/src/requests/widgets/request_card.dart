@@ -42,7 +42,7 @@ class RequestCard extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  kDateFormatter.format(request.created),
+                  kDateFormatter.format(request.created.toLocal()),
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
