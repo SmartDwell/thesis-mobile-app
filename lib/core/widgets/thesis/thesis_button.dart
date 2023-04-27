@@ -1,7 +1,22 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 
 import '../../../theme/theme_colors.dart';
 import 'thesis_progress_bar.dart';
+
+class ThesisButtonOptions {
+  final bool isOutline;
+  final double borderRadius;
+  final double height;
+  final TextStyle? titleStyle;
+
+  const ThesisButtonOptions({
+    this.isOutline = false,
+    this.borderRadius = 16,
+    this.height = 56,
+    this.titleStyle,
+  });
+}
 
 /// Компонент базовой кнопки
 class ThesisButton extends StatelessWidget {
@@ -9,6 +24,7 @@ class ThesisButton extends StatelessWidget {
     super.key,
     required this.child,
     this.text,
+    this.options = const ThesisButtonOptions(),
     required this.onPressed,
     this.isDisabled = false,
   });
@@ -18,6 +34,7 @@ class ThesisButton extends StatelessWidget {
     Key? key,
     required String text,
     required void Function() onPressed,
+    ThesisButtonOptions options = const ThesisButtonOptions(),
     bool isDisabled = false,
     bool isLoading = false,
   }) {
@@ -25,6 +42,7 @@ class ThesisButton extends StatelessWidget {
       key: key,
       child: null,
       text: text,
+      options: options,
       onPressed: onPressed,
       isDisabled: isDisabled,
     );
@@ -32,6 +50,7 @@ class ThesisButton extends StatelessWidget {
 
   final Widget? child;
   final String? text;
+  final ThesisButtonOptions options;
   final void Function() onPressed;
   final bool isDisabled;
   final ValueNotifier<bool> isLoadingNotifier = ValueNotifier<bool>(false);
@@ -45,17 +64,28 @@ class ThesisButton extends StatelessWidget {
         return ElevatedButton(
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(
-              isDisabled || isLoading ? kGray2Color : kPrimaryColor,
+              options.isOutline
+                  ? AdaptiveTheme.of(context).theme.scaffoldBackgroundColor
+                  : isDisabled || isLoading
+                      ? kGray2Color
+                      : kPrimaryColor,
             ),
-            foregroundColor: MaterialStateProperty.all<Color>(
-              isDisabled || isLoading ? kGray1Color : kDarkTextPrimaryColor,
-            ),
+            // foregroundColor: MaterialStateProperty.all<Color>(
+            //   options?.isOutline ?? false
+            //       ? kPrimaryColor
+            //       : isDisabled || isLoading
+            //           ? kGray1Color
+            //           : kDarkTextPrimaryColor,
+            // ),
             fixedSize: MaterialStateProperty.all<Size>(
-              Size(buttonWidth, 56),
+              Size(buttonWidth, options.height),
             ),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0),
+                borderRadius: BorderRadius.circular(options.borderRadius),
+                side: options.isOutline
+                    ? const BorderSide(color: kPrimaryColor)
+                    : BorderSide.none,
               ),
             ),
           ),
@@ -73,6 +103,7 @@ class ThesisButton extends StatelessWidget {
             text: text,
             isLoading: isLoading,
             isDisabled: isDisabled,
+            textStyle: options.titleStyle,
           ),
         );
       },
@@ -84,12 +115,14 @@ class _ThesisButtonContent extends StatelessWidget {
   const _ThesisButtonContent({
     this.child,
     this.text,
+    this.textStyle,
     required this.isDisabled,
     required this.isLoading,
   });
 
   final Widget? child;
   final String? text;
+  final TextStyle? textStyle;
   final bool isDisabled;
   final bool isLoading;
 
@@ -106,7 +139,7 @@ class _ThesisButtonContent extends StatelessWidget {
                           .textTheme
                           .titleMedium!
                           .copyWith(fontWeight: FontWeight.w600)
-                      : Theme.of(context).textTheme.labelLarge,
+                      : textStyle ?? Theme.of(context).textTheme.labelLarge,
                 )
               : child,
     );

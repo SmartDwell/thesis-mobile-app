@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/helpers/dio_helper.dart';
 import '../../../core/repositories/tokens/tokens_repository_impl.dart';
+import '../contracts/add_comment_dto/add_comment_dto.dart';
 import '../contracts/request_comment_dto/request_comment_dto.dart';
 import '../contracts/request_dto/request_dto.dart';
 import 'request_repository.dart';
@@ -52,6 +53,37 @@ class RequestRepositoryImpl implements IRequestRepository {
           return (response.data as List<dynamic>)
               .map((e) => RequestCommentDto.fromJson(e))
               .toList();
+        case 400:
+          throw Exception('Передан некорректный идентификатор заявки');
+        case 404:
+          throw Exception('Заявка не найдена');
+        default:
+          throw Exception('Что-то пошло не так');
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<bool> addCommentToRequest(AddCommentDto addCommentDto) async {
+    try {
+      final accessToken = await _tokensRepository.getAccessToken();
+      final response = await DioHelper.postData(
+        url: '/requests/${addCommentDto.requestId}/comments',
+        headers: {
+          'Content-type': ' application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        data: {
+          'text': addCommentDto.text,
+          'images': addCommentDto.images,
+        },
+      );
+
+      switch (response.statusCode) {
+        case 200:
+          return true;
         case 400:
           throw Exception('Передан некорректный идентификатор заявки');
         case 404:

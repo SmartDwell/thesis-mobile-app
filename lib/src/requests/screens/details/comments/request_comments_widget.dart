@@ -1,9 +1,11 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/widgets/thesis/thesis_button.dart';
 import '../../../../../theme/theme_colors.dart';
 import '../../../contracts/request_comment_dto/request_comment_dto.dart';
 import '../../../repositories/request_repository_impl.dart';
+import 'request_add_comment_widget.dart';
 import 'request_comment_item_widget.dart';
 import 'request_comments_shimmer.dart';
 
@@ -18,7 +20,10 @@ class RequestCommentsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final requestRepository = RequestRepositoryImpl();
-    var stream = requestRepository.loadRequestComments(requestId).asStream();
+    final commentStreamNotifier =
+        ValueNotifier<Stream<List<RequestCommentDto>>>(
+      requestRepository.loadRequestComments(requestId).asStream(),
+    );
     final isShowCommentsNotifier = ValueNotifier<bool>(true);
     return ValueListenableBuilder(
       valueListenable: isShowCommentsNotifier,
@@ -43,7 +48,7 @@ class RequestCommentsWidget extends StatelessWidget {
                   onPressed: () {
                     isShowCommentsNotifier.value = !isShow;
                     if (isShowCommentsNotifier.value) {
-                      stream = requestRepository
+                      commentStreamNotifier.value = requestRepository
                           .loadRequestComments(requestId)
                           .asStream();
                     }
@@ -67,45 +72,74 @@ class RequestCommentsWidget extends StatelessWidget {
                   style: AdaptiveTheme.of(context).theme.textTheme.bodyMedium,
                 ),
               ),
-              replacement: StreamBuilder(
-                stream: stream,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const RequestCommentsShimmer();
-                  }
+              replacement: Column(
+                children: [
+                  ThesisButton.fromText(
+                    onPressed: () => RequestAddCommentWidget.show(
+                      context: context,
+                      requestId: requestId,
+                      onAddComment: () => commentStreamNotifier.value =
+                          requestRepository
+                              .loadRequestComments(requestId)
+                              .asStream(),
+                    ),
+                    text: "+ Добавить",
+                    options: ThesisButtonOptions(
+                      isOutline: true,
+                      borderRadius: 10,
+                      height: 44,
+                      titleStyle: AdaptiveTheme.of(context)
+                          .theme
+                          .textTheme
+                          .bodyMedium
+                          ?.copyWith(color: kPrimaryLightColor),
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  ValueListenableBuilder<Stream<List<RequestCommentDto>>>(
+                    valueListenable: commentStreamNotifier,
+                    builder: (context, currentStream, child) {
+                      return StreamBuilder(
+                        stream: currentStream,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const RequestCommentsShimmer();
+                          }
 
-                  final comments = snapshot.data == null
-                      ? <RequestCommentDto>[]
-                      : snapshot.data!.reversed.toList();
-                  return Visibility(
-                    visible: comments.isEmpty,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 12),
-                      child: Text(
-                        "Пока нет комментариев",
-                        textAlign: TextAlign.center,
-                        style: AdaptiveTheme.of(context)
-                            .theme
-                            .textTheme
-                            .bodyMedium,
-                      ),
-                    ),
-                    replacement: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: List.generate(comments.length, (index) {
-                        return Padding(
-                          padding: EdgeInsets.only(
-                            top: index == 0 ? 0 : 16,
-                          ),
-                          child: RequestCommentItemWidget(
-                            commentDto: comments[index],
-                          ),
-                        );
-                      }),
-                    ),
-                  );
-                },
+                          final comments = snapshot.data == null
+                              ? <RequestCommentDto>[]
+                              : snapshot.data!.reversed.toList();
+                          return Visibility(
+                            visible: comments.isEmpty,
+                            child: Text(
+                              "Пока нет комментариев",
+                              textAlign: TextAlign.center,
+                              style: AdaptiveTheme.of(context)
+                                  .theme
+                                  .textTheme
+                                  .bodyMedium,
+                            ),
+                            replacement: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: List.generate(comments.length, (index) {
+                                return Padding(
+                                  padding: EdgeInsets.only(
+                                    top: index == 0 ? 0 : 16,
+                                  ),
+                                  child: RequestCommentItemWidget(
+                                    commentDto: comments[index],
+                                  ),
+                                );
+                              }),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
           ],
