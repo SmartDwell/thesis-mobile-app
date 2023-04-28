@@ -32,6 +32,8 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 
+// TODO: Полноэкранный просмотр картинок
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting('ru_RU', null);

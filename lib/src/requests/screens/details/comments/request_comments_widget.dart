@@ -5,7 +5,7 @@ import '../../../../../core/widgets/thesis/thesis_button.dart';
 import '../../../../../theme/theme_colors.dart';
 import '../../../contracts/request_comment_dto/request_comment_dto.dart';
 import '../../../repositories/request_repository_impl.dart';
-import 'request_add_comment_widget.dart';
+import 'request_add_comment_sheep.dart';
 import 'request_comment_item_widget.dart';
 import 'request_comments_shimmer.dart';
 
@@ -75,8 +75,8 @@ class RequestCommentsWidget extends StatelessWidget {
               replacement: Column(
                 children: [
                   ThesisButton.fromText(
-                    onPressed: () => RequestAddCommentWidget.show(
-                      context: context,
+                    onPressed: () => RequestAddCommentSheep.show(
+                      context,
                       requestId: requestId,
                       onAddComment: () => commentStreamNotifier.value =
                           requestRepository

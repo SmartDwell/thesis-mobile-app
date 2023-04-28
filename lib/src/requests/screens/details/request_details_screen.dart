@@ -11,6 +11,7 @@ import '../../../../theme/theme_constants.dart';
 import '../../contracts/request_dto/request_dto.dart';
 import '../../widgets/request_state_card.dart';
 import 'comments/request_comments_widget.dart';
+import 'request_statuses_sheep.dart';
 
 class RequestDetailsScreen extends StatelessWidget {
   const RequestDetailsScreen({
@@ -22,12 +23,14 @@ class RequestDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaffoldState = GlobalKey<ScaffoldState>();
     final themeData = AdaptiveTheme.of(context).theme;
     return ProgressHUD(
       backgroundColor: themeData.scaffoldBackgroundColor,
       borderColor: themeData.textTheme.headlineLarge!.color!,
       indicatorColor: kPrimaryLightColor,
       child: Scaffold(
+        key: scaffoldState,
         appBar: AppBar(
           title: Text(
             "Заявка №${requestDto.number}",
@@ -61,13 +64,21 @@ class RequestDetailsScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        RequestStateCard(
-                          stateName: requestDto.stateName,
-                          stateColor: requestDto.stateColor,
-                          showInfo: true,
-                        ),
+                        Builder(builder: (context2) {
+                          return GestureDetector(
+                            onTap: () => RequestStatusesSheep.show(
+                              context2,
+                              requestId: requestDto.id,
+                            ),
+                            child: RequestStateCard(
+                              stateName: requestDto.stateName,
+                              stateColor: requestDto.stateColor,
+                              showInfo: true,
+                            ),
+                          );
+                        }),
                         Text(
-                          kDateFormatter.format(requestDto.created),
+                          kDateFormatter.format(requestDto.created.toLocal()),
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ],

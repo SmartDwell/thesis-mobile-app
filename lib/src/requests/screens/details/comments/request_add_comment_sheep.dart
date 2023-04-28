@@ -2,35 +2,27 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 
+import '../../../../../core/widgets/thesis/thesis_bottom_sheep.dart';
 import '../../../../../core/widgets/thesis/thesis_button.dart';
 import '../../../../../theme/theme_colors.dart';
 import '../../../contracts/add_comment_dto/add_comment_dto.dart';
 import '../../../repositories/request_repository_impl.dart';
 
-class RequestAddCommentWidget {
-  static void show({
-    required BuildContext context,
+class RequestAddCommentSheep {
+  static void show(
+    BuildContext context, {
     required String requestId,
     required VoidCallback onAddComment,
   }) {
     final formFieldKey = GlobalKey<FormFieldState>();
     final requestRepository = RequestRepositoryImpl();
     final commentController = TextEditingController();
-    showBottomSheet(
-      context: context,
-      backgroundColor: AdaptiveTheme.of(context).theme.cardTheme.color,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.0),
-      ),
-      //backgroundColor: kDarkBackgroundColor,
-      builder: (context) {
-        return FractionallySizedBox(
-          heightFactor: 0.8,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 20,
-              horizontal: 20,
-            ),
+    ThesisBottomSheep.showSheep(
+      context,
+      child: Wrap(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20),
             child: Column(
               children: [
                 Container(
@@ -123,13 +115,14 @@ class RequestAddCommentWidget {
                       text: "Добавить",
                       //options: ThesisButtonOptions(),
                     ),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ],
             ),
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 }

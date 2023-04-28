@@ -5,6 +5,7 @@ import '../../../core/repositories/tokens/tokens_repository_impl.dart';
 import '../contracts/add_comment_dto/add_comment_dto.dart';
 import '../contracts/request_comment_dto/request_comment_dto.dart';
 import '../contracts/request_dto/request_dto.dart';
+import '../contracts/request_status_dto/request_status_dto.dart';
 import 'request_repository.dart';
 
 class RequestRepositoryImpl implements IRequestRepository {
@@ -84,6 +85,35 @@ class RequestRepositoryImpl implements IRequestRepository {
       switch (response.statusCode) {
         case 200:
           return true;
+        case 400:
+          throw Exception('Передан некорректный идентификатор заявки');
+        case 404:
+          throw Exception('Заявка не найдена');
+        default:
+          throw Exception('Что-то пошло не так');
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<RequestStatusDto>> loadRequestStatuses(String id) async {
+    try {
+      final accessToken = await _tokensRepository.getAccessToken();
+      final response = await DioHelper.getData(
+        url: '/requests/$id/statuses',
+        headers: {
+          'Content-type': ' application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+      );
+
+      switch (response.statusCode) {
+        case 200:
+          return (response.data as List<dynamic>)
+              .map((e) => RequestStatusDto.fromJson(e))
+              .toList();
         case 400:
           throw Exception('Передан некорректный идентификатор заявки');
         case 404:

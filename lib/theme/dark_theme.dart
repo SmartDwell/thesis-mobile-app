@@ -64,7 +64,7 @@ final darkThemeData = ThemeData(
       color: kDarkTextPrimaryColor,
     ),
     titleSmall: TextStyle(
-      fontSize: 16,
+      fontSize: 14,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.1,
       color: kDarkTextSecondaryColor,
