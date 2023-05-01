@@ -10,6 +10,7 @@ class ThesisButtonOptions {
   final double? width;
   final double height;
   final TextStyle? titleStyle;
+  final Color? backgroundColor;
 
   const ThesisButtonOptions({
     this.isOutline = false,
@@ -17,7 +18,17 @@ class ThesisButtonOptions {
     this.width,
     this.height = 56,
     this.titleStyle,
+    this.backgroundColor,
   });
+}
+
+class ThesisOutlinedButton extends StatelessWidget {
+  const ThesisOutlinedButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
 }
 
 /// Компонент базовой кнопки
@@ -95,10 +106,10 @@ class ThesisButton extends StatelessWidget {
               ? null
               : () async {
                   isLoadingNotifier.value = true;
-                  await Future.delayed(
-                    const Duration(milliseconds: 500),
-                    () => onPressed(),
-                  ).whenComplete(() => isLoadingNotifier.value = false);
+                  onPressed();
+                  await Future.delayed(const Duration(seconds: 2)).whenComplete(
+                    () => isLoadingNotifier.value = false,
+                  );
                 },
           child: _ThesisButtonContent(
             child: child,
