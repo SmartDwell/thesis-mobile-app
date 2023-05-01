@@ -1,4 +1,5 @@
 import '../contracts/add_comment_dto/add_comment_dto.dart';
+import '../contracts/add_request_dto/add_request_dto.dart';
 import '../contracts/request_comment_dto/request_comment_dto.dart';
 import '../contracts/request_dto/request_dto.dart';
 import '../contracts/request_status_dto/request_status_dto.dart';
@@ -55,7 +56,8 @@ class MockRequestRepositoryImpl implements IRequestRepository {
   ];
 
   @override
-  Future<bool> addCommentToRequest(AddCommentDto addCommentDto) {
+  Future<bool> addCommentToRequest(
+      String requestId, AddCommentDto addCommentDto) {
     // TODO: implement addCommentToRequest
     throw UnimplementedError();
   }
@@ -63,6 +65,12 @@ class MockRequestRepositoryImpl implements IRequestRepository {
   @override
   Future<List<RequestStatusDto>> loadRequestStatuses(String id) {
     // TODO: implement loadRequestStatuses
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> addRequest(AddRequestDto addRequestDto) {
+    // TODO: implement addRequest
     throw UnimplementedError();
   }
 }

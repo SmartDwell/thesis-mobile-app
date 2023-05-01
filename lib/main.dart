@@ -13,6 +13,7 @@ import 'core/helpers/message_helper.dart';
 import 'core/repositories/tokens/tokens_repository_impl.dart';
 import 'core/splash_screen.dart';
 import 'src/navigation_bar/navigation_bar.dart';
+import 'src/requests/screens/add/request_add_screen.dart';
 import 'src/welcome/auth/auth_scope.dart';
 import 'src/welcome/auth/bloc/auth_bloc.dart';
 import 'src/welcome/login/bloc/login_bloc.dart';
@@ -33,6 +34,7 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 // TODO: Полноэкранный просмотр картинок
+// TODO: История статусов заявки
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -94,6 +96,7 @@ class ThesisAppConfigurator extends StatelessWidget {
             "/start": (context) => const ThesisApp(),
             "/welcome": (context) => const WelcomeScreen(),
             "/navbar": (context) => const ThesisNavigationBar(),
+            "/add_request": (context) => const RequestAddScreen(),
           },
           theme: light,
           darkTheme: dark,

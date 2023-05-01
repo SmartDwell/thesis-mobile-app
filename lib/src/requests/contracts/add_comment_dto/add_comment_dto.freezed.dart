@@ -14,12 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+AddCommentDto _$AddCommentDtoFromJson(Map<String, dynamic> json) {
+  return _AddCommentDto.fromJson(json);
+}
+
 /// @nodoc
 mixin _$AddCommentDto {
-  String get requestId => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AddCommentDtoCopyWith<AddCommentDto> get copyWith =>
       throw _privateConstructorUsedError;
@@ -31,7 +35,7 @@ abstract class $AddCommentDtoCopyWith<$Res> {
           AddCommentDto value, $Res Function(AddCommentDto) then) =
       _$AddCommentDtoCopyWithImpl<$Res, AddCommentDto>;
   @useResult
-  $Res call({String requestId, String text, List<String> images});
+  $Res call({String text, List<String> images});
 }
 
 /// @nodoc
@@ -47,15 +51,10 @@ class _$AddCommentDtoCopyWithImpl<$Res, $Val extends AddCommentDto>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? requestId = null,
     Object? text = null,
     Object? images = null,
   }) {
     return _then(_value.copyWith(
-      requestId: null == requestId
-          ? _value.requestId
-          : requestId // ignore: cast_nullable_to_non_nullable
-              as String,
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -76,7 +75,7 @@ abstract class _$$_AddCommentDtoCopyWith<$Res>
       __$$_AddCommentDtoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String requestId, String text, List<String> images});
+  $Res call({String text, List<String> images});
 }
 
 /// @nodoc
@@ -90,15 +89,10 @@ class __$$_AddCommentDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? requestId = null,
     Object? text = null,
     Object? images = null,
   }) {
     return _then(_$_AddCommentDto(
-      requestId: null == requestId
-          ? _value.requestId
-          : requestId // ignore: cast_nullable_to_non_nullable
-              as String,
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -112,16 +106,15 @@ class __$$_AddCommentDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_AddCommentDto implements _AddCommentDto {
   const _$_AddCommentDto(
-      {required this.requestId,
-      required this.text,
-      required final List<String> images})
+      {required this.text, required final List<String> images})
       : _images = images;
 
-  @override
-  final String requestId;
+  factory _$_AddCommentDto.fromJson(Map<String, dynamic> json) =>
+      _$$_AddCommentDtoFromJson(json);
+
   @override
   final String text;
   final List<String> _images;
@@ -134,7 +127,7 @@ class _$_AddCommentDto implements _AddCommentDto {
 
   @override
   String toString() {
-    return 'AddCommentDto(requestId: $requestId, text: $text, images: $images)';
+    return 'AddCommentDto(text: $text, images: $images)';
   }
 
   @override
@@ -142,31 +135,37 @@ class _$_AddCommentDto implements _AddCommentDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AddCommentDto &&
-            (identical(other.requestId, requestId) ||
-                other.requestId == requestId) &&
             (identical(other.text, text) || other.text == text) &&
             const DeepCollectionEquality().equals(other._images, _images));
   }
 
+  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, requestId, text,
-      const DeepCollectionEquality().hash(_images));
+  int get hashCode => Object.hash(
+      runtimeType, text, const DeepCollectionEquality().hash(_images));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_AddCommentDtoCopyWith<_$_AddCommentDto> get copyWith =>
       __$$_AddCommentDtoCopyWithImpl<_$_AddCommentDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_AddCommentDtoToJson(
+      this,
+    );
+  }
 }
 
 abstract class _AddCommentDto implements AddCommentDto {
   const factory _AddCommentDto(
-      {required final String requestId,
-      required final String text,
+      {required final String text,
       required final List<String> images}) = _$_AddCommentDto;
 
-  @override
-  String get requestId;
+  factory _AddCommentDto.fromJson(Map<String, dynamic> json) =
+      _$_AddCommentDto.fromJson;
+
   @override
   String get text;
   @override

@@ -1,15 +1,12 @@
 import 'dart:io';
 
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/helpers/image_helper.dart';
 import '../../../../../core/widgets/bottom_sheep/thesis_bottom_sheep_header.dart';
-import '../../../../../core/widgets/thesis/image/thesis_image_picker.dart';
-import '../../../../../core/widgets/thesis/image/thesis_images_grid.dart';
+import '../../../../../core/widgets/thesis/image/thesis_pick_images_grid.dart';
 import '../../../../../core/widgets/thesis/thesis_bottom_sheep.dart';
 import '../../../../../core/widgets/thesis/thesis_button.dart';
-import '../../../../../theme/theme_colors.dart';
 import '../../../contracts/add_comment_dto/add_comment_dto.dart';
 import '../../../repositories/request_repository_impl.dart';
 
@@ -50,84 +47,8 @@ class RequestAddCommentSheep {
               ),
             ),
             const SizedBox(height: 20),
-            ThesisButton.fromText(
-              onPressed: () async {
-                final files = await ThesisImagePicker.get(context);
-                commentImagesNotifier.value = List.of(
-                  commentImagesNotifier.value + files,
-                );
-              },
-              text: "+ Прикрепить изображения",
-              options: ThesisButtonOptions(
-                isOutline: true,
-                borderRadius: 10,
-                height: 44,
-                titleStyle: AdaptiveTheme.of(context)
-                    .theme
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(color: kPrimaryLightColor),
-              ),
-            ),
-            const SizedBox(height: 20),
-            ValueListenableBuilder(
-              valueListenable: commentImagesNotifier,
-              builder: (context, images, child) {
-                return Visibility(
-                  visible: images.isNotEmpty,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 36),
-                    child: ThesisImagesGrid(
-                      images: images,
-                      imageBuilder: (file) {
-                        return Stack(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(12),
-                                ),
-                                image: DecorationImage(
-                                  image: FileImage(file),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              top: 4,
-                              right: 4,
-                              child: GestureDetector(
-                                onTap: () {
-                                  final newList = commentImagesNotifier.value;
-                                  newList.remove(file);
-                                  commentImagesNotifier.value = List.of(
-                                    newList,
-                                  );
-                                },
-                                child: Container(
-                                  width: 24,
-                                  height: 24,
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(4),
-                                    ),
-                                    color: Colors.redAccent.withOpacity(0.8),
-                                  ),
-                                  child: const Icon(
-                                    Icons.delete,
-                                    size: 16,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                  ),
-                );
-              },
+            ThesisPickImagesGrid(
+              fileNotifier: commentImagesNotifier,
             ),
             ThesisButton.fromText(
               onPressed: () async {
@@ -143,13 +64,12 @@ class RequestAddCommentSheep {
                 }
 
                 final addCommentDto = AddCommentDto(
-                  requestId: requestId,
                   text: commentController.text,
                   images: images,
                 );
 
                 await requestRepository
-                    .addCommentToRequest(addCommentDto)
+                    .addCommentToRequest(requestId, addCommentDto)
                     .whenComplete(() {
                   onAddComment();
                   Navigator.of(context).pop();

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../core/helpers/dio_helper.dart';
 import '../../../core/repositories/tokens/tokens_repository_impl.dart';
 import '../contracts/add_comment_dto/add_comment_dto.dart';
+import '../contracts/add_request_dto/add_request_dto.dart';
 import '../contracts/request_comment_dto/request_comment_dto.dart';
 import '../contracts/request_dto/request_dto.dart';
 import '../contracts/request_status_dto/request_status_dto.dart';
@@ -67,19 +68,17 @@ class RequestRepositoryImpl implements IRequestRepository {
   }
 
   @override
-  Future<bool> addCommentToRequest(AddCommentDto addCommentDto) async {
+  Future<bool> addCommentToRequest(
+      String requestId, AddCommentDto addCommentDto) async {
     try {
       final accessToken = await _tokensRepository.getAccessToken();
       final response = await DioHelper.postData(
-        url: '/requests/${addCommentDto.requestId}/comments',
+        url: '/requests/$requestId/comments',
         headers: {
           'Content-type': ' application/json',
           'Authorization': 'Bearer $accessToken',
         },
-        data: {
-          'text': addCommentDto.text,
-          'images': addCommentDto.images,
-        },
+        data: addCommentDto.toJson(),
       );
 
       switch (response.statusCode) {
@@ -118,6 +117,32 @@ class RequestRepositoryImpl implements IRequestRepository {
           throw Exception('Передан некорректный идентификатор заявки');
         case 404:
           throw Exception('Заявка не найдена');
+        default:
+          throw Exception('Что-то пошло не так');
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<bool> addRequest(AddRequestDto addRequestDto) async {
+    try {
+      final accessToken = await _tokensRepository.getAccessToken();
+      final response = await DioHelper.postData(
+        url: '/requests',
+        headers: {
+          'Content-type': ' application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        data: addRequestDto.toJson(),
+      );
+
+      switch (response.statusCode) {
+        case 200:
+          return true;
+        case 400:
+          throw Exception('Переданы некорректные данные');
         default:
           throw Exception('Что-то пошло не так');
       }

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/widgets/pages/thesis_base_page.dart';
 import '../../../core/widgets/pages/thesis_empty_page.dart';
 import '../../../core/widgets/thesis/thesis_sliver_screen.dart';
+import '../../../theme/theme_colors.dart';
 import '../bloc/request_bloc.dart';
 import '../bloc/request_scope.dart';
 import '../widgets/request_shimmer.dart';
@@ -49,6 +50,16 @@ class _RequestScreenState extends State<RequestScreen> {
               ),
               orElse: () => const RequestShimmer(),
             ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: kPrimaryColor,
+            foregroundColor: Colors.white,
+            child: const Icon(
+              Icons.add_rounded,
+              size: 40,
+            ),
+            onPressed: () => Navigator.pushNamed(context, '/add_request')
+                .whenComplete(() => RequestScope.load(context)),
           ),
         ),
       ),
