@@ -15,6 +15,12 @@ class RequestShimmer extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        ThesisShimmerWidget(
+          width: MediaQuery.of(context).size.width,
+          height: 48,
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
+        ),
+        const SizedBox(height: 20),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(

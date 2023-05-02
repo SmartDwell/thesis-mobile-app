@@ -21,6 +21,8 @@ class ThesisTabBar extends StatelessWidget {
       valueListenable: pickedNotifier,
       builder: (context, currentIndex, child) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
