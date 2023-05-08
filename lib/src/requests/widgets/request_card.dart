@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../core/constants.dart';
 import '../../../core/widgets/thesis/thesis_text_button.dart';
 import '../contracts/request_dto/request_dto.dart';
+import '../screens/cancel/request_cancel_sheep.dart';
 import '../screens/edit/thesis_edit_sheep.dart';
 import 'request_state_card.dart';
 import 'request_states.dart';
@@ -92,7 +93,10 @@ class RequestCard extends StatelessWidget {
                     const SizedBox(width: 16),
                     ThesisTextButton(
                       title: 'Отменить'.toUpperCase(),
-                      onTap: () {},
+                      onTap: () => ThesisCancelSheep.show(
+                        context,
+                        requestDto: request,
+                      ),
                     ),
                   ],
                 ),
