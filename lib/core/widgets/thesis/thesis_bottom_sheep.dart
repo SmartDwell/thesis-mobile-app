@@ -14,12 +14,18 @@ class ThesisBottomSheep {
     bool expand = true,
     Widget header = const ThesisBottomSheepHeader(),
   }) {
-    showModalAsync(
-      context,
-      header: header,
-      expand: expand,
-      child: child,
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => child,
     );
+
+    // showModalAsync(
+    //   context,
+    //   header: header,
+    //   expand: expand,
+    //   child: child,
+    // );
   }
 
   static Future<void> showModalAsync(
@@ -47,6 +53,8 @@ class ThesisBottomSheep {
   static void showSheep(
     BuildContext context, {
     required Widget child,
+    bool expand = true,
+    Widget header = const ThesisBottomSheepHeader(),
   }) async {
     showBottomSheet(
       context: context,
@@ -54,7 +62,14 @@ class ThesisBottomSheep {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
       ),
-      builder: (context) => child,
+      builder: (context) {
+        final body = ThesisBottomSheepBody(
+          header: header,
+          child: child,
+        );
+
+        return expand ? body : Wrap(children: [body]);
+      },
     );
   }
 

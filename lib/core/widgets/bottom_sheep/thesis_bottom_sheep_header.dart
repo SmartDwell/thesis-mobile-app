@@ -29,10 +29,10 @@ class ThesisBottomSheepHeader extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Visibility(
-              visible: (title ?? "").isEmpty,
+              visible: (title ?? '').isEmpty,
               child: const Spacer(),
               replacement: Text(
-                title!,
+                title ?? '',
                 textAlign: TextAlign.center,
                 style: AdaptiveTheme.of(context)
                     .theme

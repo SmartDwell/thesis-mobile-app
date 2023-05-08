@@ -4,8 +4,10 @@ import '../../../core/helpers/dio_helper.dart';
 import '../../../core/repositories/tokens/tokens_repository_impl.dart';
 import '../contracts/add_comment_dto/add_comment_dto.dart';
 import '../contracts/add_request_dto/add_request_dto.dart';
+import '../contracts/request_cancel_dto/request_cancel_dto.dart';
 import '../contracts/request_comment_dto/request_comment_dto.dart';
 import '../contracts/request_dto/request_dto.dart';
+import '../contracts/request_edit_dto/request_edit_dto.dart';
 import '../contracts/request_status_dto/request_status_dto.dart';
 import 'request_repository.dart';
 
@@ -143,6 +145,66 @@ class RequestRepositoryImpl implements IRequestRepository {
           return true;
         case 400:
           throw Exception('Переданы некорректные данные');
+        default:
+          throw Exception('Что-то пошло не так');
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<bool> cancelRequest(
+      String requestId, RequestCancelDto requestCancelDto) async {
+    try {
+      final accessToken = await _tokensRepository.getAccessToken();
+      final response = await DioHelper.postData(
+        url: '/requests/$requestId/statuses',
+        headers: {
+          'Content-type': ' application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        data: requestCancelDto.toJson(),
+      );
+
+      switch (response.statusCode) {
+        case 204:
+          return true;
+        case 400:
+          throw Exception('Переданы некорректные данные');
+        case 404:
+          throw Exception('Заявка не найдена');
+        case 409:
+          throw Exception(response.data);
+        default:
+          throw Exception('Что-то пошло не так');
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<bool> editRequest(
+      String requestId, RequestEditDto requestEditDto) async {
+    try {
+      final accessToken = await _tokensRepository.getAccessToken();
+      final response = await DioHelper.patchData(
+        url: '/requests/$requestId',
+        headers: {
+          'Content-type': ' application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        data: requestEditDto.toJson(),
+      );
+
+      switch (response.statusCode) {
+        case 200:
+          return true;
+        case 400:
+          throw Exception('Переданы некорректные данные');
+        case 404:
+          throw Exception('Заявка не найдена');
         default:
           throw Exception('Что-то пошло не так');
       }

@@ -30,11 +30,9 @@ class MessageHelper {
             children: [
               Padding(
                 padding: const EdgeInsets.only(right: 20),
-                child: SvgPicture.asset(
-                  isSuccess
-                      ? "lib/assets/images/icons/large_success.svg"
-                      : "lib/assets/images/icons/large_error.svg",
-                ),
+                child: isSuccess
+                    ? const Icon(Icons.check, color: kGreenColor)
+                    : const Icon(Icons.close, color: kRedColor),
               ),
               Expanded(
                 child: Text(

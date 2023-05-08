@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../core/constants.dart';
 import '../../../core/widgets/thesis/thesis_text_button.dart';
 import '../contracts/request_dto/request_dto.dart';
+import '../screens/edit/thesis_edit_sheep.dart';
 import 'request_state_card.dart';
 import 'request_states.dart';
 
@@ -83,7 +84,10 @@ class RequestCard extends StatelessWidget {
                   children: [
                     ThesisTextButton(
                       title: 'Редактировать'.toUpperCase(),
-                      onTap: () {},
+                      onTap: () => ThesisEditSheep.show(
+                        context,
+                        requestDto: request,
+                      ),
                     ),
                     const SizedBox(width: 16),
                     ThesisTextButton(

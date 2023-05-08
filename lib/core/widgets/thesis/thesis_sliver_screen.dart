@@ -32,6 +32,7 @@ class ThesisSliverScreen extends StatelessWidget {
           borderColor: context.currentTheme.textTheme.headlineLarge!.color!,
           indicatorColor: kPrimaryLightColor,
           child: Scaffold(
+            resizeToAvoidBottomInset: true,
             appBar: AppBar(
               title: AnimatedOpacity(
                 opacity: !visibility ? 1 : 0,
