@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../theme/theme_colors.dart';
 import '../../../../theme/theme_extention.dart';
-import '../thesis_button.dart';
+import '../buttons/thesis_button_options.dart';
+import '../buttons/thesis_outlined_button.dart';
 import 'thesis_image_picker.dart';
 import 'thesis_images_grid.dart';
 
@@ -20,7 +21,7 @@ class ThesisPickImagesGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ThesisButton.fromText(
+        ThesisOutlinedButton(
           onPressed: () async {
             final files = await ThesisImagePicker.get(context);
             fileNotifier.value = List.of(

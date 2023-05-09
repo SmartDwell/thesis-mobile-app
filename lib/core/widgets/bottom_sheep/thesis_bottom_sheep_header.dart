@@ -36,7 +36,7 @@ class ThesisBottomSheepHeader extends StatelessWidget {
               replacement: Text(
                 title ?? '',
                 textAlign: TextAlign.center,
-                style: context.textTheme.titleMedium,
+                style: context.textTheme.headlineSmall,
               ),
             ),
             GestureDetector(

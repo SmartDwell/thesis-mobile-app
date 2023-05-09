@@ -21,7 +21,7 @@ class RequestStatusesSheep {
       context,
       expand: false,
       header: const ThesisBottomSheepHeader(
-        title: 'История заявка',
+        title: 'История заявки',
       ),
       child: Wrap(
         children: [

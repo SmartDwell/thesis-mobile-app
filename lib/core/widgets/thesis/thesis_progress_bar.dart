@@ -8,10 +8,12 @@ class ThesisProgressBar extends StatelessWidget {
     Key? key,
     this.color,
     this.size = const Size(24.0, 24.0),
+    this.strokeWidth = 2.5,
   }) : super(key: key);
 
   final Color? color;
   final Size size;
+  final double strokeWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class ThesisProgressBar extends StatelessWidget {
       height: size.height,
       child: CircularProgressIndicator(
         color: color ?? kDarkTextPrimaryColor,
-        strokeWidth: 2.5,
+        strokeWidth: strokeWidth,
       ),
     );
   }

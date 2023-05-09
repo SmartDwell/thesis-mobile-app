@@ -6,7 +6,7 @@ import '../../../../../core/helpers/image_helper.dart';
 import '../../../../../core/widgets/bottom_sheep/thesis_bottom_sheep_header.dart';
 import '../../../../../core/widgets/thesis/image/thesis_pick_images_grid.dart';
 import '../../../../../core/widgets/thesis/thesis_bottom_sheep.dart';
-import '../../../../../core/widgets/thesis/thesis_button.dart';
+import '../../../../../core/widgets/thesis/buttons/thesis_button.dart';
 import '../../../contracts/add_comment_dto/add_comment_dto.dart';
 import '../../../repositories/request_repository_impl.dart';
 
@@ -20,7 +20,7 @@ class RequestAddCommentSheep {
     final requestRepository = RequestRepositoryImpl();
     final commentImagesNotifier = ValueNotifier<List<File>>([]);
     final commentController = TextEditingController();
-    ThesisBottomSheep.showModal(
+    ThesisBottomSheep.showSheep(
       context,
       expand: false,
       header: const ThesisBottomSheepHeader(title: "Добавить комментарий"),

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/helpers/image_helper.dart';
 import '../../../../core/widgets/thesis/image/thesis_pick_images_grid.dart';
-import '../../../../core/widgets/thesis/thesis_button.dart';
+import '../../../../core/widgets/thesis/buttons/thesis_button.dart';
 import '../../../../core/widgets/thesis/thesis_sliver_screen.dart';
 import '../../../../theme/theme_extention.dart';
 import '../../contracts/add_request_dto/add_request_dto.dart';
@@ -47,6 +47,7 @@ class RequestAddScreen extends StatelessWidget {
                     if (value == null || value.isEmpty) {
                       return 'Поле не может быть пустым.';
                     }
+
                     return null;
                   },
                   decoration: const InputDecoration(
@@ -57,6 +58,8 @@ class RequestAddScreen extends StatelessWidget {
                 TextFormField(
                   key: descriptionFormFieldKey,
                   controller: descriptionController,
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
                   onChanged: (value) {
                     descriptionFormFieldKey.currentState?.validate();
                   },

@@ -5,7 +5,7 @@ import '../../../../core/helpers/fab_notifier_helper.dart';
 import '../../../../core/helpers/message_helper.dart';
 import '../../../../core/widgets/bottom_sheep/thesis_bottom_sheep_header.dart';
 import '../../../../core/widgets/thesis/thesis_bottom_sheep.dart';
-import '../../../../core/widgets/thesis/thesis_button.dart';
+import '../../../../core/widgets/thesis/buttons/thesis_button.dart';
 import '../../bloc/request_scope.dart';
 import '../../contracts/request_dto/request_dto.dart';
 import '../../contracts/request_edit_dto/request_edit_dto.dart';
@@ -56,6 +56,8 @@ class ThesisEditSheep {
             TextFormField(
               key: descriptionFormFieldKey,
               controller: descriptionController,
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
               onChanged: (value) {
                 descriptionFormFieldKey.currentState?.validate();
               },

@@ -31,49 +31,53 @@ class ThesisSliverScreen extends StatelessWidget {
           backgroundColor: context.currentTheme.scaffoldBackgroundColor,
           borderColor: context.currentTheme.textTheme.headlineLarge!.color!,
           indicatorColor: kPrimaryLightColor,
-          child: Scaffold(
-            resizeToAvoidBottomInset: true,
-            appBar: AppBar(
-              title: AnimatedOpacity(
-                opacity: !visibility ? 1 : 0,
-                duration: const Duration(milliseconds: 256),
-                child: Visibility(
-                  visible: !visibility && title.isNotEmpty,
-                  child: Text(
-                    title,
-                    style:
-                        AdaptiveTheme.of(context).theme.textTheme.headlineSmall,
+          child: Builder(builder: (context) {
+            return Scaffold(
+              resizeToAvoidBottomInset: true,
+              appBar: AppBar(
+                title: AnimatedOpacity(
+                  opacity: !visibility ? 1 : 0,
+                  duration: const Duration(milliseconds: 256),
+                  child: Visibility(
+                    visible: !visibility && title.isNotEmpty,
+                    child: Text(
+                      title,
+                      style: AdaptiveTheme.of(context)
+                          .theme
+                          .textTheme
+                          .headlineSmall,
+                    ),
                   ),
                 ),
               ),
-            ),
-            floatingActionButton: floatingActionButton,
-            body: SingleChildScrollView(
-              padding: kThemeDefaultPaddingHorizontal,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  VisibilityDetector(
-                    key: UniqueKey(),
-                    onVisibilityChanged: (visibilityInfo) {
-                      final count = visibilityInfo.visibleFraction;
-                      final isVisibility = count > 0.250;
-                      detector.value = isVisibility;
-                    },
-                    child: Text(
-                      title,
-                      style: Theme.of(context).textTheme.displaySmall,
+              floatingActionButton: floatingActionButton,
+              body: SingleChildScrollView(
+                padding: kThemeDefaultPaddingHorizontal,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    VisibilityDetector(
+                      key: UniqueKey(),
+                      onVisibilityChanged: (visibilityInfo) {
+                        final count = visibilityInfo.visibleFraction;
+                        final isVisibility = count > 0.250;
+                        detector.value = isVisibility;
+                      },
+                      child: Text(
+                        title,
+                        style: Theme.of(context).textTheme.displaySmall,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: child,
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: child,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ),
+            );
+          }),
         );
       },
     );

@@ -1,7 +1,8 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/widgets/thesis/thesis_button.dart';
+import '../../../../../core/widgets/thesis/buttons/thesis_button_options.dart';
+import '../../../../../core/widgets/thesis/buttons/thesis_outlined_button.dart';
 import '../../../../../theme/theme_colors.dart';
 import '../../../contracts/request_comment_dto/request_comment_dto.dart';
 import '../../../repositories/request_repository_impl.dart';
@@ -74,7 +75,7 @@ class RequestCommentsWidget extends StatelessWidget {
               ),
               replacement: Column(
                 children: [
-                  ThesisButton.fromText(
+                  ThesisOutlinedButton(
                     onPressed: () => RequestAddCommentSheep.show(
                       context,
                       requestId: requestId,
@@ -84,15 +85,9 @@ class RequestCommentsWidget extends StatelessWidget {
                               .asStream(),
                     ),
                     text: "+ Добавить",
-                    options: ThesisButtonOptions(
-                      isOutline: true,
+                    options: const ThesisButtonOptions(
                       borderRadius: 10,
                       height: 44,
-                      titleStyle: AdaptiveTheme.of(context)
-                          .theme
-                          .textTheme
-                          .bodyMedium
-                          ?.copyWith(color: kPrimaryLightColor),
                     ),
                   ),
                   const SizedBox(height: 25),

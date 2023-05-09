@@ -4,7 +4,7 @@ import 'package:validators/validators.dart';
 
 import '../../../../core/widgets/pages/thesis_base_page.dart';
 import '../../../../core/widgets/thesis/thesis_bottom_sheep.dart';
-import '../../../../core/widgets/thesis/thesis_button.dart';
+import '../../../../core/widgets/thesis/buttons/thesis_button.dart';
 import '../bloc/login_bloc.dart';
 import '../login_scope.dart';
 import 'login_verify_code_screen.dart';
