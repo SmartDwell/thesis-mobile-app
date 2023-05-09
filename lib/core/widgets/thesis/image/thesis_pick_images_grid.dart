@@ -9,6 +9,7 @@ import '../buttons/thesis_outlined_button.dart';
 import 'thesis_image_picker.dart';
 import 'thesis_images_grid.dart';
 
+/// Сетка изображений с выбором из галереи
 class ThesisPickImagesGrid extends StatelessWidget {
   const ThesisPickImagesGrid({
     super.key,

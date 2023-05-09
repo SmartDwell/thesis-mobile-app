@@ -14,18 +14,12 @@ class ThesisBottomSheep {
     bool expand = true,
     Widget header = const ThesisBottomSheepHeader(),
   }) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      builder: (context) => child,
+    showModalAsync(
+      context,
+      header: header,
+      expand: expand,
+      child: child,
     );
-
-    // showModalAsync(
-    //   context,
-    //   header: header,
-    //   expand: expand,
-    //   child: child,
-    // );
   }
 
   static Future<void> showModalAsync(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Карточка состояния заявок
 class RequestStateCard extends StatelessWidget {
   const RequestStateCard({
     super.key,

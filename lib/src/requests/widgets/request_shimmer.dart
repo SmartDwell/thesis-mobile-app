@@ -5,6 +5,7 @@ import 'package:shimmer/shimmer.dart';
 import '../../../core/widgets/thesis/thesis_shimmer_widget.dart';
 import '../../../theme/theme_colors.dart';
 
+/// Заглушка заявок
 class RequestShimmer extends StatelessWidget {
   const RequestShimmer({super.key});
 

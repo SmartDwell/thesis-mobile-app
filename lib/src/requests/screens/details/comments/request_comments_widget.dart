@@ -10,6 +10,7 @@ import 'request_add_comment_sheep.dart';
 import 'request_comment_item_widget.dart';
 import 'request_comments_shimmer.dart';
 
+/// Компонент комментариев заявки
 class RequestCommentsWidget extends StatelessWidget {
   const RequestCommentsWidget({
     super.key,

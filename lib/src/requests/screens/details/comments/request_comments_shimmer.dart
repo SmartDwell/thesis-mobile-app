@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/widgets/thesis/thesis_shimmer_widget.dart';
 
+/// Заглушка комментариев
 class RequestCommentsShimmer extends StatelessWidget {
   const RequestCommentsShimmer({super.key});
 

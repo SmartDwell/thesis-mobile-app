@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../theme/theme_colors.dart';
+import '../../../../theme/theme_colors.dart';
 
+/// Компонент текстовой кнопки
 class ThesisTextButton extends StatelessWidget {
   const ThesisTextButton({
     super.key,

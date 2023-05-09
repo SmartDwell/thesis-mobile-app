@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../theme/theme_colors.dart';
 
+/// Элемент таб-бара
 class ThesisTabBarItem extends StatelessWidget {
   const ThesisTabBarItem({
     super.key,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Сетка изображений
 class ThesisImagesGrid<TItem> extends StatelessWidget {
   const ThesisImagesGrid({
     super.key,

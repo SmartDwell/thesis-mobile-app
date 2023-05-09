@@ -11,6 +11,7 @@ import '../contracts/request_edit_dto/request_edit_dto.dart';
 import '../contracts/request_status_dto/request_status_dto.dart';
 import 'request_repository.dart';
 
+/// Репозиторий заявок
 class RequestRepositoryImpl implements IRequestRepository {
   final _tokensRepository = TokensRepositoryImpl();
 
@@ -41,11 +42,11 @@ class RequestRepositoryImpl implements IRequestRepository {
   }
 
   @override
-  Future<List<RequestCommentDto>> loadRequestComments(String id) async {
+  Future<List<RequestCommentDto>> loadRequestComments(String requestId) async {
     try {
       final accessToken = await _tokensRepository.getAccessToken();
       final response = await DioHelper.getData(
-        url: '/requests/$id/comments',
+        url: '/requests/$requestId/comments',
         headers: {
           'Content-type': ' application/json',
           'Authorization': 'Bearer $accessToken',
@@ -99,11 +100,11 @@ class RequestRepositoryImpl implements IRequestRepository {
   }
 
   @override
-  Future<List<RequestStatusDto>> loadRequestStatuses(String id) async {
+  Future<List<RequestStatusDto>> loadRequestStatuses(String requestId) async {
     try {
       final accessToken = await _tokensRepository.getAccessToken();
       final response = await DioHelper.getData(
-        url: '/requests/$id/statuses',
+        url: '/requests/$requestId/statuses',
         headers: {
           'Content-type': ' application/json',
           'Authorization': 'Bearer $accessToken',

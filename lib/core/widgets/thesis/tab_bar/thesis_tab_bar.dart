@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'thesis_tab_bar_item.dart';
 
+/// Компонент таб-бар
 class ThesisTabBar extends StatelessWidget {
   const ThesisTabBar({
     super.key,

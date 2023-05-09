@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Тело для BottomSheep
 class ThesisBottomSheepBody extends StatelessWidget {
   const ThesisBottomSheepBody({
     super.key,

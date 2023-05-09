@@ -10,6 +10,7 @@ import '../../../../../core/widgets/thesis/buttons/thesis_button.dart';
 import '../../../contracts/add_comment_dto/add_comment_dto.dart';
 import '../../../repositories/request_repository_impl.dart';
 
+/// BottomSheep для добавления комментария к заявке
 class RequestAddCommentSheep {
   static void show(
     BuildContext context, {

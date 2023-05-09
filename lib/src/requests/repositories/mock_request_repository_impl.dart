@@ -8,6 +8,7 @@ import '../contracts/request_status_dto/request_status_dto.dart';
 import '../widgets/request_states.dart';
 import 'request_repository.dart';
 
+/// Репозиторий заявок (работает из памяти)
 class MockRequestRepositoryImpl implements IRequestRepository {
   @override
   Future<List<RequestDto>> loadRequests() {
@@ -16,7 +17,7 @@ class MockRequestRepositoryImpl implements IRequestRepository {
   }
 
   @override
-  Future<List<RequestCommentDto>> loadRequestComments(String id) {
+  Future<List<RequestCommentDto>> loadRequestComments(String requestId) {
     return Future.value([]);
   }
 
@@ -65,7 +66,7 @@ class MockRequestRepositoryImpl implements IRequestRepository {
   }
 
   @override
-  Future<List<RequestStatusDto>> loadRequestStatuses(String id) {
+  Future<List<RequestStatusDto>> loadRequestStatuses(String requestId) {
     // TODO: implement loadRequestStatuses
     throw UnimplementedError();
   }

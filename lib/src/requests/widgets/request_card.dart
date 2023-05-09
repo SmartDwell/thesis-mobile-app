@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../core/constants.dart';
-import '../../../core/widgets/thesis/thesis_text_button.dart';
+import '../../../core/widgets/thesis/buttons/thesis_text_button.dart';
 import '../contracts/request_dto/request_dto.dart';
 import '../screens/cancel/request_cancel_sheep.dart';
 import '../screens/edit/thesis_edit_sheep.dart';
 import 'request_state_card.dart';
 import 'request_states.dart';
 
+/// Карточка заявки
 class RequestCard extends StatelessWidget {
   const RequestCard({
     super.key,

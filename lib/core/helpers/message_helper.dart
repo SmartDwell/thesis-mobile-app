@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../theme/theme_colors.dart';
 
@@ -29,9 +30,11 @@ class MessageHelper {
             children: [
               Padding(
                 padding: const EdgeInsets.only(right: 20),
-                child: isSuccess
-                    ? const Icon(Icons.check, size: 32, color: kGreenColor)
-                    : const Icon(Icons.close, size: 32, color: kRedColor),
+                child: SvgPicture.asset(
+                  isSuccess
+                      ? "assets/images/icons/large_success.svg"
+                      : "assets/images/icons/large_error.svg",
+                ),
               ),
               Expanded(
                 child: Text(

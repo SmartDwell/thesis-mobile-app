@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 
 import '../../core/repositories/tokens/tokens_repository_impl.dart';
 import '../../core/widgets/thesis/buttons/thesis_button.dart';

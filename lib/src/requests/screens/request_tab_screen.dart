@@ -8,6 +8,7 @@ import '../bloc/request_scope.dart';
 import '../contracts/request_dto/request_dto.dart';
 import '../widgets/request_card.dart';
 
+/// Таб-бар с заявками
 class RequestTabScreen extends StatelessWidget {
   const RequestTabScreen({
     super.key,

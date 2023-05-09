@@ -3,6 +3,7 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../../theme/theme_colors.dart';
 
+/// Базовый компонент заглушки
 class ThesisShimmerWidget extends StatelessWidget {
   const ThesisShimmerWidget({
     super.key,

@@ -7,6 +7,7 @@ import '../../../theme/theme_colors.dart';
 import '../../../theme/theme_constants.dart';
 import '../../../theme/theme_extention.dart';
 
+/// Базовый экран со скроллом
 class ThesisSliverScreen extends StatelessWidget {
   const ThesisSliverScreen({
     super.key,

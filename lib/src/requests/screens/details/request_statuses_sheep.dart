@@ -8,6 +8,7 @@ import '../../../../core/widgets/thesis/thesis_bottom_sheep.dart';
 import '../../../../theme/theme_colors.dart';
 import '../../repositories/request_repository_impl.dart';
 
+/// BottomSheep для статусов заявки
 class RequestStatusesSheep {
   static Future<void> show(
     BuildContext context, {

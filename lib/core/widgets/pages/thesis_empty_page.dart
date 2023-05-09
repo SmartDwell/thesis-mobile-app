@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+/// Компонент пустой страницы
 class ThesisEmptyPage extends StatelessWidget {
   const ThesisEmptyPage({
     super.key,

@@ -3,6 +3,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import '../../constants.dart';
 
+/// Компонент анимированного списка
 class ThesisStaggeredList<T> extends StatelessWidget {
   const ThesisStaggeredList({
     super.key,

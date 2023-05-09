@@ -11,6 +11,7 @@ import '../../contracts/request_cancel_dto/request_cancel_dto.dart';
 import '../../contracts/request_dto/request_dto.dart';
 import '../../repositories/request_repository_impl.dart';
 
+/// BottomSheep для отмены заявки
 class ThesisCancelSheep {
   static void show(
     BuildContext context, {

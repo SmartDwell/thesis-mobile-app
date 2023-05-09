@@ -9,6 +9,7 @@ import '../../bottom_sheep/thesis_bottom_sheep_header.dart';
 import '../thesis_bottom_sheep.dart';
 import '../thesis_progress_bar.dart';
 
+/// BottomSheep для выбора изображений
 class ThesisImagePicker {
   static Future<File?> _pickImageFromCamera() async {
     try {
@@ -32,6 +33,7 @@ class ThesisImagePicker {
     }
   }
 
+  /// Получить изображения
   static Future<List<File>> get(BuildContext context) async {
     final cameraPickerInProgress = ValueNotifier<bool>(false);
     final galleryPickerInProgress = ValueNotifier<bool>(false);

@@ -10,6 +10,7 @@ import '../../../../theme/theme_extention.dart';
 import '../../contracts/add_request_dto/add_request_dto.dart';
 import '../../repositories/request_repository_impl.dart';
 
+/// Страница создания заявки
 class RequestAddScreen extends StatelessWidget {
   const RequestAddScreen({super.key});
 

@@ -9,7 +9,9 @@ import 'package:http_parser/http_parser.dart';
 import '../repositories/tokens/tokens_repository_impl.dart';
 import 'dio_helper.dart';
 
+/// Помощник работы с изображениями
 abstract class ImageHelper {
+  /// Сохранить изображение на сервере
   static Future<String> register(File image) async {
     final tokensRepository = TokensRepositoryImpl();
     try {

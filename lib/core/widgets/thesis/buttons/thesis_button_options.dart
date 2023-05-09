@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Опции кнопки
 class ThesisButtonOptions {
   final bool isOutline;
   final double borderRadius;

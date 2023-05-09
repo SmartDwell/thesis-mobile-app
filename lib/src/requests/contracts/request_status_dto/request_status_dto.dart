@@ -7,6 +7,7 @@ import '../../widgets/request_states.dart';
 part 'request_status_dto.freezed.dart';
 part 'request_status_dto.g.dart';
 
+/// Модель статуса заявки
 @freezed
 class RequestStatusDto with _$RequestStatusDto {
   const RequestStatusDto._();
@@ -19,6 +20,7 @@ class RequestStatusDto with _$RequestStatusDto {
   factory RequestStatusDto.fromJson(Map<String, dynamic> json) =>
       _$RequestStatusDtoFromJson(json);
 
+  /// Получить имя текущего состояния заявки
   String get stateName {
     switch (state) {
       case RequestStates.New:
@@ -36,6 +38,7 @@ class RequestStatusDto with _$RequestStatusDto {
     }
   }
 
+  /// Получить цвет текущего состояния заявки
   Color get stateColor {
     switch (state) {
       case RequestStates.New:

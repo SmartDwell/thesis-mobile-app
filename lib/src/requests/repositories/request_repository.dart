@@ -6,14 +6,28 @@ import '../contracts/request_dto/request_dto.dart';
 import '../contracts/request_edit_dto/request_edit_dto.dart';
 import '../contracts/request_status_dto/request_status_dto.dart';
 
+/// Интерфейс репозитория заявок
 abstract class IRequestRepository {
+  /// Загрузить все заявки
   Future<List<RequestDto>> loadRequests();
-  Future<List<RequestCommentDto>> loadRequestComments(String id);
+
+  /// Загрузить комментарии заявки
+  Future<List<RequestCommentDto>> loadRequestComments(String requestId);
+
+  /// Добавить комментарий к заявке
   Future<bool> addCommentToRequest(
       String requestId, AddCommentDto addCommentDto);
+
+  /// Добавить заявку
   Future<bool> addRequest(AddRequestDto addRequestDto);
+
+  /// Отменить заявку
   Future<bool> cancelRequest(
       String requestId, RequestCancelDto requestCancelDto);
+
+  /// Редатировать заявку
   Future<bool> editRequest(String requestId, RequestEditDto requestEditDto);
-  Future<List<RequestStatusDto>> loadRequestStatuses(String id);
+
+  /// Загрузить статусы заявки
+  Future<List<RequestStatusDto>> loadRequestStatuses(String requestId);
 }

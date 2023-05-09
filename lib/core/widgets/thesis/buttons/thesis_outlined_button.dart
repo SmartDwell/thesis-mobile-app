@@ -5,6 +5,7 @@ import '../../../../theme/theme_extention.dart';
 import '../thesis_progress_bar.dart';
 import 'thesis_button_options.dart';
 
+/// Компонент базовой кнопки с обводкой
 class ThesisOutlinedButton extends StatelessWidget {
   ThesisOutlinedButton({
     super.key,

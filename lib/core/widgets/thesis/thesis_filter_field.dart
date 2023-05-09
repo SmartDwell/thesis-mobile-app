@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../theme/theme_colors.dart';
 import '../../../theme/theme_extention.dart';
 
+/// Компонент текстового поля для фильтрации
 class ThesisFilterField extends StatelessWidget {
   const ThesisFilterField({
     super.key,

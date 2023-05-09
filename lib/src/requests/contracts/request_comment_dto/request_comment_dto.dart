@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'request_comment_dto.freezed.dart';
 part 'request_comment_dto.g.dart';
 
+/// Модель для комментария заявки
 @freezed
 class RequestCommentDto with _$RequestCommentDto {
   const factory RequestCommentDto({

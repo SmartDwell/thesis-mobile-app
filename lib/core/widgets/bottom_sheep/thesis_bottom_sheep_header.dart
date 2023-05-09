@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../theme/theme_colors.dart';
 import '../../../theme/theme_extention.dart';
 
+/// Шапка для BottomSheep
 class ThesisBottomSheepHeader extends StatelessWidget {
   const ThesisBottomSheepHeader({
     super.key,

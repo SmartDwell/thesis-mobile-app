@@ -13,6 +13,7 @@ import '../widgets/request_shimmer.dart';
 import 'details/request_details_screen.dart';
 import 'request_tab_screen.dart';
 
+/// Экран заявок
 class RequestScreen extends StatefulWidget {
   const RequestScreen({super.key});
 

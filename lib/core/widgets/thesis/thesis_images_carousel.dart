@@ -7,6 +7,7 @@ import '../../../theme/theme_colors.dart';
 import '../../repositories/tokens/tokens_repository_impl.dart';
 import 'thesis_progress_bar.dart';
 
+/// Карусель изображений
 class ThesisImagesCarousel extends StatelessWidget {
   const ThesisImagesCarousel({
     super.key,

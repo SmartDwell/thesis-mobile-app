@@ -11,6 +11,7 @@ import '../../contracts/request_dto/request_dto.dart';
 import '../../contracts/request_edit_dto/request_edit_dto.dart';
 import '../../repositories/request_repository_impl.dart';
 
+/// BottomSheep для редактирования заявки
 class ThesisEditSheep {
   static void show(
     BuildContext context, {

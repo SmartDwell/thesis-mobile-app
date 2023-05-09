@@ -6,6 +6,7 @@ import '../../../../../core/helpers/dio_helper.dart';
 import '../../../../../core/widgets/thesis/thesis_network_image_preview.dart';
 import '../../../contracts/request_comment_dto/request_comment_dto.dart';
 
+/// Компонент комментария
 class RequestCommentItemWidget extends StatelessWidget {
   const RequestCommentItemWidget({
     super.key,

@@ -11,6 +11,7 @@ import '../../widgets/request_state_card.dart';
 import 'comments/request_comments_widget.dart';
 import 'request_statuses_sheep.dart';
 
+/// Страница детальной информации заявки
 class RequestDetailsScreen extends StatelessWidget {
   const RequestDetailsScreen({
     super.key,

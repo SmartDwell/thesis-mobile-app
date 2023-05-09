@@ -6,6 +6,7 @@ import '../repositories/request_repository.dart';
 
 part 'request_bloc.freezed.dart';
 
+/// Блок заявок
 class RequestBloc extends Bloc<RequestEvent, RequestState> {
   final IRequestRepository _requestRepository;
 
@@ -52,33 +53,48 @@ class RequestBloc extends Bloc<RequestEvent, RequestState> {
   }
 }
 
+/// Базовое событие заявок
 @freezed
 abstract class RequestEvent with _$RequestEvent {
+  /// Загрузить все заявки
   const factory RequestEvent.load() = _RequestLoadEvent;
+
+  /// Обновить экран
   const factory RequestEvent.refresh() = _RequestRefreshEvent;
+
+  /// Загрузить и отобразить одну заявку
   const factory RequestEvent.loadSingle({
     required RequestDto requestDto,
   }) = _RequestLoadSingleEvent;
+
+  /// Загрузить и отобразить заявку по идентификатору
   const factory RequestEvent.loadSingleById({
     required String requestId,
   }) = _RequestLoadSingleByIdEvent;
 }
 
+/// Базовое состояние заявок
 @freezed
 abstract class RequestState with _$RequestState {
+  /// Состояние инициализации
   const factory RequestState.initial() = _RequestInitialState;
 
+  /// Состояние загрузки
   const factory RequestState.loading() = _RequestLoadingState;
 
+  /// Состояние успешной загрузки заявок
   const factory RequestState.loaded({
     required List<RequestDto> requests,
   }) = _RequestLoadedState;
 
+  /// Состояние успешной загрузки изображения
   const factory RequestState.loadedSingle({
     required RequestDto request,
   }) = _RequestLoadedSingleState;
 
+  /// Состояние отсутствия заявок
   const factory RequestState.empty() = _RequestEmptyState;
 
+  /// Состояние ошибки
   const factory RequestState.error() = _RequestErrorState;
 }
