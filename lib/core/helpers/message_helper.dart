@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../theme/theme_colors.dart';
 
@@ -7,7 +7,7 @@ import '../../theme/theme_colors.dart';
 class MessageHelper {
   static final GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey =
       GlobalKey<ScaffoldMessengerState>();
-  static const _showDuration = Duration(milliseconds: 2000);
+  static const _showDuration = Duration(milliseconds: 2500);
   static const _padding = EdgeInsets.all(12);
 
   static void _showDefaultMessage({
@@ -32,8 +32,8 @@ class MessageHelper {
                 padding: const EdgeInsets.only(right: 20),
                 child: SvgPicture.asset(
                   isSuccess
-                      ? "lib/assets/images/icons/large_success.svg"
-                      : "lib/assets/images/icons/large_error.svg",
+                      ? "assets/images/icons/large_success.svg"
+                      : "assets/images/icons/large_error.svg",
                 ),
               ),
               Expanded(

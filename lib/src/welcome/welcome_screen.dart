@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/widgets/thesis/thesis_bottom_sheep.dart';
-import '../../core/widgets/thesis/thesis_button.dart';
+import '../../core/widgets/thesis/buttons/thesis_button.dart';
 import 'introduction/introduction_screen.dart';
 import 'login/screens/login_request_code_screen.dart';
 

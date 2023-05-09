@@ -19,17 +19,17 @@ class BoundsWidget extends StatelessWidget {
         Visibility(
           visible: isEvenBounds,
           child: SvgPicture.asset(
-            'lib/assets/images/introduction/bounds_2.svg',
+            'assets/images/introduction/bounds_2.svg',
           ),
           replacement: SvgPicture.asset(
-            'lib/assets/images/introduction/bounds_1.svg',
+            'assets/images/introduction/bounds_1.svg',
           ),
         ),
         SvgPicture.asset(
-          'lib/assets/images/introduction/bounds_card.svg',
+          'assets/images/introduction/bounds_card.svg',
         ),
         SvgPicture.asset(
-          'lib/assets/images/logo.svg',
+          'assets/images/logo.svg',
           color: kPrimaryLightColor,
           width: 82,
           height: 82,

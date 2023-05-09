@@ -15,6 +15,7 @@ final darkThemeData = ThemeData(
   fontFamily: "SFProDisplay",
   appBarTheme: const AppBarTheme(
     backgroundColor: kDarkBackgroundColor,
+    elevation: 0,
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarColor: kDarkTextPrimaryColor,
       statusBarIconBrightness: Brightness.light,
@@ -63,9 +64,21 @@ final darkThemeData = ThemeData(
       color: kDarkTextPrimaryColor,
     ),
     titleSmall: TextStyle(
-      fontSize: 16,
+      fontSize: 14,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.1,
+      color: kDarkTextSecondaryColor,
+    ),
+    labelLarge: const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      letterSpacing: 1.25,
+      color: kDarkTextPrimaryColor,
+    ),
+    labelSmall: TextStyle(
+      fontSize: 10,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 1.5,
       color: kDarkTextSecondaryColor,
     ),
     bodyLarge: const TextStyle(
@@ -80,22 +93,10 @@ final darkThemeData = ThemeData(
       letterSpacing: 0.25,
       color: kDarkTextSecondaryColor,
     ),
-    labelLarge: const TextStyle(
-      fontSize: 16,
-      fontWeight: FontWeight.w600,
-      letterSpacing: 1.25,
-      color: kDarkTextPrimaryColor,
-    ),
     bodySmall: TextStyle(
       fontSize: 12,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.4,
-      color: kDarkTextSecondaryColor,
-    ),
-    labelSmall: TextStyle(
-      fontSize: 10,
-      fontWeight: FontWeight.w400,
-      letterSpacing: 1.5,
       color: kDarkTextSecondaryColor,
     ),
   ),
@@ -174,6 +175,7 @@ final darkThemeData = ThemeData(
   cardTheme: CardTheme(
     color: kDarkBackgroundSecondaryColor,
     elevation: 0,
+    margin: EdgeInsets.zero,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(12.0),
     ),
