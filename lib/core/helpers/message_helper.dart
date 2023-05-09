@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../theme/theme_colors.dart';
 
@@ -7,7 +6,7 @@ import '../../theme/theme_colors.dart';
 class MessageHelper {
   static final GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey =
       GlobalKey<ScaffoldMessengerState>();
-  static const _showDuration = Duration(milliseconds: 2000);
+  static const _showDuration = Duration(milliseconds: 2500);
   static const _padding = EdgeInsets.all(12);
 
   static void _showDefaultMessage({
@@ -31,8 +30,8 @@ class MessageHelper {
               Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: isSuccess
-                    ? const Icon(Icons.check, color: kGreenColor)
-                    : const Icon(Icons.close, color: kRedColor),
+                    ? const Icon(Icons.check, size: 32, color: kGreenColor)
+                    : const Icon(Icons.close, size: 32, color: kRedColor),
               ),
               Expanded(
                 child: Text(

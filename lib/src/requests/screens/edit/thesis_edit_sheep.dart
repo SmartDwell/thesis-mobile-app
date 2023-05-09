@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/helpers/fab_notifier_helper.dart';
 import '../../../../core/helpers/message_helper.dart';
 import '../../../../core/widgets/bottom_sheep/thesis_bottom_sheep_header.dart';
 import '../../../../core/widgets/thesis/thesis_bottom_sheep.dart';
@@ -14,6 +16,8 @@ class ThesisEditSheep {
     BuildContext context, {
     required RequestDto requestDto,
   }) {
+    final fabHelper = context.read<FabNotifierHelper>();
+    fabHelper.hide();
     final requestRepository = RequestRepositoryImpl();
     final titleFormFieldKey = GlobalKey<FormFieldState>();
     final titleController = TextEditingController(text: requestDto.title);
@@ -24,8 +28,9 @@ class ThesisEditSheep {
     ThesisBottomSheep.showSheep(
       context,
       expand: false,
-      header: const ThesisBottomSheepHeader(
+      header: ThesisBottomSheepHeader(
         title: 'Редактировать заявку',
+        onPop: () => fabHelper.show(),
       ),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -84,6 +89,7 @@ class ThesisEditSheep {
                     .editRequest(requestDto.id, requestEditDto)
                     .whenComplete(() {
                   Navigator.pop(context);
+                  fabHelper.show();
                   RequestScope.load(context);
                 });
                 MessageHelper.showByStatus(

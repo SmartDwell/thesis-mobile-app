@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../core/helpers/fab_notifier_helper.dart';
 import '../../../../core/helpers/message_helper.dart';
 import '../../../../core/widgets/bottom_sheep/thesis_bottom_sheep_header.dart';
 import '../../../../core/widgets/thesis/thesis_bottom_sheep.dart';
@@ -14,14 +16,17 @@ class ThesisCancelSheep {
     BuildContext context, {
     required RequestDto requestDto,
   }) {
+    final fabHelper = context.read<FabNotifierHelper>();
+    fabHelper.hide();
     final requestRepository = RequestRepositoryImpl();
     final reasonFormFieldKey = GlobalKey<FormFieldState>();
     final reasonController = TextEditingController();
     ThesisBottomSheep.showSheep(
       context,
       expand: false,
-      header: const ThesisBottomSheepHeader(
+      header: ThesisBottomSheepHeader(
         title: 'Отменить заявку',
+        onPop: () => fabHelper.show(),
       ),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -60,6 +65,7 @@ class ThesisCancelSheep {
                     .cancelRequest(requestDto.id, requestCancelDto)
                     .whenComplete(() {
                   Navigator.pop(context);
+                  fabHelper.show();
                   RequestScope.load(context);
                 });
                 MessageHelper.showByStatus(

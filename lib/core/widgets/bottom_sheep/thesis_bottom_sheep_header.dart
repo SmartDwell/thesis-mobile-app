@@ -1,15 +1,17 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 
 import '../../../theme/theme_colors.dart';
+import '../../../theme/theme_extention.dart';
 
 class ThesisBottomSheepHeader extends StatelessWidget {
   const ThesisBottomSheepHeader({
     super.key,
     this.title,
+    this.onPop,
   });
 
   final String? title;
+  final void Function()? onPop;
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +36,15 @@ class ThesisBottomSheepHeader extends StatelessWidget {
               replacement: Text(
                 title ?? '',
                 textAlign: TextAlign.center,
-                style: AdaptiveTheme.of(context)
-                    .theme
-                    .textTheme
-                    .headlineMedium
-                    ?.copyWith(fontSize: 20),
+                style: context.textTheme.titleMedium,
               ),
             ),
             GestureDetector(
-              onTap: () => Navigator.pop(context),
+              onTap: () {
+                Navigator.pop(context);
+                // ignore: prefer_null_aware_method_calls
+                if (onPop != null) onPop!();
+              },
               child: Container(
                 width: 30,
                 height: 30,
