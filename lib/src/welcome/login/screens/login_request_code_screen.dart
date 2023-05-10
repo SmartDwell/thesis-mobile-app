@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:validators/validators.dart';
 
-import '../../../../core/widgets/pages/thesis_base_page.dart';
-import '../../../../core/widgets/thesis/thesis_bottom_sheep.dart';
 import '../../../../core/widgets/thesis/buttons/thesis_button.dart';
+import '../../../../theme/theme_constants.dart';
 import '../bloc/login_bloc.dart';
 import '../login_scope.dart';
-import 'login_verify_code_screen.dart';
+import '../login_sheep.dart';
 
 /// Страница запроса кода авторизации
 class LoginRequestCodeScreen extends StatelessWidget {
@@ -21,35 +20,30 @@ class LoginRequestCodeScreen extends StatelessWidget {
     final errorNotifier = ValueNotifier<String>('');
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) => state.mapOrNull(
-        successRequestCode: (state) => ThesisBottomSheep.show(
-          context,
-          child: LoginVerifyCodeScreen(
-            ticketId: state.tickedId,
-            username: state.username,
-          ),
-        ),
         failureRequestCode: (state) => errorNotifier.value = state.message,
+        successRequestCode: (state) => LoginSheep.showVerifyCodeScreen(
+          context,
+          ticketId: state.tickedId,
+          username: state.username,
+        ),
       ),
-      child: ThesisBasePage(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 0.75,
-          child: Column(
-            children: [
-              _LoginTitleWidget(
-                loginController: loginController,
-                loginEmptyNotifier: loginEmptyNotifier,
-                errorNotifier: errorNotifier,
-                formFieldKey: formFieldKey,
-              ),
-              const Spacer(),
-              _LoginButtonWidget(
-                loginEmptyNotifier: loginEmptyNotifier,
-                loginController: loginController,
-                formFieldKey: formFieldKey,
-              ),
-            ],
-          ),
+      child: Padding(
+        padding: kBottomSheepDefaultPadding,
+        child: Column(
+          children: [
+            _LoginTitleWidget(
+              loginController: loginController,
+              loginEmptyNotifier: loginEmptyNotifier,
+              errorNotifier: errorNotifier,
+              formFieldKey: formFieldKey,
+            ),
+            const Spacer(),
+            _LoginButtonWidget(
+              loginEmptyNotifier: loginEmptyNotifier,
+              loginController: loginController,
+              formFieldKey: formFieldKey,
+            ),
+          ],
         ),
       ),
     );

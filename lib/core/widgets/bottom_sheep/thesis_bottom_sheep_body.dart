@@ -28,7 +28,12 @@ class ThesisBottomSheepBody extends StatelessWidget {
               color: Color(0xFF242424),
             ),
           ),
-          child,
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: child,
+            ),
+          ),
         ],
       ),
     );

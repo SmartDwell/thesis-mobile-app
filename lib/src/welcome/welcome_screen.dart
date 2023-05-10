@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../core/widgets/thesis/thesis_bottom_sheep.dart';
 import '../../core/widgets/thesis/buttons/thesis_button.dart';
 import 'introduction/introduction_screen.dart';
-import 'login/screens/login_request_code_screen.dart';
+import 'login/login_sheep.dart';
 
 /// Домашняя страница
 class WelcomeScreen extends StatelessWidget {
@@ -19,10 +18,7 @@ class WelcomeScreen extends StatelessWidget {
             const IntroductionScreen(),
             const SizedBox(height: 32),
             ThesisButton.fromText(
-              onPressed: () => ThesisBottomSheep.show(
-                context,
-                child: const LoginRequestCodeScreen(),
-              ),
+              onPressed: () => LoginSheep.showRequestCodeScreen(context),
               text: 'Войти',
             ),
           ],

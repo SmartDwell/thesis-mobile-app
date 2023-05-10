@@ -27,8 +27,9 @@ class ThesisBottomSheepHeader extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Visibility(
@@ -56,7 +57,7 @@ class ThesisBottomSheepHeader extends StatelessWidget {
                 child: const Icon(
                   Icons.close,
                   color: kGray1Color,
-                  size: 20,
+                  size: 22,
                 ),
               ),
             ),

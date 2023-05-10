@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'core/bloc/bloc_global_observer.dart';
+import 'core/constants.dart';
 import 'core/helpers/message_helper.dart';
 import 'core/repositories/tokens/tokens_repository_impl.dart';
 import 'core/splash_screen.dart';
@@ -38,6 +39,7 @@ class MyHttpOverrides extends HttpOverrides {
 // TODO: Перенести иконки в отдельный класс
 // TODO: Перенести пути в отдельный класс
 // TODO: Добавить светлую тему
+// TODO: Переписать все BottomSheep на globalScaffoldKey
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -103,7 +105,10 @@ class ThesisAppConfigurator extends StatelessWidget {
           },
           theme: light,
           darkTheme: dark,
-          home: const ThesisApp(),
+          home: Scaffold(
+            key: globalScaffoldKey,
+            body: const ThesisApp(),
+          ),
         ),
       ),
     );
