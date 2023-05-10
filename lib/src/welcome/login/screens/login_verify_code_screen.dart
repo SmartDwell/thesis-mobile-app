@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/widgets/pages/thesis_base_page.dart';
 import '../../../../core/widgets/thesis/buttons/thesis_button.dart';
+import '../../../../theme/theme_constants.dart';
 import '../bloc/login_bloc.dart';
 import '../login_scope.dart';
 
@@ -28,34 +28,31 @@ class LoginVerifyCodeScreen extends StatelessWidget {
             Navigator.pushReplacementNamed(context, '/navbar'),
         failureVerifyCode: (state) => errorNotifier.value = state.message,
       ),
-      child: ThesisBasePage(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 0.75,
-          child: Column(
-            children: [
-              _LoginTitleWidget(
-                username: username,
-                codeController: codeController,
-                codeEmptyNotifier: codeEmptyNotifier,
-                errorNotifier: errorNotifier,
-              ),
-              const Spacer(),
-              _LoginButtonWidget(
-                codeEmptyNotifier: codeEmptyNotifier,
-                ticketId: ticketId,
-                codeController: codeController,
-              ),
-            ],
-          ),
+      child: Padding(
+        padding: kBottomSheepDefaultPadding,
+        child: Column(
+          children: [
+            _LoginTitleWidget(
+              username: username,
+              codeController: codeController,
+              codeEmptyNotifier: codeEmptyNotifier,
+              errorNotifier: errorNotifier,
+            ),
+            const Spacer(),
+            _LoginEnterButtonWidget(
+              codeEmptyNotifier: codeEmptyNotifier,
+              ticketId: ticketId,
+              codeController: codeController,
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-class _LoginButtonWidget extends StatelessWidget {
-  const _LoginButtonWidget({
+class _LoginEnterButtonWidget extends StatelessWidget {
+  const _LoginEnterButtonWidget({
     Key? key,
     required this.codeEmptyNotifier,
     required this.ticketId,

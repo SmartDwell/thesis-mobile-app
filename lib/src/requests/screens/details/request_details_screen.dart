@@ -26,6 +26,7 @@ class RequestDetailsScreen extends StatelessWidget {
     return Scaffold(
       key: scaffoldState,
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           "Заявка №${requestDto.number}",
           style: AdaptiveTheme.of(context)
@@ -42,10 +43,13 @@ class RequestDetailsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ThesisImagesCarousel(
-              images: requestDto.images
-                  .map((imageId) => "${DioHelper.baseUrl}/images/$imageId")
-                  .toList(),
+            Visibility(
+              visible: requestDto.images.isNotEmpty,
+              child: ThesisImagesCarousel(
+                images: requestDto.images
+                    .map((imageId) => "${DioHelper.baseUrl}/images/$imageId")
+                    .toList(),
+              ),
             ),
             const SizedBox(height: 24),
             Padding(

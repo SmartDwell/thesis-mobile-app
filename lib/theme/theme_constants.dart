@@ -10,3 +10,6 @@ const kThemeDefaultPadding = EdgeInsets.symmetric(
 const kThemeDefaultPaddingHorizontal = EdgeInsets.symmetric(
   horizontal: 16,
 );
+
+/// all: 20
+const kBottomSheepDefaultPadding = EdgeInsets.all(20);

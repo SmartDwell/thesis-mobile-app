@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/repositories/tokens/tokens_repository_impl.dart';
 import '../../core/widgets/thesis/buttons/thesis_button.dart';
+import '../welcome/auth/auth_scope.dart';
 
 /// Страница Еще
 class MorePage extends StatelessWidget {
@@ -26,6 +27,7 @@ class MorePage extends StatelessWidget {
                   final tokensRepository = TokensRepositoryImpl();
                   await tokensRepository.deleteTokens();
                   Navigator.pushReplacementNamed(context, '/start');
+                  AuthScope.start(context);
                 },
                 text: 'Выйти из аккаунта',
               ),

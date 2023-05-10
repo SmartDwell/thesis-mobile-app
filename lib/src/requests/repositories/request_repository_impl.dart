@@ -85,7 +85,7 @@ class RequestRepositoryImpl implements IRequestRepository {
       );
 
       switch (response.statusCode) {
-        case 200:
+        case 204:
           return true;
         case 400:
           throw Exception('Передан некорректный идентификатор заявки');
