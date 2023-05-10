@@ -28,6 +28,7 @@ class ThesisSliverScreen extends StatelessWidget {
         return Scaffold(
           resizeToAvoidBottomInset: true,
           appBar: AppBar(
+            centerTitle: true,
             title: AnimatedOpacity(
               opacity: !visibility ? 1 : 0,
               duration: const Duration(milliseconds: 256),

@@ -26,6 +26,7 @@ class RequestDetailsScreen extends StatelessWidget {
     return Scaffold(
       key: scaffoldState,
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           "Заявка №${requestDto.number}",
           style: AdaptiveTheme.of(context)
