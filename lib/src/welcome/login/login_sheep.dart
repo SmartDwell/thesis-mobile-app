@@ -6,13 +6,16 @@ import '../../../core/widgets/bottom_sheep/thesis_bottom_sheep_header.dart';
 import 'screens/login_request_code_screen.dart';
 import 'screens/login_verify_code_screen.dart';
 
+/// BottomSheep для страниц логина
 class LoginSheep {
+  /// Показать страницу получения кода авторизации
   static void showRequestCodeScreen(BuildContext context) {
     globalScaffoldKey.currentState!.showBottomSheet(
       (context) {
         return const ThesisBottomSheepBody(
           header: ThesisBottomSheepHeader(),
-          child: LoginRequestCodeScreen(),
+          body: LoginRequestCodeScreen(),
+          expandBody: true,
         );
       },
       constraints: BoxConstraints.expand(
@@ -23,6 +26,7 @@ class LoginSheep {
     );
   }
 
+  /// Показать страницу подтверждения кода авторизации
   static void showVerifyCodeScreen(
     BuildContext context, {
     required String ticketId,
@@ -32,10 +36,11 @@ class LoginSheep {
       (context) {
         return ThesisBottomSheepBody(
           header: const ThesisBottomSheepHeader(),
-          child: LoginVerifyCodeScreen(
+          body: LoginVerifyCodeScreen(
             ticketId: ticketId,
             username: username,
           ),
+          expandBody: true,
         );
       },
       constraints: BoxConstraints.expand(

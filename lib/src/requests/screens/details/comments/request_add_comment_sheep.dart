@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/helpers/image_helper.dart';
+import '../../../../../core/helpers/message_helper.dart';
 import '../../../../../core/widgets/bottom_sheep/thesis_bottom_sheep_header.dart';
 import '../../../../../core/widgets/thesis/image/thesis_pick_images_grid.dart';
 import '../../../../../core/widgets/thesis/thesis_bottom_sheep.dart';
@@ -69,12 +70,20 @@ class RequestAddCommentSheep {
                   images: images,
                 );
 
-                await requestRepository
+                final hasBeenAdd = await requestRepository
                     .addCommentToRequest(requestId, addCommentDto)
                     .whenComplete(() {
                   onAddComment();
                   Navigator.of(context).pop();
                 });
+
+                MessageHelper.showByStatus(
+                  context: context,
+                  isSuccess: hasBeenAdd,
+                  successMessage: 'Комментарий успешно добавлен',
+                  errorMessage:
+                      'Комментарий не был добавлен... попробуйте позже!',
+                );
               },
               text: "Добавить",
             ),

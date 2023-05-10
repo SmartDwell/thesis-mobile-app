@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import '../../../../core/helpers/image_helper.dart';
+import '../../../../core/helpers/message_helper.dart';
 import '../../../../core/widgets/thesis/image/thesis_pick_images_grid.dart';
 import '../../../../core/widgets/thesis/buttons/thesis_button.dart';
 import '../../../../core/widgets/thesis/thesis_sliver_screen.dart';
@@ -116,11 +117,19 @@ class RequestAddScreen extends StatelessWidget {
                         incidentPointListAsString: 'Тестовое местоположение',
                       );
 
-                      await requestRepository
+                      final hasBeenAdd = await requestRepository
                           .addRequest(addRequestDto)
                           .whenComplete(() {
                         Navigator.pop(context);
                       });
+
+                      MessageHelper.showByStatus(
+                        context: context,
+                        isSuccess: hasBeenAdd,
+                        successMessage: 'Заявка успешно добавлена',
+                        errorMessage:
+                            'Заявка не была добавлена... попробуйте позже!',
+                      );
                     },
                     text: "Добавить",
                   ),

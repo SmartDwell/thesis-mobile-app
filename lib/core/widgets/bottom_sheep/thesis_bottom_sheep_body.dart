@@ -5,14 +5,21 @@ class ThesisBottomSheepBody extends StatelessWidget {
   const ThesisBottomSheepBody({
     super.key,
     required this.header,
-    required this.child,
+    required this.body,
+    this.expandBody = false,
   });
 
   final Widget header;
-  final Widget child;
+  final Widget body;
+  final bool expandBody;
 
   @override
   Widget build(BuildContext context) {
+    final content = Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: body,
+    );
+
     return Material(
       color: Theme.of(context).cardTheme.color,
       borderRadius: const BorderRadius.vertical(
@@ -28,12 +35,7 @@ class ThesisBottomSheepBody extends StatelessWidget {
               color: Color(0xFF242424),
             ),
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: child,
-            ),
-          ),
+          expandBody ? Expanded(child: content) : content,
         ],
       ),
     );
