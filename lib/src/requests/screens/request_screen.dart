@@ -23,8 +23,13 @@ class RequestScreen extends StatefulWidget {
 
 class _RequestScreenState extends State<RequestScreen> {
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     RequestScope.load(context);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return BlocListener<RequestBloc, RequestState>(
       listener: (context, state) => state.mapOrNull(
         initial: (state) => RequestScope.load(context),

@@ -105,10 +105,7 @@ class ThesisAppConfigurator extends StatelessWidget {
           },
           theme: light,
           darkTheme: dark,
-          home: Scaffold(
-            key: globalScaffoldKey,
-            body: const ThesisApp(),
-          ),
+          home: const ThesisApp(),
         ),
       ),
     );
@@ -116,17 +113,30 @@ class ThesisAppConfigurator extends StatelessWidget {
 }
 
 /// Класс приложения
-class ThesisApp extends StatelessWidget {
+class ThesisApp extends StatefulWidget {
   const ThesisApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  State<ThesisApp> createState() => _ThesisAppState();
+}
+
+class _ThesisAppState extends State<ThesisApp> {
+  @override
+  void initState() {
     AuthScope.start(context);
-    return BlocBuilder<AuthBloc, AuthState>(
-      builder: (context, state) => state.maybeMap(
-        authenticated: (_) => const ThesisNavigationBar(),
-        unauthenticated: (_) => const WelcomeScreen(),
-        orElse: () => const SplashScreen(),
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: globalScaffoldKey,
+      body: BlocBuilder<AuthBloc, AuthState>(
+        builder: (context, state) => state.maybeMap(
+          authenticated: (_) => const ThesisNavigationBar(),
+          unauthenticated: (_) => const WelcomeScreen(),
+          orElse: () => const SplashScreen(),
+        ),
       ),
     );
   }
