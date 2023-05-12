@@ -9,4 +9,6 @@ extension CurrentTheme on BuildContext {
   TextTheme get textTheme => currentTheme.textTheme;
 
   AdaptiveThemeMode get currentMode => _manager.mode;
+
+  bool get isDarkMode => currentMode == AdaptiveThemeMode.dark;
 }

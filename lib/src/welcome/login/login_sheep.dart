@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants.dart';
+import '../../../core/constants/constants.dart';
 import '../../../core/widgets/bottom_sheep/thesis_bottom_sheep_body.dart';
 import '../../../core/widgets/bottom_sheep/thesis_bottom_sheep_header.dart';
 import 'screens/login_request_code_screen.dart';

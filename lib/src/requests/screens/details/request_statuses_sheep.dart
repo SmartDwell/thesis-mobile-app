@@ -2,7 +2,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_timeline/flutter_timeline.dart';
 
-import '../../../../core/constants.dart';
+import '../../../../core/constants/constants.dart';
 import '../../../../core/widgets/bottom_sheep/thesis_bottom_sheep_header.dart';
 import '../../../../core/widgets/thesis/thesis_bottom_sheep.dart';
 import '../../../../theme/theme_colors.dart';

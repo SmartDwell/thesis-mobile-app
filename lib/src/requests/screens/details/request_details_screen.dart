@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/widgets/thesis/thesis_images_carousel.dart';
-import '../../../../core/constants.dart';
+import '../../../../core/constants/constants.dart';
 import '../../../../core/helpers/dio_helper.dart';
 import '../../../../theme/theme_constants.dart';
 import '../../contracts/request_dto/request_dto.dart';

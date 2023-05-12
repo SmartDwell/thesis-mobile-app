@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../core/repositories/tokens/tokens_repository_impl.dart';
-import '../../core/widgets/thesis/buttons/thesis_button.dart';
-import '../welcome/auth/auth_scope.dart';
+import '../../core/constants/assets_constants.dart';
+import 'menu/logout_widget.dart';
+import 'menu/menu_item_widget.dart';
+import 'widgets/user_widget.dart';
 
 /// Страница Еще
 class MorePage extends StatelessWidget {
@@ -13,24 +14,58 @@ class MorePage extends StatelessWidget {
     return Scaffold(
       body: Builder(builder: (context) {
         return Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0).copyWith(top: 65),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Center(
-                child: Text('MorePage'),
+              const UserWidget(),
+              const SizedBox(height: 30),
+              Column(
+                children: [
+                  MenuItemWidget(
+                    icon: ThesisIcons.home,
+                    title: 'Моя собственность',
+                    onPressed: () => debugPrint('click'),
+                  ),
+                  const SizedBox(height: 16),
+                  MenuItemWidget(
+                    icon: ThesisIcons.requests,
+                    title: 'Мои заявки',
+                    onPressed: () => Navigator.pushNamed(context, '/requests'),
+                  ),
+                  const SizedBox(height: 16),
+                  MenuItemWidget(
+                    icon: ThesisIcons.payments,
+                    title: 'Платежи',
+                    onPressed: () => debugPrint('click'),
+                  ),
+                  const SizedBox(height: 16),
+                  MenuItemWidget(
+                    icon: ThesisIcons.news,
+                    title: 'Новости и события',
+                    onPressed: () => debugPrint('click'),
+                  ),
+                  const SizedBox(height: 16),
+                  MenuItemWidget(
+                    icon: ThesisIcons.access,
+                    title: 'Управление доступом',
+                    onPressed: () => debugPrint('click'),
+                  ),
+                ],
               ),
-              const SizedBox(height: 16),
-              ThesisButton.fromText(
-                onPressed: () async {
-                  final tokensRepository = TokensRepositoryImpl();
-                  await tokensRepository.deleteTokens();
-                  Navigator.pushReplacementNamed(context, '/start');
-                  AuthScope.start(context);
-                },
-                text: 'Выйти из аккаунта',
-              ),
+              const SizedBox(height: 45),
+              Column(
+                children: [
+                  MenuItemWidget(
+                    icon: ThesisIcons.settings,
+                    title: 'Настройки',
+                    onPressed: () => debugPrint('click'),
+                  ),
+                  const SizedBox(height: 16),
+                  const LogOutWidget(),
+                ],
+              )
             ],
           ),
         );

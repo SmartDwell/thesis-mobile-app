@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../core/constants.dart';
+import '../../../core/constants/constants.dart';
 import '../../../core/widgets/thesis/buttons/thesis_text_button.dart';
 import '../contracts/request_dto/request_dto.dart';
 import '../screens/cancel/request_cancel_sheep.dart';

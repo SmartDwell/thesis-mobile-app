@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../core/constants/assets_constants.dart';
 import '../../theme/theme_colors.dart';
 import '../access/access_page.dart';
 import '../home/home_page.dart';
@@ -34,7 +35,7 @@ class ThesisNavigationBar extends StatelessWidget {
                 icon: Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: SvgPicture.asset(
-                    'assets/images/icons/home.svg',
+                    ThesisIcons.home,
                     color: selectedPage == 0 ? kPrimaryLightColor : kGray1Color,
                     width: 24,
                     height: 24,
@@ -46,7 +47,7 @@ class ThesisNavigationBar extends StatelessWidget {
                 icon: Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: SvgPicture.asset(
-                    'assets/images/icons/access.svg',
+                    ThesisIcons.access,
                     color: selectedPage == 1 ? kPrimaryLightColor : kGray1Color,
                     width: 24,
                     height: 24,
@@ -58,7 +59,7 @@ class ThesisNavigationBar extends StatelessWidget {
                 icon: Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: SvgPicture.asset(
-                    'assets/images/icons/request.svg',
+                    ThesisIcons.requests,
                     color: selectedPage == 2 ? kPrimaryLightColor : kGray1Color,
                     width: 24,
                     height: 24,
@@ -70,7 +71,7 @@ class ThesisNavigationBar extends StatelessWidget {
                 icon: Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: SvgPicture.asset(
-                    'assets/images/icons/more.svg',
+                    ThesisIcons.more,
                     color: selectedPage == 3 ? kPrimaryLightColor : kGray1Color,
                     width: 24,
                     height: 24,

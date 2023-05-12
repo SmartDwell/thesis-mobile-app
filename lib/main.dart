@@ -9,11 +9,12 @@ import 'package:provider/provider.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'core/bloc/bloc_global_observer.dart';
-import 'core/constants.dart';
+import 'core/constants/constants.dart';
 import 'core/helpers/message_helper.dart';
 import 'core/repositories/tokens/tokens_repository_impl.dart';
 import 'core/splash_screen.dart';
 import 'src/navigation_bar/navigation_bar.dart';
+import 'src/requests/request_page.dart';
 import 'src/requests/screens/add/request_add_screen.dart';
 import 'src/welcome/auth/auth_scope.dart';
 import 'src/welcome/auth/bloc/auth_bloc.dart';
@@ -101,6 +102,7 @@ class ThesisAppConfigurator extends StatelessWidget {
             "/start": (context) => const ThesisApp(),
             "/welcome": (context) => const WelcomeScreen(),
             "/navbar": (context) => const ThesisNavigationBar(),
+            "/requests": (context) => const RequestPage(),
             "/add_request": (context) => const RequestAddScreen(),
           },
           theme: light,
