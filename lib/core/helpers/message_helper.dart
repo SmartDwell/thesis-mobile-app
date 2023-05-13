@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../theme/theme_colors.dart';
+import '../../theme/theme_extention.dart';
 
 /// Помощник работы с Snackbar-сообщениями
 class MessageHelper {
@@ -22,7 +23,7 @@ class MessageHelper {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        backgroundColor: Theme.of(context).cardTheme.color,
+        backgroundColor: context.currentTheme.cardTheme.color,
         duration: _showDuration,
         content: Padding(
           padding: _padding,
@@ -41,7 +42,7 @@ class MessageHelper {
                   message,
                   style: TextStyle(
                     fontSize: fontSize,
-                    color: Theme.of(context).textTheme.titleMedium?.color,
+                    color: context.textTheme.titleMedium?.color,
                   ),
                 ),
               ),
@@ -63,7 +64,7 @@ class MessageHelper {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        backgroundColor: Theme.of(context).cardTheme.color,
+        backgroundColor: context.currentTheme.cardTheme.color,
         duration: _showDuration,
         content: child,
       ),
@@ -114,7 +115,7 @@ class MessageHelper {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        backgroundColor: Theme.of(context).cardTheme.color,
+        backgroundColor: context.currentTheme.cardTheme.color,
         duration: const Duration(seconds: 5),
         content: Padding(
           padding: _padding,
@@ -125,7 +126,7 @@ class MessageHelper {
                 message,
                 style: TextStyle(
                   fontSize: 16,
-                  color: Theme.of(context).textTheme.titleMedium?.color,
+                  color: context.textTheme.titleMedium?.color,
                 ),
               ),
               Align(

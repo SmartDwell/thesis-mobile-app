@@ -1,7 +1,7 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../theme/theme_colors.dart';
+import '../../../../theme/theme_extention.dart';
 
 /// Элемент таб-бара
 class ThesisTabBarItem extends StatelessWidget {
@@ -16,13 +16,20 @@ class ThesisTabBarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final titlePickedStyle = context.textTheme.titleMedium!.copyWith(
+      color:
+          context.isDarkMode ? kLightTextPrimaryColor : kDarkTextPrimaryColor,
+    );
+    final titleStyle = titlePickedStyle.copyWith(
+      color: context.isDarkMode
+          ? kDarkTextSecondaryColor
+          : kLightTextSecondaryColor,
+    );
     return DecoratedBox(
       decoration: BoxDecoration(
         color: isPicked
             ? kPrimaryLighterColor
-            : AdaptiveTheme.of(context).mode == AdaptiveThemeMode.light
-                ? const Color(0xFFF3F3F3)
-                : const Color(0xFF2C2C2E),
+            : context.currentTheme.cardTheme.color,
         borderRadius: const BorderRadius.all(
           Radius.circular(8),
         ),
@@ -31,11 +38,7 @@ class ThesisTabBarItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 14),
         child: Text(
           title,
-          style: AdaptiveTheme.of(context)
-              .theme
-              .textTheme
-              .labelLarge
-              ?.copyWith(fontWeight: FontWeight.w400),
+          style: isPicked ? titlePickedStyle : titleStyle,
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../theme/theme_colors.dart';
+import '../../../../theme/theme_extention.dart';
 
 /// Компонент текстовой кнопки
 class ThesisTextButton extends StatelessWidget {
@@ -22,10 +23,12 @@ class ThesisTextButton extends StatelessWidget {
       child: Text(
         title,
         style: style ??
-            const TextStyle(
+            TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: kPrimaryLighterColor,
+              color: context.isDarkMode
+                  ? kPrimaryLighterColor
+                  : kPrimaryLightColor,
             ),
       ),
     );

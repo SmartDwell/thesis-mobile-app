@@ -33,7 +33,6 @@ class ThesisFilterField extends StatelessWidget {
                   child: TextFormField(
                     controller: filterPatternController,
                     onChanged: (value) {
-                      //filterPatternController.text = value;
                       onChanged(value);
                     },
                     decoration: InputDecoration(
@@ -43,7 +42,7 @@ class ThesisFilterField extends StatelessWidget {
                       hintText: 'Поиск',
                       prefixIcon: Icon(
                         Icons.search,
-                        color: kDarkTextSecondaryColor.withOpacity(0.5),
+                        color: context.textSecondaryColor,
                       ),
                       suffixIcon: IconButton(
                         onPressed: () {
@@ -52,26 +51,23 @@ class ThesisFilterField extends StatelessWidget {
                         },
                         icon: Icon(
                           Icons.close,
-                          color: kDarkTextSecondaryColor.withOpacity(0.5),
+                          color: context.textSecondaryColor,
                         ),
                       ),
-                      labelStyle: const TextStyle(
-                        //fontSize: 16,
+                      labelStyle: TextStyle(
                         letterSpacing: 0.15,
                         fontWeight: FontWeight.w600,
-                        color: kDarkTextPrimaryColor,
+                        color: context.textPrimaryColor,
                       ),
                       errorStyle: const TextStyle(
-                        //fontSize: 14,
                         letterSpacing: 0.15,
                         fontWeight: FontWeight.w400,
                         color: kRedColor,
                       ),
                       hintStyle: TextStyle(
-                        //fontSize: 16,
                         letterSpacing: 0.1,
                         fontWeight: FontWeight.w400,
-                        color: kDarkTextSecondaryColor.withOpacity(0.5),
+                        color: context.textSecondaryColor,
                       ),
                       errorBorder: OutlineInputBorder(
                         borderSide: BorderSide(

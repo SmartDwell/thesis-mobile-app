@@ -2,10 +2,11 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_timeline/flutter_timeline.dart';
 
-import '../../../../core/constants.dart';
+import '../../../../core/constants/constants.dart';
 import '../../../../core/widgets/bottom_sheep/thesis_bottom_sheep_header.dart';
 import '../../../../core/widgets/thesis/thesis_bottom_sheep.dart';
 import '../../../../theme/theme_colors.dart';
+import '../../../../theme/theme_extention.dart';
 import '../../repositories/request_repository_impl.dart';
 
 /// BottomSheep для статусов заявки
@@ -32,7 +33,9 @@ class RequestStatusesSheep {
               padding: const EdgeInsets.only(bottom: 20),
               child: TimelineTheme(
                 data: TimelineThemeData(
-                  lineColor: kGray1Color,
+                  lineColor: context.isDarkMode
+                      ? kGray1Color
+                      : kLightBackgroundTertiaryColor,
                   itemGap: 36,
                 ),
                 child: Timeline(

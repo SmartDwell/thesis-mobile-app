@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../core/constants.dart';
+import '../../../core/constants/constants.dart';
 import '../../../core/widgets/thesis/buttons/thesis_text_button.dart';
+import '../../../theme/theme_extention.dart';
 import '../contracts/request_dto/request_dto.dart';
 import '../screens/cancel/request_cancel_sheep.dart';
 import '../screens/edit/thesis_edit_sheep.dart';
@@ -35,7 +36,7 @@ class RequestCard extends StatelessWidget {
                   children: [
                     Text(
                       '№${request.number}',
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: context.textTheme.bodyMedium,
                     ),
                     const SizedBox(width: 8),
                     RequestStateCard(
@@ -46,14 +47,14 @@ class RequestCard extends StatelessWidget {
                 ),
                 Text(
                   kDateFormatter.format(request.created.toLocal()),
-                  style: Theme.of(context).textTheme.bodySmall,
+                  style: context.textTheme.bodySmall,
                 ),
               ],
             ),
             const SizedBox(height: 8),
             Text(
               request.title,
-              style: Theme.of(context).textTheme.headlineSmall,
+              style: context.textTheme.headlineSmall,
             ),
             const SizedBox(height: 10),
             Row(
@@ -67,7 +68,7 @@ class RequestCard extends StatelessWidget {
                   request.incidentPointListAsString,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodySmall,
+                  style: context.textTheme.bodySmall,
                 ),
               ],
             ),
@@ -76,7 +77,7 @@ class RequestCard extends StatelessWidget {
               request.description,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: context.textTheme.bodyMedium,
             ),
             Visibility(
               visible: request.currentState == RequestStates.New,

@@ -1,7 +1,7 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/constants.dart';
+import '../../../../../core/constants/constants.dart';
 import '../../../../../core/helpers/dio_helper.dart';
 import '../../../../../core/widgets/thesis/thesis_network_image_preview.dart';
 import '../../../contracts/request_comment_dto/request_comment_dto.dart';

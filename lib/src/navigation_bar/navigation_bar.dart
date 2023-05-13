@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../core/constants/assets_constants.dart';
 import '../../theme/theme_colors.dart';
+import '../../theme/theme_extention.dart';
 import '../access/access_page.dart';
 import '../home/home_page.dart';
 import '../more/more_page.dart';
@@ -34,8 +36,10 @@ class ThesisNavigationBar extends StatelessWidget {
                 icon: Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: SvgPicture.asset(
-                    'assets/images/icons/home.svg',
-                    color: selectedPage == 0 ? kPrimaryLightColor : kGray1Color,
+                    ThesisIcons.home,
+                    color: selectedPage == 0
+                        ? kPrimaryLightColor
+                        : context.textPrimaryColor,
                     width: 24,
                     height: 24,
                   ),
@@ -46,8 +50,10 @@ class ThesisNavigationBar extends StatelessWidget {
                 icon: Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: SvgPicture.asset(
-                    'assets/images/icons/access.svg',
-                    color: selectedPage == 1 ? kPrimaryLightColor : kGray1Color,
+                    ThesisIcons.access,
+                    color: selectedPage == 1
+                        ? kPrimaryLightColor
+                        : context.textPrimaryColor,
                     width: 24,
                     height: 24,
                   ),
@@ -58,8 +64,10 @@ class ThesisNavigationBar extends StatelessWidget {
                 icon: Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: SvgPicture.asset(
-                    'assets/images/icons/request.svg',
-                    color: selectedPage == 2 ? kPrimaryLightColor : kGray1Color,
+                    ThesisIcons.requests,
+                    color: selectedPage == 2
+                        ? kPrimaryLightColor
+                        : context.textPrimaryColor,
                     width: 24,
                     height: 24,
                   ),
@@ -70,8 +78,10 @@ class ThesisNavigationBar extends StatelessWidget {
                 icon: Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: SvgPicture.asset(
-                    'assets/images/icons/more.svg',
-                    color: selectedPage == 3 ? kPrimaryLightColor : kGray1Color,
+                    ThesisIcons.more,
+                    color: selectedPage == 3
+                        ? kPrimaryLightColor
+                        : context.textPrimaryColor,
                     width: 24,
                     height: 24,
                   ),

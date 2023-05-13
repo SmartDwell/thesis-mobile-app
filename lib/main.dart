@@ -9,11 +9,13 @@ import 'package:provider/provider.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'core/bloc/bloc_global_observer.dart';
-import 'core/constants.dart';
+import 'core/constants/constants.dart';
 import 'core/helpers/message_helper.dart';
 import 'core/repositories/tokens/tokens_repository_impl.dart';
 import 'core/splash_screen.dart';
+import 'src/more/settings/settings_screen.dart';
 import 'src/navigation_bar/navigation_bar.dart';
+import 'src/requests/request_page.dart';
 import 'src/requests/screens/add/request_add_screen.dart';
 import 'src/welcome/auth/auth_scope.dart';
 import 'src/welcome/auth/bloc/auth_bloc.dart';
@@ -35,11 +37,8 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 // TODO: Полноэкранный просмотр картинок
-// TODO: История статусов заявки
 // TODO: Перенести иконки в отдельный класс
 // TODO: Перенести пути в отдельный класс
-// TODO: Добавить светлую тему
-// TODO: Переписать все BottomSheep на globalScaffoldKey
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,8 +46,9 @@ Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
   Bloc.observer = BlocGlobalObserver();
   Bloc.transformer = bloc_concurrency.sequential();
-  runApp(const ThesisAppConfigurator(
-    darkThemeInitial: true,
+  final savedTheme = await AdaptiveTheme.getThemeMode();
+  runApp(ThesisAppConfigurator(
+    savedTheme: savedTheme,
   ));
 }
 
@@ -56,10 +56,10 @@ Future<void> main() async {
 class ThesisAppConfigurator extends StatelessWidget {
   const ThesisAppConfigurator({
     Key? key,
-    required this.darkThemeInitial,
+    required this.savedTheme,
   }) : super(key: key);
 
-  final bool darkThemeInitial;
+  final AdaptiveThemeMode? savedTheme;
 
   @override
   Widget build(BuildContext context) {
@@ -82,8 +82,7 @@ class ThesisAppConfigurator extends StatelessWidget {
       child: AdaptiveTheme(
         light: lightThemeData,
         dark: darkThemeData,
-        initial:
-            darkThemeInitial ? AdaptiveThemeMode.dark : AdaptiveThemeMode.light,
+        initial: savedTheme ?? AdaptiveThemeMode.light,
         builder: (light, dark) => MaterialApp(
           debugShowCheckedModeBanner: false,
           scaffoldMessengerKey: MessageHelper.rootScaffoldMessengerKey,
@@ -101,6 +100,8 @@ class ThesisAppConfigurator extends StatelessWidget {
             "/start": (context) => const ThesisApp(),
             "/welcome": (context) => const WelcomeScreen(),
             "/navbar": (context) => const ThesisNavigationBar(),
+            "/settings": (context) => const SettingsScreen(),
+            "/requests": (context) => const RequestPage(),
             "/add_request": (context) => const RequestAddScreen(),
           },
           theme: light,

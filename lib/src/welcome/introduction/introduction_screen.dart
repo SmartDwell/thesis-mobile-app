@@ -1,6 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 
+import '../../../theme/theme_extention.dart';
 import 'types/introduction_item.dart';
 import 'widgets/bounds_widget.dart';
 
@@ -45,12 +46,12 @@ class IntroductionScreen extends StatelessWidget {
                     ),
                     Text(
                       tempItems[index].title,
-                      style: Theme.of(context).textTheme.headlineMedium,
+                      style: context.textTheme.headlineMedium,
                     ),
                     const SizedBox(height: 12),
                     Text(
                       tempItems[index].description,
-                      style: Theme.of(context).textTheme.titleSmall,
+                      style: context.textTheme.titleSmall,
                     ),
                   ],
                 );

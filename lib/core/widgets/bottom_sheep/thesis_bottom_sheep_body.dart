@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../theme/theme_colors.dart';
+import '../../../theme/theme_extention.dart';
+
 /// Тело для BottomSheep
 class ThesisBottomSheepBody extends StatelessWidget {
   const ThesisBottomSheepBody({
@@ -21,7 +24,7 @@ class ThesisBottomSheepBody extends StatelessWidget {
     );
 
     return Material(
-      color: Theme.of(context).cardTheme.color,
+      color: context.currentTheme.cardTheme.color,
       borderRadius: const BorderRadius.vertical(
         top: Radius.circular(12),
       ),
@@ -31,8 +34,10 @@ class ThesisBottomSheepBody extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width,
             height: 1,
-            decoration: const BoxDecoration(
-              color: Color(0xFF242424),
+            decoration: BoxDecoration(
+              color: context.isDarkMode
+                  ? const Color(0xFF242424)
+                  : kLightBackgroundColor,
             ),
           ),
           expandBody ? Expanded(child: content) : content,

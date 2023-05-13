@@ -19,9 +19,11 @@ class ThesisBottomSheepHeader extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 54,
-      decoration: const BoxDecoration(
-        color: kDarkBackgroundTertiaryColor,
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        color: context.isDarkMode
+            ? kDarkBackgroundTertiaryColor
+            : kLightBackgroundTertiaryColor,
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(12),
           topRight: Radius.circular(12),
         ),
@@ -51,7 +53,7 @@ class ThesisBottomSheepHeader extends StatelessWidget {
                 width: 30,
                 height: 30,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor,
+                  color: context.currentTheme.scaffoldBackgroundColor,
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
