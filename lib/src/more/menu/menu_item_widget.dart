@@ -43,11 +43,14 @@ class MenuItemWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                         color: context.isDarkMode
                             ? kDarkBackgroundTertiaryColor
-                            : kDarkBackgroundTertiaryColor,
+                            : kLightBackgroundTertiaryColor,
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(5.0),
-                        child: SvgPicture.asset(icon),
+                        child: SvgPicture.asset(
+                          icon,
+                          color: context.textTheme.titleLarge?.color,
+                        ),
                       ),
                     ),
                     replacement: const SizedBox(

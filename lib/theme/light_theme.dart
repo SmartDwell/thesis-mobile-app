@@ -14,12 +14,16 @@ final lightThemeData = ThemeData(
   scaffoldBackgroundColor: kLightBackgroundColor,
   fontFamily: "SFProDisplay",
   appBarTheme: const AppBarTheme(
+    iconTheme: IconThemeData(
+      color: kLightTextPrimaryColor,
+    ),
     backgroundColor: kLightBackgroundColor,
     elevation: 0,
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarColor: kLightTextPrimaryColor,
       statusBarIconBrightness: Brightness.light,
       statusBarBrightness: Brightness.light,
+      systemNavigationBarIconBrightness: Brightness.light,
     ),
   ),
   textTheme: TextTheme(
@@ -104,13 +108,16 @@ final lightThemeData = ThemeData(
   primaryColorLight: kPrimaryLightColor,
   errorColor: kRedColor,
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    elevation: 0,
     showUnselectedLabels: true,
     selectedLabelStyle: _navigationBarStyle.copyWith(color: kPrimaryLightColor),
-    unselectedLabelStyle: _navigationBarStyle.copyWith(color: kGray1Color),
+    unselectedLabelStyle: _navigationBarStyle.copyWith(
+      color: kLightTextPrimaryColor,
+    ),
     type: BottomNavigationBarType.fixed,
     backgroundColor: kLightBackgroundColor,
     selectedItemColor: kPrimaryLightColor,
-    unselectedItemColor: kGray1Color,
+    unselectedItemColor: kLightTextPrimaryColor,
     selectedIconTheme: const IconThemeData(
       color: kPrimaryColor,
     ),

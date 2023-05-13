@@ -18,8 +18,8 @@ final darkThemeData = ThemeData(
     elevation: 0,
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarColor: kDarkTextPrimaryColor,
-      statusBarIconBrightness: Brightness.light,
-      statusBarBrightness: Brightness.light,
+      statusBarIconBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.dark,
     ),
   ),
   textTheme: TextTheme(

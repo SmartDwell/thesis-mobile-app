@@ -42,7 +42,10 @@ class LogOutWidget extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(5.0),
-                        child: SvgPicture.asset(ThesisIcons.logout),
+                        child: SvgPicture.asset(
+                          ThesisIcons.logout,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                     replacement: const SizedBox(

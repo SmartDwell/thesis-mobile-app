@@ -35,7 +35,9 @@ class ThesisBottomSheepBody extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             height: 1,
             decoration: BoxDecoration(
-              color: context.isDarkMode ? const Color(0xFF242424) : kGray1Color,
+              color: context.isDarkMode
+                  ? const Color(0xFF242424)
+                  : kLightBackgroundColor,
             ),
           ),
           expandBody ? Expanded(child: content) : content,

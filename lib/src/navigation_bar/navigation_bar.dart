@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../core/constants/assets_constants.dart';
 import '../../theme/theme_colors.dart';
+import '../../theme/theme_extention.dart';
 import '../access/access_page.dart';
 import '../home/home_page.dart';
 import '../more/more_page.dart';
@@ -36,7 +37,9 @@ class ThesisNavigationBar extends StatelessWidget {
                   padding: const EdgeInsets.all(4.0),
                   child: SvgPicture.asset(
                     ThesisIcons.home,
-                    color: selectedPage == 0 ? kPrimaryLightColor : kGray1Color,
+                    color: selectedPage == 0
+                        ? kPrimaryLightColor
+                        : context.textTheme.titleLarge?.color,
                     width: 24,
                     height: 24,
                   ),
@@ -48,7 +51,9 @@ class ThesisNavigationBar extends StatelessWidget {
                   padding: const EdgeInsets.all(4.0),
                   child: SvgPicture.asset(
                     ThesisIcons.access,
-                    color: selectedPage == 1 ? kPrimaryLightColor : kGray1Color,
+                    color: selectedPage == 1
+                        ? kPrimaryLightColor
+                        : context.textTheme.titleLarge?.color,
                     width: 24,
                     height: 24,
                   ),
@@ -60,7 +65,9 @@ class ThesisNavigationBar extends StatelessWidget {
                   padding: const EdgeInsets.all(4.0),
                   child: SvgPicture.asset(
                     ThesisIcons.requests,
-                    color: selectedPage == 2 ? kPrimaryLightColor : kGray1Color,
+                    color: selectedPage == 2
+                        ? kPrimaryLightColor
+                        : context.textTheme.titleLarge?.color,
                     width: 24,
                     height: 24,
                   ),
@@ -72,7 +79,9 @@ class ThesisNavigationBar extends StatelessWidget {
                   padding: const EdgeInsets.all(4.0),
                   child: SvgPicture.asset(
                     ThesisIcons.more,
-                    color: selectedPage == 3 ? kPrimaryLightColor : kGray1Color,
+                    color: selectedPage == 3
+                        ? kPrimaryLightColor
+                        : context.textTheme.titleLarge?.color,
                     width: 24,
                     height: 24,
                   ),
