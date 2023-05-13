@@ -37,11 +37,8 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 // TODO: Полноэкранный просмотр картинок
-// TODO: История статусов заявки
 // TODO: Перенести иконки в отдельный класс
 // TODO: Перенести пути в отдельный класс
-// TODO: Добавить светлую тему
-// TODO: Переписать все BottomSheep на globalScaffoldKey
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
