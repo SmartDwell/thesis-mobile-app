@@ -68,7 +68,7 @@ class _RequestScreenState extends State<RequestScreen> {
                     return Visibility(
                       visible: notifier.isShow,
                       child: FloatingActionButton(
-                        backgroundColor: kPrimaryColor,
+                        backgroundColor: kPrimaryLightColor,
                         foregroundColor: Colors.white,
                         child: const Icon(
                           Icons.add_rounded,

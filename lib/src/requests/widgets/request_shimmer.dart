@@ -1,9 +1,9 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../core/widgets/thesis/thesis_shimmer_widget.dart';
 import '../../../theme/theme_colors.dart';
+import '../../../theme/theme_extention.dart';
 
 /// Заглушка заявок
 class RequestShimmer extends StatelessWidget {
@@ -32,10 +32,9 @@ class RequestShimmer extends StatelessWidget {
                 ),
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                    color: AdaptiveTheme.of(context).mode ==
-                            AdaptiveThemeMode.light
-                        ? const Color(0xFFF3F3F3)
-                        : const Color(0xFF2C2C2E),
+                    color: context.isDarkMode
+                        ? kDarkBackgroundTertiaryColor.withOpacity(0.1)
+                        : kLightBackgroundTertiaryColor.withOpacity(0.1),
                     borderRadius: const BorderRadius.all(
                       Radius.circular(8),
                     ),
@@ -50,12 +49,11 @@ class RequestShimmer extends StatelessWidget {
                       highlightColor: kDarkBackgroundTertiaryColor,
                       child: Container(
                         width: 62,
-                        height: 18,
+                        height: 24,
                         decoration: BoxDecoration(
-                          color: AdaptiveTheme.of(context).mode !=
-                                  AdaptiveThemeMode.light
-                              ? const Color(0xFFF3F3F3).withOpacity(0.2)
-                              : const Color(0xFF2C2C2E).withOpacity(0.8),
+                          color: context.isDarkMode
+                              ? kDarkBackgroundTertiaryColor.withOpacity(0.1)
+                              : kLightBackgroundTertiaryColor.withOpacity(0.1),
                           borderRadius: const BorderRadius.all(
                             Radius.circular(4),
                           ),

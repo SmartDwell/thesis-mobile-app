@@ -33,7 +33,6 @@ class ThesisFilterField extends StatelessWidget {
                   child: TextFormField(
                     controller: filterPatternController,
                     onChanged: (value) {
-                      //filterPatternController.text = value;
                       onChanged(value);
                     },
                     decoration: InputDecoration(

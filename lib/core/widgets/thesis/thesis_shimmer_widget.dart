@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../theme/theme_colors.dart';
+import '../../../theme/theme_extention.dart';
 
 /// Базовый компонент заглушки
 class ThesisShimmerWidget extends StatelessWidget {
@@ -25,12 +26,16 @@ class ThesisShimmerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: const Color(0xFF3A3A3C),
-      highlightColor: kDarkBackgroundTertiaryColor,
+      baseColor: context.isDarkMode
+          ? kDarkBackgroundColor.withOpacity(0.25)
+          : kLightBackgroundTertiaryColor.withOpacity(0.1),
+      highlightColor: context.isDarkMode
+          ? kDarkBackgroundTertiaryColor
+          : kLightBackgroundTertiaryColor,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: borderRadius ?? BorderRadius.circular(4),
-          color: kDarkBackgroundSecondaryColor,
+          color: context.currentTheme.cardTheme.color,
         ),
         width: width,
         height: height,
