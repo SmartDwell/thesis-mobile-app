@@ -5,6 +5,7 @@ import '../../../../core/widgets/thesis/thesis_sliver_screen.dart';
 import '../../../../theme/theme_extention.dart';
 import '../../contracts/payment_dto/payment_dto.dart';
 
+/// Страница детальной информации платежа
 class PaymentDetailsScreen extends StatelessWidget {
   const PaymentDetailsScreen({
     super.key,

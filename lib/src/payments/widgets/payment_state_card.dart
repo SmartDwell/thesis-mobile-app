@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../theme/theme_colors.dart';
 
-/// Карточка состояния заявок
+/// Карточка состояния платежа
 class PaymentStateCard extends StatelessWidget {
   const PaymentStateCard({
     super.key,

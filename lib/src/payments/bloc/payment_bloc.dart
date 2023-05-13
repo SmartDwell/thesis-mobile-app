@@ -55,13 +55,13 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
 /// Базовое событие платежей
 @freezed
 abstract class PaymentEvent with _$PaymentEvent {
-  /// Загрузить все заявки
+  /// Загрузить все платежи
   const factory PaymentEvent.load() = _PaymentLoadEvent;
 
   /// Обновить экран
   const factory PaymentEvent.refresh() = _PaymentRefreshEvent;
 
-  /// Загрузить и отобразить одну заявку
+  /// Загрузить и отобразить один платеж
   const factory PaymentEvent.loadSingle({
     required PaymentDto paymentDto,
   }) = _PaymentLoadSingleEvent;

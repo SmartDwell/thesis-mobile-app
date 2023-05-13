@@ -2,6 +2,7 @@ import '../contracts/payment_details_dto/payment_details_dto.dart';
 import '../contracts/payment_dto/payment_dto.dart';
 import 'payment_repository.dart';
 
+/// Репозиторий платежей
 class PaymentRepositoryImpl extends IPaymentRepository {
   @override
   Future<List<PaymentDto>> loadPayments() async {

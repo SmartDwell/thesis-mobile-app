@@ -7,6 +7,7 @@ import '../bloc/payment_scope.dart';
 import '../contracts/payment_dto/payment_dto.dart';
 import 'payment_state_card.dart';
 
+/// Карточка платежа
 class PaymentCard extends StatelessWidget {
   const PaymentCard({
     super.key,
