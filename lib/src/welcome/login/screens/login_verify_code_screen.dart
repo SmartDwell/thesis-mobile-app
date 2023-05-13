@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/widgets/thesis/buttons/thesis_button.dart';
+import '../../../../theme/theme_colors.dart';
 import '../../../../theme/theme_constants.dart';
 import '../../../../theme/theme_extention.dart';
 import '../bloc/login_bloc.dart';
@@ -145,7 +146,7 @@ class _LoginTitleWidget extends StatelessWidget {
               child: Text(
                 error,
                 style: context.textTheme.bodyMedium?.copyWith(
-                  color: context.currentTheme.errorColor,
+                  color: kRedColor,
                 ),
               ),
             );

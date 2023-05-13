@@ -39,7 +39,7 @@ class ThesisNavigationBar extends StatelessWidget {
                     ThesisIcons.home,
                     color: selectedPage == 0
                         ? kPrimaryLightColor
-                        : context.textTheme.titleLarge?.color,
+                        : context.textPrimaryColor,
                     width: 24,
                     height: 24,
                   ),
@@ -53,7 +53,7 @@ class ThesisNavigationBar extends StatelessWidget {
                     ThesisIcons.access,
                     color: selectedPage == 1
                         ? kPrimaryLightColor
-                        : context.textTheme.titleLarge?.color,
+                        : context.textPrimaryColor,
                     width: 24,
                     height: 24,
                   ),
@@ -67,7 +67,7 @@ class ThesisNavigationBar extends StatelessWidget {
                     ThesisIcons.requests,
                     color: selectedPage == 2
                         ? kPrimaryLightColor
-                        : context.textTheme.titleLarge?.color,
+                        : context.textPrimaryColor,
                     width: 24,
                     height: 24,
                   ),
@@ -81,7 +81,7 @@ class ThesisNavigationBar extends StatelessWidget {
                     ThesisIcons.more,
                     color: selectedPage == 3
                         ? kPrimaryLightColor
-                        : context.textTheme.titleLarge?.color,
+                        : context.textPrimaryColor,
                     width: 24,
                     height: 24,
                   ),

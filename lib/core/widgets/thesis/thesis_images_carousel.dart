@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import '../../../theme/theme_colors.dart';
+import '../../../theme/theme_extention.dart';
 import '../../repositories/tokens/tokens_repository_impl.dart';
 import 'thesis_progress_bar.dart';
 
@@ -78,7 +78,8 @@ class ThesisImagesCarousel extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 4),
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  color: kDarkBackgroundSecondaryColor.withOpacity(0.64),
+                  color: context.currentTheme.scaffoldBackgroundColor
+                      .withOpacity(0.64),
                   borderRadius: const BorderRadius.all(Radius.circular(4)),
                 ),
                 child: Padding(
@@ -89,7 +90,10 @@ class ThesisImagesCarousel extends StatelessWidget {
                   child: ValueListenableBuilder(
                     valueListenable: carouselIndexNotifier,
                     builder: (context, currentIndex, child) {
-                      return Text("${currentIndex + 1} из ${images.length}");
+                      return Text(
+                        "${currentIndex + 1} из ${images.length}",
+                        style: context.textTheme.titleSmall,
+                      );
                     },
                   ),
                 ),

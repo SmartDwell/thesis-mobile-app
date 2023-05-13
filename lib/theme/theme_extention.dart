@@ -14,7 +14,7 @@ extension CurrentTheme on BuildContext {
       isDarkMode ? kDarkTextPrimaryColor : kLightTextPrimaryColor;
 
   Color get textSecondaryColor =>
-      isDarkMode ? kDarkTextSecondaryColor : kLightBackgroundSecondaryColor;
+      isDarkMode ? kDarkTextSecondaryColor : kLightTextSecondaryColor;
 
   AdaptiveThemeMode get currentMode => _manager.mode;
 

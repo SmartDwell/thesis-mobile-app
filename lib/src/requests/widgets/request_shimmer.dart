@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../../core/widgets/thesis/thesis_shimmer_widget.dart';
-import '../../../theme/theme_colors.dart';
 import '../../../theme/theme_extention.dart';
 
 /// Заглушка заявок
@@ -19,6 +17,8 @@ class RequestShimmer extends StatelessWidget {
         ThesisShimmerWidget(
           width: MediaQuery.of(context).size.width,
           height: 48,
+          baseColor: context.textSecondaryColor.withOpacity(0.075),
+          highlightColor: context.textSecondaryColor.withOpacity(0.2),
           borderRadius: const BorderRadius.all(Radius.circular(12)),
         ),
         const SizedBox(height: 20),
@@ -30,37 +30,12 @@ class RequestShimmer extends StatelessWidget {
                 padding: EdgeInsets.only(
                   right: index != 5 ? 8 : 0,
                 ),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: context.isDarkMode
-                        ? kDarkBackgroundTertiaryColor.withOpacity(0.1)
-                        : kLightBackgroundTertiaryColor.withOpacity(0.1),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(8),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 6,
-                      horizontal: 8,
-                    ),
-                    child: Shimmer.fromColors(
-                      baseColor: const Color(0xFFF3F3F3).withOpacity(0.2),
-                      highlightColor: kDarkBackgroundTertiaryColor,
-                      child: Container(
-                        width: 62,
-                        height: 24,
-                        decoration: BoxDecoration(
-                          color: context.isDarkMode
-                              ? kDarkBackgroundTertiaryColor.withOpacity(0.1)
-                              : kLightBackgroundTertiaryColor.withOpacity(0.1),
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(4),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                child: ThesisShimmerWidget(
+                  width: 62,
+                  height: 24,
+                  baseColor: context.textSecondaryColor.withOpacity(0.075),
+                  highlightColor: context.textSecondaryColor.withOpacity(0.2),
+                  borderRadius: const BorderRadius.all(Radius.circular(8)),
                 ),
               );
             }),

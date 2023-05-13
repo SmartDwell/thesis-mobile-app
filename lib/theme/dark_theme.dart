@@ -102,7 +102,6 @@ final darkThemeData = ThemeData(
   ),
   primaryColor: kPrimaryColor,
   primaryColorLight: kPrimaryLightColor,
-  errorColor: kRedColor,
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     showUnselectedLabels: true,
     selectedLabelStyle: _navigationBarStyle.copyWith(color: kPrimaryLightColor),

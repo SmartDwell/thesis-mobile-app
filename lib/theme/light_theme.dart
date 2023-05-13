@@ -106,7 +106,6 @@ final lightThemeData = ThemeData(
   ),
   primaryColor: kPrimaryColor,
   primaryColorLight: kPrimaryLightColor,
-  errorColor: kRedColor,
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     elevation: 0,
     showUnselectedLabels: true,
