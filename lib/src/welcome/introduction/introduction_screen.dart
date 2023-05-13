@@ -1,7 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 
-import '../../../theme/theme_colors.dart';
 import '../../../theme/theme_extention.dart';
 import 'types/introduction_item.dart';
 import 'widgets/bounds_widget.dart';

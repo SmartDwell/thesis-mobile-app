@@ -52,13 +52,13 @@ class LoginRepositoryImpl implements LoginRepository {
         case 200:
           return TokensDto.fromJson(response.data);
         case 400:
-          throw Exception('Переданы некорректные данные');
+          throw Exception('Переданы некорректные данные!');
         case 404:
-          throw Exception('Время действия смс-кода истекло');
+          throw Exception('Время действия смс-кода истекло!');
         case 409:
-          throw Exception('Передан некорректный смс-код');
+          throw Exception('Передан неверный смс-код!');
         default:
-          throw Exception('Что-то пошло не так');
+          throw Exception('Что-то пошло не так...');
       }
     } catch (e) {
       rethrow;

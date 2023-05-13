@@ -15,8 +15,9 @@ class LoginRequestCodeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final loginEmptyNotifier = ValueNotifier<bool>(false);
     final loginController = TextEditingController(text: 'seljmov@list.ru');
+    final buttonDisableNotifier =
+        ValueNotifier<bool>(loginController.text.isEmpty);
     final formFieldKey = GlobalKey<FormFieldState>();
     final errorNotifier = ValueNotifier<String>('');
     return BlocListener<LoginBloc, LoginState>(
@@ -34,13 +35,13 @@ class LoginRequestCodeScreen extends StatelessWidget {
           children: [
             _LoginTitleWidget(
               loginController: loginController,
-              loginEmptyNotifier: loginEmptyNotifier,
+              buttonDisableNotifier: buttonDisableNotifier,
               errorNotifier: errorNotifier,
               formFieldKey: formFieldKey,
             ),
             const Spacer(),
             _LoginButtonWidget(
-              loginEmptyNotifier: loginEmptyNotifier,
+              buttonDisableNotifier: buttonDisableNotifier,
               loginController: loginController,
               formFieldKey: formFieldKey,
             ),
@@ -54,24 +55,24 @@ class LoginRequestCodeScreen extends StatelessWidget {
 class _LoginButtonWidget extends StatelessWidget {
   const _LoginButtonWidget({
     Key? key,
-    required this.loginEmptyNotifier,
+    required this.buttonDisableNotifier,
     required this.loginController,
     required this.formFieldKey,
   }) : super(key: key);
 
-  final ValueNotifier<bool> loginEmptyNotifier;
+  final ValueNotifier<bool> buttonDisableNotifier;
   final TextEditingController loginController;
   final GlobalKey<FormFieldState> formFieldKey;
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
-      valueListenable: loginEmptyNotifier,
-      builder: (context, loginIsEmpty, child) {
+      valueListenable: buttonDisableNotifier,
+      builder: (context, isDisable, child) {
         return ThesisButton.fromText(
-          isDisabled: loginIsEmpty,
+          isDisabled: isDisable,
           onPressed: () async {
-            if (formFieldKey.currentState?.validate() ?? false) {
+            if (!isDisable) {
               LoginScope.requestCode(
                 context,
                 login: loginController.text,
@@ -89,13 +90,13 @@ class _LoginTitleWidget extends StatelessWidget {
   const _LoginTitleWidget({
     Key? key,
     required this.loginController,
-    required this.loginEmptyNotifier,
+    required this.buttonDisableNotifier,
     required this.errorNotifier,
     required this.formFieldKey,
   }) : super(key: key);
 
   final TextEditingController loginController;
-  final ValueNotifier<bool> loginEmptyNotifier;
+  final ValueNotifier<bool> buttonDisableNotifier;
   final ValueNotifier<String> errorNotifier;
   final GlobalKey<FormFieldState> formFieldKey;
 
@@ -120,8 +121,7 @@ class _LoginTitleWidget extends StatelessWidget {
           onChanged: (value) {
             errorNotifier.value = '';
             final validationState = formFieldKey.currentState?.validate();
-            debugPrint('validationState: $validationState');
-            loginEmptyNotifier.value = !(validationState ?? true);
+            buttonDisableNotifier.value = !(validationState ?? true);
           },
           validator: _textFieldValidator,
           decoration: const InputDecoration(

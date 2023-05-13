@@ -9,7 +9,7 @@ const _navigationBarStyle = TextStyle(
   fontWeight: FontWeight.w600,
 );
 
-/// Светлая тема тема
+/// Светлая тема
 final lightThemeData = ThemeData(
   scaffoldBackgroundColor: kLightBackgroundColor,
   fontFamily: "SFProDisplay",

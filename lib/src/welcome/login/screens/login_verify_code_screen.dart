@@ -20,8 +20,9 @@ class LoginVerifyCodeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final codeEmptyNotifier = ValueNotifier<bool>(false);
+    final buttonDisableNotifier = ValueNotifier<bool>(true);
     final codeController = TextEditingController();
+    final formFieldKey = GlobalKey<FormFieldState>();
     final errorNotifier = ValueNotifier<String>('');
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) => state.mapOrNull(
@@ -36,14 +37,16 @@ class LoginVerifyCodeScreen extends StatelessWidget {
             _LoginTitleWidget(
               username: username,
               codeController: codeController,
-              codeEmptyNotifier: codeEmptyNotifier,
+              buttonDisableNotifier: buttonDisableNotifier,
               errorNotifier: errorNotifier,
+              formFieldKey: formFieldKey,
             ),
             const Spacer(),
             _LoginEnterButtonWidget(
-              codeEmptyNotifier: codeEmptyNotifier,
+              buttonDisableNotifier: buttonDisableNotifier,
               ticketId: ticketId,
               codeController: codeController,
+              formFieldKey: formFieldKey,
             ),
           ],
         ),
@@ -55,24 +58,26 @@ class LoginVerifyCodeScreen extends StatelessWidget {
 class _LoginEnterButtonWidget extends StatelessWidget {
   const _LoginEnterButtonWidget({
     Key? key,
-    required this.codeEmptyNotifier,
+    required this.buttonDisableNotifier,
     required this.ticketId,
     required this.codeController,
+    required this.formFieldKey,
   }) : super(key: key);
 
-  final ValueNotifier<bool> codeEmptyNotifier;
+  final ValueNotifier<bool> buttonDisableNotifier;
   final String ticketId;
   final TextEditingController codeController;
+  final GlobalKey<FormFieldState> formFieldKey;
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
-      valueListenable: codeEmptyNotifier,
-      builder: (context, codeIsEmpty, child) {
+      valueListenable: buttonDisableNotifier,
+      builder: (context, isDisable, child) {
         return ThesisButton.fromText(
-          isDisabled: codeIsEmpty,
+          isDisabled: isDisable,
           onPressed: () async {
-            if (!codeIsEmpty) {
+            if (!isDisable) {
               LoginScope.verifyCode(
                 context,
                 tickedId: ticketId,
@@ -92,14 +97,16 @@ class _LoginTitleWidget extends StatelessWidget {
     Key? key,
     required this.username,
     required this.codeController,
-    required this.codeEmptyNotifier,
+    required this.buttonDisableNotifier,
     required this.errorNotifier,
+    required this.formFieldKey,
   }) : super(key: key);
 
   final String username;
   final TextEditingController codeController;
-  final ValueNotifier<bool> codeEmptyNotifier;
+  final ValueNotifier<bool> buttonDisableNotifier;
   final ValueNotifier<String> errorNotifier;
+  final GlobalKey<FormFieldState> formFieldKey;
 
   @override
   Widget build(BuildContext context) {
@@ -117,10 +124,15 @@ class _LoginTitleWidget extends StatelessWidget {
         ),
         const SizedBox(height: 25),
         TextFormField(
+          key: formFieldKey,
           controller: codeController,
           onChanged: (value) {
-            codeEmptyNotifier.value = value.isEmpty;
+            errorNotifier.value = '';
+            final validationState = formFieldKey.currentState?.validate();
+            buttonDisableNotifier.value = !(validationState ?? true);
           },
+          validator: _codeValidator,
+          maxLength: 6,
           decoration: const InputDecoration(
             hintText: 'Смс-код',
           ),
@@ -141,5 +153,16 @@ class _LoginTitleWidget extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  String? _codeValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Поле не может быть пустым.';
+    }
+
+    if (value.length != 6) {
+      return 'Неверный формат данных. Введите 6-значный код.';
+    }
+    return null;
   }
 }
