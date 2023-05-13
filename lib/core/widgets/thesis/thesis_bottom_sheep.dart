@@ -2,6 +2,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+import '../../../theme/theme_extention.dart';
 import '../bottom_sheep/thesis_bottom_sheep_body.dart';
 import '../bottom_sheep/thesis_bottom_sheep_header.dart';
 
@@ -37,7 +38,7 @@ class ThesisBottomSheep {
   }) async {
     showBottomSheet(
       context: context,
-      backgroundColor: AdaptiveTheme.of(context).theme.cardTheme.color,
+      backgroundColor: context.currentTheme.cardTheme.color,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
       ),

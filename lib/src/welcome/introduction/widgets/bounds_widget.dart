@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../theme/theme_colors.dart';
+import '../../../../theme/theme_extention.dart';
 
 class BoundsWidget extends StatelessWidget {
   const BoundsWidget({
@@ -27,10 +28,11 @@ class BoundsWidget extends StatelessWidget {
         ),
         SvgPicture.asset(
           'assets/images/introduction/bounds_card.svg',
+          color: context.currentTheme.cardTheme.color,
         ),
         SvgPicture.asset(
           'assets/images/logo.svg',
-          color: kPrimaryLightColor,
+          color: kPrimaryLighterColor,
           width: 82,
           height: 82,
         ),

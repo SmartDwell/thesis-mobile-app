@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../theme/theme_constants.dart';
+import '../../../theme/theme_extention.dart';
 
 /// Базовый экран со скроллом
 class ThesisSliverScreen extends StatelessWidget {
@@ -58,7 +59,7 @@ class ThesisSliverScreen extends StatelessWidget {
                   },
                   child: Text(
                     title,
-                    style: Theme.of(context).textTheme.displaySmall,
+                    style: context.textTheme.displaySmall,
                   ),
                 ),
                 Padding(

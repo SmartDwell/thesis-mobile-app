@@ -4,6 +4,7 @@ import 'package:validators/validators.dart';
 
 import '../../../../core/widgets/thesis/buttons/thesis_button.dart';
 import '../../../../theme/theme_constants.dart';
+import '../../../../theme/theme_extention.dart';
 import '../bloc/login_bloc.dart';
 import '../login_scope.dart';
 import '../login_sheep.dart';
@@ -105,12 +106,12 @@ class _LoginTitleWidget extends StatelessWidget {
       children: [
         Text(
           'Введите вашу почту или номер телефона',
-          style: Theme.of(context).textTheme.headlineMedium,
+          style: context.textTheme.headlineMedium,
         ),
         const SizedBox(height: 16),
         Text(
           'На ваш адрес электронной почты или номер телефона придет смс-код для входа в приложение',
-          style: Theme.of(context).textTheme.titleSmall,
+          style: context.textTheme.titleSmall,
         ),
         const SizedBox(height: 25),
         TextFormField(
@@ -134,9 +135,9 @@ class _LoginTitleWidget extends StatelessWidget {
               padding: const EdgeInsets.only(top: 12.0),
               child: Text(
                 error,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).errorColor,
-                    ),
+                style: context.textTheme.bodyMedium?.copyWith(
+                  color: context.currentTheme.errorColor,
+                ),
               ),
             );
           },

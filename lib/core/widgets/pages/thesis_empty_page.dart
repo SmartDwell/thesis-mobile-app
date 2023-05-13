@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../theme/theme_extention.dart';
+
 /// Компонент пустой страницы
 class ThesisEmptyPage extends StatelessWidget {
   const ThesisEmptyPage({
@@ -24,7 +26,7 @@ class ThesisEmptyPage extends StatelessWidget {
         children: [
           SvgPicture.asset(
             iconPath,
-            color: Theme.of(context).textTheme.titleSmall?.color,
+            color: context.textTheme.titleSmall?.color,
             width: 164,
             height: 164,
           ),
@@ -32,13 +34,13 @@ class ThesisEmptyPage extends StatelessWidget {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headlineSmall,
+            style: context.textTheme.headlineSmall,
           ),
           const SizedBox(height: 22),
           Text(
             description,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.titleSmall,
+            style: context.textTheme.titleSmall,
           ),
         ],
       ),

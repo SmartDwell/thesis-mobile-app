@@ -60,7 +60,7 @@ class MorePage extends StatelessWidget {
                   MenuItemWidget(
                     icon: ThesisIcons.settings,
                     title: 'Настройки',
-                    onPressed: () => debugPrint('click'),
+                    onPressed: () => Navigator.pushNamed(context, '/settings'),
                   ),
                   const SizedBox(height: 16),
                   const LogOutWidget(),

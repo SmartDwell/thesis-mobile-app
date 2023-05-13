@@ -99,7 +99,9 @@ class _ThesisButtonContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final defaultTextStyle = context.textTheme.titleMedium!;
+    final defaultTextStyle = context.textTheme.titleMedium!.copyWith(
+      color: kDarkTextPrimaryColor,
+    );
     return Container(
       child: isLoading
           ? const ThesisProgressBar()
@@ -107,9 +109,7 @@ class _ThesisButtonContent extends StatelessWidget {
               ? Text(
                   text!,
                   style: isDisabled
-                      ? defaultTextStyle.copyWith(
-                          fontWeight: FontWeight.w600,
-                        )
+                      ? defaultTextStyle.copyWith(fontWeight: FontWeight.w600)
                       : defaultTextStyle,
                 )
               : child,
