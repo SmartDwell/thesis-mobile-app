@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../theme/theme_extention.dart';
 
+/// Кнопка настроек
 class SettingsItemWidget extends StatelessWidget {
   const SettingsItemWidget({
     super.key,

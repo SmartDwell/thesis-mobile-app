@@ -5,6 +5,7 @@ import '../../../core/widgets/thesis/thesis_progress_bar.dart';
 import '../../../theme/theme_colors.dart';
 import '../../../theme/theme_extention.dart';
 
+/// Кнопка меню
 class MenuItemWidget extends StatelessWidget {
   const MenuItemWidget({
     super.key,

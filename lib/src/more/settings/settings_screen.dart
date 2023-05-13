@@ -5,6 +5,7 @@ import '../../../core/widgets/thesis/thesis_sliver_screen.dart';
 import '../../../theme/theme_extention.dart';
 import 'settings_item_widget.dart';
 
+/// Экран настроек
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 

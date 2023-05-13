@@ -1,3 +1,4 @@
+/// Коллекция иконок
 abstract class ThesisIcons {
   static String get home => 'assets/images/icons/home.svg';
   static String get requests => 'assets/images/icons/request.svg';

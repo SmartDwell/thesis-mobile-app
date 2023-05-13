@@ -8,6 +8,7 @@ import '../../../theme/theme_colors.dart';
 import '../../../theme/theme_extention.dart';
 import '../../welcome/auth/auth_scope.dart';
 
+/// Кнопка выхода из приложений
 class LogOutWidget extends StatelessWidget {
   const LogOutWidget({super.key});
 

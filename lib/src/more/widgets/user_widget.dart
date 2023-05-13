@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../theme/theme_extention.dart';
 
+/// Карточка пользователя
 class UserWidget extends StatelessWidget {
   const UserWidget({super.key});
 
