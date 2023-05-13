@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 import '../../../../core/widgets/thesis/buttons/thesis_button.dart';
 import '../../../../core/widgets/thesis/thesis_sliver_screen.dart';
