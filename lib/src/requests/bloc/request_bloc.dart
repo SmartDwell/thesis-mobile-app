@@ -87,7 +87,7 @@ abstract class RequestState with _$RequestState {
     required List<RequestDto> requests,
   }) = _RequestLoadedState;
 
-  /// Состояние успешной загрузки изображения
+  /// Состояние успешной загрузки заявки
   const factory RequestState.loadedSingle({
     required RequestDto request,
   }) = _RequestLoadedSingleState;

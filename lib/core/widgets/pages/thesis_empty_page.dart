@@ -9,7 +9,7 @@ class ThesisEmptyPage extends StatelessWidget {
     super.key,
     required this.iconPath,
     required this.title,
-    required this.description,
+    this.description = '',
   });
 
   final String iconPath;
@@ -36,11 +36,16 @@ class ThesisEmptyPage extends StatelessWidget {
             textAlign: TextAlign.center,
             style: context.textTheme.headlineSmall,
           ),
-          const SizedBox(height: 22),
-          Text(
-            description,
-            textAlign: TextAlign.center,
-            style: context.textTheme.titleSmall,
+          Visibility(
+            visible: description.isNotEmpty,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 22),
+              child: Text(
+                description,
+                textAlign: TextAlign.center,
+                style: context.textTheme.titleSmall,
+              ),
+            ),
           ),
         ],
       ),

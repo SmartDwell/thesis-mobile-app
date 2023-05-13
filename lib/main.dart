@@ -15,6 +15,7 @@ import 'core/repositories/tokens/tokens_repository_impl.dart';
 import 'core/splash_screen.dart';
 import 'src/more/settings/settings_screen.dart';
 import 'src/navigation_bar/navigation_bar.dart';
+import 'src/payments/payment_page.dart';
 import 'src/requests/request_page.dart';
 import 'src/requests/screens/add/request_add_screen.dart';
 import 'src/welcome/auth/auth_scope.dart';
@@ -103,6 +104,7 @@ class ThesisAppConfigurator extends StatelessWidget {
             "/settings": (context) => const SettingsScreen(),
             "/requests": (context) => const RequestPage(),
             "/add_request": (context) => const RequestAddScreen(),
+            "/payments": (context) => const PaymentPage(),
           },
           theme: light,
           darkTheme: dark,

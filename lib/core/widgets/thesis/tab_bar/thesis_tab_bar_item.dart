@@ -17,8 +17,7 @@ class ThesisTabBarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final titlePickedStyle = context.textTheme.titleMedium!.copyWith(
-      color:
-          context.isDarkMode ? kLightTextPrimaryColor : kDarkTextPrimaryColor,
+      color: kDarkTextPrimaryColor,
     );
     final titleStyle = titlePickedStyle.copyWith(
       color: context.isDarkMode

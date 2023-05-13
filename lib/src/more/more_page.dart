@@ -38,7 +38,7 @@ class MorePage extends StatelessWidget {
                   MenuItemWidget(
                     icon: ThesisIcons.payments,
                     title: 'Платежи',
-                    onPressed: () => debugPrint('click'),
+                    onPressed: () => Navigator.pushNamed(context, '/payments'),
                   ),
                   const SizedBox(height: 16),
                   MenuItemWidget(
