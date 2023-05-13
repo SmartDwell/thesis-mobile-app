@@ -48,7 +48,7 @@ class PaymentRepositoryImpl extends IPaymentRepository {
           summa: 923.42,
         ),
       ],
-      period: DateTime.now(),
+      period: DateTime.now().add(const Duration(days: -31)),
     ),
   ];
 }
