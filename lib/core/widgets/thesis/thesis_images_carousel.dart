@@ -1,10 +1,9 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import '../../../theme/theme_extention.dart';
 import '../../repositories/tokens/tokens_repository_impl.dart';
+import 'thesis_network_image_preview.dart';
 import 'thesis_progress_bar.dart';
 
 /// Карусель изображений
@@ -33,36 +32,15 @@ class ThesisImagesCarousel extends StatelessWidget {
         }
 
         final token = snapshot.data!;
-        final headers = {
-          "Accept": "*/*",
-          "Authorization": "Bearer $token",
-        };
-
         final carouselIndexNotifier = ValueNotifier(0);
         return Stack(
           alignment: AlignmentDirectional.bottomCenter,
           children: [
             CarouselSlider(
               items: images.map((image) {
-                return CachedNetworkImage(
+                return ThesisNetworkImagePreview(
                   imageUrl: image,
-                  httpHeaders: headers,
-                  placeholder: (context, url) => const Center(
-                    child: ThesisProgressBar(),
-                  ),
-                  errorWidget: (context, url, error) {
-                    return const _ThesisImagesErrorWidget();
-                  },
-                  imageBuilder: (context, imageProvider) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    );
-                  },
+                  accessToken: token,
                 );
               }).toList(),
               options: CarouselOptions(
@@ -102,40 +80,6 @@ class ThesisImagesCarousel extends StatelessWidget {
           ],
         );
       },
-    );
-  }
-}
-
-class _ThesisImagesErrorWidget extends StatelessWidget {
-  const _ThesisImagesErrorWidget();
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    return Container(
-      height: size.height,
-      decoration: BoxDecoration(
-        color: AdaptiveTheme.of(context).theme.cardTheme.color,
-      ),
-      child: Align(
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.error,
-              size: 36,
-              color:
-                  AdaptiveTheme.of(context).theme.textTheme.titleMedium!.color,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              "Ошибка при загрузке изображения",
-              style: AdaptiveTheme.of(context).theme.textTheme.bodyMedium,
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

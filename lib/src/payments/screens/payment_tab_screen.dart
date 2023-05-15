@@ -19,7 +19,10 @@ class PaymentTabScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final paymentCard = (PaymentDto payment) => GestureDetector(
           onTap: () => PaymentScope.loadSingle(context, payment),
-          child: PaymentCard(payment: payment),
+          child: PaymentCard(
+            payment: payment,
+            onMore: () => PaymentScope.loadSingle(context, payment),
+          ),
         );
     final sortedPayments = List.of(payments);
     sortedPayments.sort(
