@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../theme/theme_colors.dart';
+import '../../../theme/theme_extention.dart';
 
 /// Компонент прогресс-бара
 class ThesisProgressBar extends StatelessWidget {
@@ -21,7 +22,7 @@ class ThesisProgressBar extends StatelessWidget {
       width: size.width,
       height: size.height,
       child: CircularProgressIndicator(
-        color: color ?? kDarkTextPrimaryColor,
+        color: color ?? context.textSecondaryColor,
         strokeWidth: strokeWidth,
       ),
     );

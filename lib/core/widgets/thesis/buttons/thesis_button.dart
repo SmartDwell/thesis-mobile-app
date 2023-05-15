@@ -104,7 +104,7 @@ class _ThesisButtonContent extends StatelessWidget {
     );
     return Container(
       child: isLoading
-          ? const ThesisProgressBar()
+          ? const ThesisProgressBar(color: kDarkTextPrimaryColor)
           : text != null
               ? Text(
                   text!,
