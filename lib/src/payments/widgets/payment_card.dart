@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../core/widgets/thesis/buttons/thesis_text_button.dart';
 import '../../../theme/theme_extention.dart';
-import '../bloc/payment_scope.dart';
 import '../contracts/payment_dto/payment_dto.dart';
 import 'payment_state_card.dart';
 
@@ -12,9 +11,11 @@ class PaymentCard extends StatelessWidget {
   const PaymentCard({
     super.key,
     required this.payment,
+    required this.onMore,
   });
 
   final PaymentDto payment;
+  final void Function() onMore;
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +78,7 @@ class PaymentCard extends StatelessWidget {
                 ),
                 ThesisTextButton(
                   title: 'Подробнее'.toUpperCase(),
-                  onTap: () => PaymentScope.loadSingle(context, payment),
+                  onTap: onMore,
                 ),
               ],
             ),

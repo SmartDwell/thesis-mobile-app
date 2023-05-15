@@ -85,10 +85,7 @@ class RequestDetailsScreen extends StatelessWidget {
                   const SizedBox(height: 16),
                   Text(
                     requestDto.title,
-                    style: AdaptiveTheme.of(context)
-                        .theme
-                        .textTheme
-                        .headlineMedium,
+                    style: context.textTheme.headlineMedium,
                   ),
                   const SizedBox(height: 10),
                   Row(
@@ -102,10 +99,7 @@ class RequestDetailsScreen extends StatelessWidget {
                       Flexible(
                         child: Text(
                           requestDto.incidentPointListAsString,
-                          style: AdaptiveTheme.of(context)
-                              .theme
-                              .textTheme
-                              .titleSmall,
+                          style: context.textTheme.titleSmall,
                         ),
                       ),
                     ],
@@ -113,8 +107,8 @@ class RequestDetailsScreen extends StatelessWidget {
                   const SizedBox(height: 12),
                   Text(
                     requestDto.description,
-                    style:
-                        AdaptiveTheme.of(context).theme.textTheme.titleMedium,
+                    textAlign: TextAlign.justify,
+                    style: context.textTheme.titleMedium,
                   ),
                   const SizedBox(height: 20),
                   RequestCommentsWidget(requestId: requestDto.id),

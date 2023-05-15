@@ -15,7 +15,7 @@ class PaymentStateCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: isPaid ? kGreenColor : kOrangeColor,
+        color: isPaid ? kGreenColor : kRedColor,
         borderRadius: BorderRadius.circular(6),
       ),
       child: Padding(

@@ -44,7 +44,7 @@ class MorePage extends StatelessWidget {
                   MenuItemWidget(
                     icon: ThesisIcons.news,
                     title: 'Новости и события',
-                    onPressed: () => debugPrint('click'),
+                    onPressed: () => Navigator.pushNamed(context, '/home'),
                   ),
                   const SizedBox(height: 16),
                   MenuItemWidget(

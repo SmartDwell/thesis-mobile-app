@@ -46,6 +46,7 @@ class RequestCommentItemWidget extends StatelessWidget {
                       options: const ThesisNetworkImagePreviewOptions(
                         width: 64,
                         height: 64,
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
                       ),
                     ),
                   );

@@ -32,7 +32,7 @@ class PaymentRepositoryImpl extends IPaymentRepository {
           summa: 24.18,
         ),
       ],
-      period: DateTime.now(),
+      period: DateTime(2023, 05, 05),
     ),
     PaymentDto(
       id: '2',
@@ -48,7 +48,7 @@ class PaymentRepositoryImpl extends IPaymentRepository {
           summa: 923.42,
         ),
       ],
-      period: DateTime.now().add(const Duration(days: -31)),
+      period: DateTime(2023, 04, 05),
     ),
   ];
 }

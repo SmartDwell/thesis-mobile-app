@@ -13,6 +13,7 @@ import 'core/constants/constants.dart';
 import 'core/helpers/message_helper.dart';
 import 'core/repositories/tokens/tokens_repository_impl.dart';
 import 'core/splash_screen.dart';
+import 'src/home/home_page.dart';
 import 'src/more/settings/settings_screen.dart';
 import 'src/navigation_bar/navigation_bar.dart';
 import 'src/payments/payment_page.dart';
@@ -102,6 +103,7 @@ class ThesisAppConfigurator extends StatelessWidget {
             "/welcome": (context) => const WelcomeScreen(),
             "/navbar": (context) => const ThesisNavigationBar(),
             "/settings": (context) => const SettingsScreen(),
+            "/home": (context) => const HomePage(),
             "/requests": (context) => const RequestPage(),
             "/add_request": (context) => const RequestAddScreen(),
             "/payments": (context) => const PaymentPage(),
