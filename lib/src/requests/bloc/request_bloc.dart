@@ -30,7 +30,6 @@ class RequestBloc extends Bloc<RequestEvent, RequestState> {
     Emitter<RequestState> emit,
   ) async {
     emit(const RequestState.loading());
-    await Future.delayed(const Duration(seconds: 1));
     final requests = await _requestRepository.loadRequests();
     emit(RequestState.loaded(requests: requests));
   }

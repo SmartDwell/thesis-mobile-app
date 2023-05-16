@@ -23,12 +23,15 @@ class MorePage extends StatelessWidget {
               const SizedBox(height: 30),
               Column(
                 children: [
-                  MenuItemWidget(
-                    icon: ThesisIcons.home,
-                    title: 'Моя собственность',
-                    onPressed: () => debugPrint('click'),
-                  ),
-                  const SizedBox(height: 16),
+                  // MenuItemWidget(
+                  //   icon: ThesisIcons.home,
+                  //   title: 'Моя собственность',
+                  //   onPressed: () => MessageHelper.showInfo(
+                  //     context: context,
+                  //     message: 'Раздел находится в разработке...',
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 16),
                   MenuItemWidget(
                     icon: ThesisIcons.requests,
                     title: 'Мои заявки',
@@ -46,12 +49,12 @@ class MorePage extends StatelessWidget {
                     title: 'Новости и события',
                     onPressed: () => Navigator.pushNamed(context, '/home'),
                   ),
-                  const SizedBox(height: 16),
-                  MenuItemWidget(
-                    icon: ThesisIcons.access,
-                    title: 'Управление доступом',
-                    onPressed: () => debugPrint('click'),
-                  ),
+                  // const SizedBox(height: 16),
+                  // MenuItemWidget(
+                  //   icon: ThesisIcons.access,
+                  //   title: 'Управление доступом',
+                  //   onPressed: () => Navigator.pushNamed(context, '/access'),
+                  // ),
                 ],
               ),
               const SizedBox(height: 45),
