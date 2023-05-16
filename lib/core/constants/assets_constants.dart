@@ -10,6 +10,7 @@ abstract class ThesisIcons {
   static String get logout => 'assets/images/icons/logout.svg';
 }
 
+/// Коллекция изображений
 abstract class ThesisImages {
   static String get map => 'assets/images/thesis_map.svg';
 }
