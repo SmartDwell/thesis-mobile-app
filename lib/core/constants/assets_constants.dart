@@ -9,3 +9,7 @@ abstract class ThesisIcons {
   static String get more => 'assets/images/icons/more.svg';
   static String get logout => 'assets/images/icons/logout.svg';
 }
+
+abstract class ThesisImages {
+  static String get map => 'assets/images/thesis_map.svg';
+}
