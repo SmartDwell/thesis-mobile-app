@@ -9,6 +9,7 @@ import '../bloc/access_bloc.dart';
 import '../bloc/access_scope.dart';
 import 'map_screen.dart';
 
+/// Страница доступа
 class AccessScreen extends StatefulWidget {
   const AccessScreen({super.key});
 

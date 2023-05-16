@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../contracts/door_dto/door_dto.dart';
 
+/// Провайдер для работы с дверями
 class MarkerSelectNotifier with ChangeNotifier {
   DoorDto? _door;
 

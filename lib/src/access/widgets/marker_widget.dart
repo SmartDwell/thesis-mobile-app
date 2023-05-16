@@ -6,6 +6,7 @@ import '../../../theme/theme_extention.dart';
 import '../contracts/door_dto/door_dto.dart';
 import '../utils/marker_select_notifier.dart';
 
+/// Компонент маркера на карте
 class MarketWidget extends StatelessWidget {
   const MarketWidget({
     super.key,

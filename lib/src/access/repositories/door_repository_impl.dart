@@ -1,6 +1,7 @@
 import '../contracts/door_dto/door_dto.dart';
 import 'door_repository.dart';
 
+/// Репозиторий дверей
 class DoorRepositoryImpl implements IDoorRepository {
   @override
   Future<List<DoorDto>> loadDoors() async {

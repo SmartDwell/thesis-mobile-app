@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../core/constants/assets_constants.dart';
 
+/// Компонент карты
 class MapWidget extends StatelessWidget {
   const MapWidget({super.key});
 
