@@ -29,6 +29,7 @@ class AccessBloc extends Bloc<AccessEvent, AccessState> {
     Emitter<AccessState> emit,
   ) async {
     emit(const AccessState.loading());
+    await Future.delayed(const Duration(seconds: 1));
     final doors = await _doorRepository.loadDoors();
     emit(AccessState.loaded(doors: doors));
   }
