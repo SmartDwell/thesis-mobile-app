@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/helpers/fab_notifier_helper.dart';
-import '../../../core/widgets/pages/thesis_base_page.dart';
 import '../../../core/widgets/pages/thesis_empty_page.dart';
 import '../../../core/widgets/thesis/thesis_sliver_screen.dart';
 import '../../../theme/theme_colors.dart';
@@ -43,47 +42,44 @@ class _RequestScreenState extends State<RequestScreen> {
       ),
       child: ChangeNotifierProvider<FabNotifierHelper>(
         create: (context) => FabNotifierHelper(),
-        child: ThesisBasePage(
-          padding: EdgeInsets.zero,
-          child: Builder(
-            builder: (context) {
-              return ThesisSliverScreen(
-                title: 'Ваши заявки',
-                child: BlocBuilder<RequestBloc, RequestState>(
-                  builder: (context, state) => state.maybeMap(
-                    empty: (state) => const ThesisEmptyPage(
-                      iconPath: "assets/images/icons/request.svg",
-                      title: "У вас нет активных заявок",
-                      description:
-                          "Чтобы создать заявку, нажмите кнопку “+” ниже и заполните все данные",
-                    ),
-                    loaded: (state) => RequestTabScreen(
-                      requests: state.requests,
-                    ),
-                    orElse: () => const RequestShimmer(),
+        child: Builder(
+          builder: (context) {
+            return ThesisSliverScreen(
+              title: 'Ваши заявки',
+              child: BlocBuilder<RequestBloc, RequestState>(
+                builder: (context, state) => state.maybeMap(
+                  empty: (state) => const ThesisEmptyPage(
+                    iconPath: "assets/images/icons/request.svg",
+                    title: "У вас нет активных заявок",
+                    description:
+                        "Чтобы создать заявку, нажмите кнопку “+” ниже и заполните все данные",
                   ),
+                  loaded: (state) => RequestTabScreen(
+                    requests: state.requests,
+                  ),
+                  orElse: () => const RequestShimmer(),
                 ),
-                floatingActionButton: Consumer<FabNotifierHelper>(
-                  builder: (context, notifier, child) {
-                    return Visibility(
-                      visible: notifier.isShow,
-                      child: FloatingActionButton(
-                        backgroundColor: kPrimaryLightColor,
-                        foregroundColor: Colors.white,
-                        child: const Icon(
-                          Icons.add_rounded,
-                          size: 40,
-                        ),
-                        onPressed: () =>
-                            Navigator.pushNamed(context, '/add_request')
-                                .whenComplete(() => RequestScope.load(context)),
+              ),
+              floatingActionButton: Consumer<FabNotifierHelper>(
+                builder: (context, notifier, child) {
+                  return Visibility(
+                    visible: notifier.isShow,
+                    child: FloatingActionButton(
+                      backgroundColor: kPrimaryLightColor,
+                      foregroundColor: Colors.white,
+                      child: const Icon(
+                        Icons.add_rounded,
+                        size: 40,
                       ),
-                    );
-                  },
-                ),
-              );
-            },
-          ),
+                      onPressed: () =>
+                          Navigator.pushNamed(context, '/add_request')
+                              .whenComplete(() => RequestScope.load(context)),
+                    ),
+                  );
+                },
+              ),
+            );
+          },
         ),
       ),
     );

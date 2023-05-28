@@ -44,14 +44,17 @@ class ThesisFilterField extends StatelessWidget {
                         Icons.search,
                         color: context.textSecondaryColor,
                       ),
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          filterPatternController.text = '';
-                          onChanged('');
-                        },
-                        icon: Icon(
-                          Icons.close,
-                          color: context.textSecondaryColor,
+                      suffixIcon: Visibility(
+                        visible: isFocused,
+                        child: IconButton(
+                          onPressed: () {
+                            filterPatternController.text = '';
+                            onChanged('');
+                          },
+                          icon: Icon(
+                            Icons.close,
+                            color: context.textSecondaryColor,
+                          ),
                         ),
                       ),
                       labelStyle: TextStyle(

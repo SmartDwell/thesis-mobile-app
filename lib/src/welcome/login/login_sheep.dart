@@ -12,10 +12,13 @@ class LoginSheep {
   static void showRequestCodeScreen(BuildContext context) {
     globalScaffoldKey.currentState!.showBottomSheet(
       (context) {
-        return const ThesisBottomSheepBody(
-          header: ThesisBottomSheepHeader(),
-          body: LoginRequestCodeScreen(),
-          expandBody: true,
+        return GestureDetector(
+          //onTap: () => FocusScope.of(context).unfocus(),
+          child: const ThesisBottomSheepBody(
+            header: ThesisBottomSheepHeader(),
+            body: LoginRequestCodeScreen(),
+            expandBody: true,
+          ),
         );
       },
       constraints: BoxConstraints.expand(
@@ -34,13 +37,16 @@ class LoginSheep {
   }) {
     globalScaffoldKey.currentState!.showBottomSheet(
       (context) {
-        return ThesisBottomSheepBody(
-          header: const ThesisBottomSheepHeader(),
-          body: LoginVerifyCodeScreen(
-            ticketId: ticketId,
-            username: username,
+        return GestureDetector(
+          //onTap: () => FocusScope.of(context).unfocus(),
+          child: ThesisBottomSheepBody(
+            header: const ThesisBottomSheepHeader(),
+            body: LoginVerifyCodeScreen(
+              ticketId: ticketId,
+              username: username,
+            ),
+            expandBody: true,
           ),
-          expandBody: true,
         );
       },
       constraints: BoxConstraints.expand(

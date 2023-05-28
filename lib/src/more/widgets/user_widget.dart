@@ -17,21 +17,23 @@ class UserWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Селимов Загидин М.",
-                  style: context.textTheme.headlineSmall?.copyWith(
-                    fontSize: 18,
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Селимов Загидин М.",
+                    style: context.textTheme.headlineSmall?.copyWith(
+                      fontSize: 18,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  "seljmov@list.ru, +7 (988) 789-39-91",
-                  style: context.textTheme.bodyMedium,
-                ),
-              ],
+                  const SizedBox(height: 4),
+                  Text(
+                    "seljmov@list.ru, +7 (988) 789-39-91",
+                    style: context.textTheme.bodyMedium,
+                  ),
+                ],
+              ),
             ),
             SizedBox(
               width: 48,

@@ -10,11 +10,13 @@ class MapWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return SvgPicture.asset(
-      ThesisImages.map,
+    return SizedBox(
       width: size.width,
       height: size.height,
-      fit: BoxFit.fill,
+      child: SvgPicture.asset(
+        ThesisImages.map,
+        fit: BoxFit.fill,
+      ),
     );
   }
 }

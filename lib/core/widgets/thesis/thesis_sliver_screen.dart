@@ -1,4 +1,3 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -16,7 +15,6 @@ class ThesisSliverScreen extends StatelessWidget {
 
   final String title;
   final Widget child;
-
   final Widget? floatingActionButton;
 
   @override
@@ -37,8 +35,7 @@ class ThesisSliverScreen extends StatelessWidget {
                 visible: !visibility && title.isNotEmpty,
                 child: Text(
                   title,
-                  style:
-                      AdaptiveTheme.of(context).theme.textTheme.headlineSmall,
+                  style: context.textTheme.headlineSmall,
                 ),
               ),
             ),

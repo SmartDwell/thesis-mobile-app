@@ -26,6 +26,9 @@ class ThesisNetworkImagePreviewOptions {
   final double? height;
   final BoxFit? fit;
   final CacheManager? cacheManager;
+  final double? errorWidgetSize;
+  final bool showErrorMessage;
+  final TextStyle? errorTextStyle;
 
   const ThesisNetworkImagePreviewOptions({
     this.cacheManager,
@@ -33,6 +36,9 @@ class ThesisNetworkImagePreviewOptions {
     this.width,
     this.height,
     this.fit,
+    this.errorWidgetSize,
+    this.showErrorMessage = true,
+    this.errorTextStyle,
   });
 }
 
@@ -101,8 +107,9 @@ class _ThesisNetworkImagePreviewState extends State<ThesisNetworkImagePreview> {
             placeholder: (_, __) => const Center(
               child: ThesisProgressBar(),
             ),
-            errorWidget: (context, url, error) =>
-                const _ThesisImagesErrorWidget(),
+            errorWidget: (context, url, error) => _ThesisImagesErrorWidget(
+              options: widget.options,
+            ),
             imageBuilder: (context, imageProvider) {
               return Container(
                 decoration: BoxDecoration(
@@ -122,7 +129,11 @@ class _ThesisNetworkImagePreviewState extends State<ThesisNetworkImagePreview> {
 }
 
 class _ThesisImagesErrorWidget extends StatelessWidget {
-  const _ThesisImagesErrorWidget();
+  const _ThesisImagesErrorWidget({
+    required this.options,
+  });
+
+  final ThesisNetworkImagePreviewOptions? options;
 
   @override
   Widget build(BuildContext context) {
@@ -130,6 +141,7 @@ class _ThesisImagesErrorWidget extends StatelessWidget {
     return Container(
       height: size.height,
       decoration: BoxDecoration(
+        borderRadius: options?.borderRadius,
         color: context.currentTheme.cardTheme.color,
       ),
       child: Align(
@@ -139,13 +151,19 @@ class _ThesisImagesErrorWidget extends StatelessWidget {
           children: [
             Icon(
               Icons.error,
-              size: 36,
+              size: options?.errorWidgetSize ?? 36,
               color: context.textPrimaryColor,
             ),
-            const SizedBox(height: 8),
-            Text(
-              "Ошибка при загрузке изображения",
-              style: context.textTheme.bodyMedium,
+            Visibility(
+              visible: options?.showErrorMessage ?? true,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Text(
+                  "Ошибка при загрузке изображения",
+                  style:
+                      options?.errorTextStyle ?? context.textTheme.bodyMedium,
+                ),
+              ),
             ),
           ],
         ),
