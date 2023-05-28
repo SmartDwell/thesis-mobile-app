@@ -15,7 +15,6 @@ class ThesisSliverScreen extends StatelessWidget {
 
   final String title;
   final Widget child;
-
   final Widget? floatingActionButton;
 
   @override
