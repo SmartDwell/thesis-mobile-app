@@ -1,4 +1,3 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -30,11 +29,7 @@ class RequestDetailsScreen extends StatelessWidget {
         centerTitle: true,
         title: Text(
           "Заявка №${requestDto.number}",
-          style: AdaptiveTheme.of(context)
-              .theme
-              .textTheme
-              .titleMedium
-              ?.copyWith(fontSize: 18),
+          style: context.textTheme.headlineSmall,
         ),
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
