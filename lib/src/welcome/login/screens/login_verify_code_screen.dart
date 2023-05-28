@@ -134,8 +134,9 @@ class _LoginTitleWidget extends StatelessWidget {
           },
           validator: _codeValidator,
           maxLength: 6,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             hintText: 'Смс-код',
+            counterStyle: context.textTheme.bodySmall,
           ),
         ),
         ValueListenableBuilder<String>(

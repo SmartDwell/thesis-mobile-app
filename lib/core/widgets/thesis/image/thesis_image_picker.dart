@@ -41,7 +41,10 @@ class ThesisImagePicker {
     await ThesisBottomSheep.showModalAsync(
       context,
       expand: false,
-      header: const ThesisBottomSheepHeader(title: "Откуда взять изображение?"),
+      header: const ThesisBottomSheepHeader(
+        title: "Выберите источник",
+        titleFontSize: 18,
+      ),
       child: Padding(
         padding: const EdgeInsets.only(
           top: 24,
@@ -72,7 +75,7 @@ class ThesisImagePicker {
                         ),
                       ),
                       title: Text(
-                        "С камеры",
+                        "Камера",
                         style: AdaptiveTheme.of(context)
                             .theme
                             .textTheme
@@ -109,7 +112,7 @@ class ThesisImagePicker {
                         ),
                       ),
                       title: Text(
-                        "Из галереи",
+                        "Галерея",
                         style: AdaptiveTheme.of(context)
                             .theme
                             .textTheme

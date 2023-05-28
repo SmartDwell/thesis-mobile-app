@@ -8,10 +8,12 @@ class ThesisBottomSheepHeader extends StatelessWidget {
   const ThesisBottomSheepHeader({
     super.key,
     this.title,
+    this.titleFontSize,
     this.onPop,
   });
 
   final String? title;
+  final double? titleFontSize;
   final void Function()? onPop;
 
   @override
@@ -40,7 +42,9 @@ class ThesisBottomSheepHeader extends StatelessWidget {
               replacement: Text(
                 title ?? '',
                 textAlign: TextAlign.center,
-                style: context.textTheme.headlineSmall,
+                style: context.textTheme.headlineSmall!.copyWith(
+                  fontSize: titleFontSize,
+                ),
               ),
             ),
             GestureDetector(
