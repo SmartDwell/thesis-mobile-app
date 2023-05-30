@@ -31,7 +31,9 @@ class RequestBloc extends Bloc<RequestEvent, RequestState> {
   ) async {
     emit(const RequestState.loading());
     final requests = await _requestRepository.loadRequests();
-    emit(RequestState.loaded(requests: requests));
+    emit(requests.isEmpty
+        ? const RequestState.empty()
+        : RequestState.loaded(requests: requests));
   }
 
   Future<void> _refresh(
@@ -40,7 +42,9 @@ class RequestBloc extends Bloc<RequestEvent, RequestState> {
   ) async {
     emit(const RequestState.loading());
     final requests = await _requestRepository.loadRequests();
-    emit(RequestState.loaded(requests: requests));
+    emit(requests.isEmpty
+        ? const RequestState.empty()
+        : RequestState.loaded(requests: requests));
   }
 
   Future<void> _loadSingle(
