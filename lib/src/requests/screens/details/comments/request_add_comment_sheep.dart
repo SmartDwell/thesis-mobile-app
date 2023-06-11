@@ -78,7 +78,6 @@ class RequestAddCommentSheep {
                 });
 
                 MessageHelper.showByStatus(
-                  context: context,
                   isSuccess: hasBeenAdd,
                   successMessage: 'Комментарий успешно добавлен',
                   errorMessage:

@@ -30,12 +30,10 @@ class _AccessScreenState extends State<AccessScreen> {
       listener: (context, state) => state.mapOrNull(
         initial: (state) => AccessScope.load(context),
         successOpened: (state) => MessageHelper.showSuccess(
-          context: context,
-          message: 'Дверь открыта',
+          'Дверь открыта',
         ),
         failureOpened: (state) => MessageHelper.showError(
-          context: context,
-          message: 'Что-то пошло не так...',
+          'Что-то пошло не так...',
         ),
       ),
       child: Scaffold(

@@ -23,8 +23,8 @@ mixin _$AddRequestDto {
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
-  List<String> get incidentPointList => throw _privateConstructorUsedError;
-  String get incidentPointListAsString => throw _privateConstructorUsedError;
+  String get incidentPointId => throw _privateConstructorUsedError;
+  String get incidentPointFullName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,8 +42,8 @@ abstract class $AddRequestDtoCopyWith<$Res> {
       {String title,
       String description,
       List<String> images,
-      List<String> incidentPointList,
-      String incidentPointListAsString});
+      String incidentPointId,
+      String incidentPointFullName});
 }
 
 /// @nodoc
@@ -62,8 +62,8 @@ class _$AddRequestDtoCopyWithImpl<$Res, $Val extends AddRequestDto>
     Object? title = null,
     Object? description = null,
     Object? images = null,
-    Object? incidentPointList = null,
-    Object? incidentPointListAsString = null,
+    Object? incidentPointId = null,
+    Object? incidentPointFullName = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -78,13 +78,13 @@ class _$AddRequestDtoCopyWithImpl<$Res, $Val extends AddRequestDto>
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      incidentPointList: null == incidentPointList
-          ? _value.incidentPointList
-          : incidentPointList // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      incidentPointListAsString: null == incidentPointListAsString
-          ? _value.incidentPointListAsString
-          : incidentPointListAsString // ignore: cast_nullable_to_non_nullable
+      incidentPointId: null == incidentPointId
+          ? _value.incidentPointId
+          : incidentPointId // ignore: cast_nullable_to_non_nullable
+              as String,
+      incidentPointFullName: null == incidentPointFullName
+          ? _value.incidentPointFullName
+          : incidentPointFullName // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -102,8 +102,8 @@ abstract class _$$_AddRequestDtoCopyWith<$Res>
       {String title,
       String description,
       List<String> images,
-      List<String> incidentPointList,
-      String incidentPointListAsString});
+      String incidentPointId,
+      String incidentPointFullName});
 }
 
 /// @nodoc
@@ -120,8 +120,8 @@ class __$$_AddRequestDtoCopyWithImpl<$Res>
     Object? title = null,
     Object? description = null,
     Object? images = null,
-    Object? incidentPointList = null,
-    Object? incidentPointListAsString = null,
+    Object? incidentPointId = null,
+    Object? incidentPointFullName = null,
   }) {
     return _then(_$_AddRequestDto(
       title: null == title
@@ -136,13 +136,13 @@ class __$$_AddRequestDtoCopyWithImpl<$Res>
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      incidentPointList: null == incidentPointList
-          ? _value._incidentPointList
-          : incidentPointList // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      incidentPointListAsString: null == incidentPointListAsString
-          ? _value.incidentPointListAsString
-          : incidentPointListAsString // ignore: cast_nullable_to_non_nullable
+      incidentPointId: null == incidentPointId
+          ? _value.incidentPointId
+          : incidentPointId // ignore: cast_nullable_to_non_nullable
+              as String,
+      incidentPointFullName: null == incidentPointFullName
+          ? _value.incidentPointFullName
+          : incidentPointFullName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -155,10 +155,9 @@ class _$_AddRequestDto implements _AddRequestDto {
       {required this.title,
       required this.description,
       required final List<String> images,
-      required final List<String> incidentPointList,
-      required this.incidentPointListAsString})
-      : _images = images,
-        _incidentPointList = incidentPointList;
+      required this.incidentPointId,
+      required this.incidentPointFullName})
+      : _images = images;
 
   factory _$_AddRequestDto.fromJson(Map<String, dynamic> json) =>
       _$$_AddRequestDtoFromJson(json);
@@ -175,21 +174,14 @@ class _$_AddRequestDto implements _AddRequestDto {
     return EqualUnmodifiableListView(_images);
   }
 
-  final List<String> _incidentPointList;
   @override
-  List<String> get incidentPointList {
-    if (_incidentPointList is EqualUnmodifiableListView)
-      return _incidentPointList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_incidentPointList);
-  }
-
+  final String incidentPointId;
   @override
-  final String incidentPointListAsString;
+  final String incidentPointFullName;
 
   @override
   String toString() {
-    return 'AddRequestDto(title: $title, description: $description, images: $images, incidentPointList: $incidentPointList, incidentPointListAsString: $incidentPointListAsString)';
+    return 'AddRequestDto(title: $title, description: $description, images: $images, incidentPointId: $incidentPointId, incidentPointFullName: $incidentPointFullName)';
   }
 
   @override
@@ -201,11 +193,10 @@ class _$_AddRequestDto implements _AddRequestDto {
             (identical(other.description, description) ||
                 other.description == description) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
-            const DeepCollectionEquality()
-                .equals(other._incidentPointList, _incidentPointList) &&
-            (identical(other.incidentPointListAsString,
-                    incidentPointListAsString) ||
-                other.incidentPointListAsString == incidentPointListAsString));
+            (identical(other.incidentPointId, incidentPointId) ||
+                other.incidentPointId == incidentPointId) &&
+            (identical(other.incidentPointFullName, incidentPointFullName) ||
+                other.incidentPointFullName == incidentPointFullName));
   }
 
   @JsonKey(ignore: true)
@@ -215,8 +206,8 @@ class _$_AddRequestDto implements _AddRequestDto {
       title,
       description,
       const DeepCollectionEquality().hash(_images),
-      const DeepCollectionEquality().hash(_incidentPointList),
-      incidentPointListAsString);
+      incidentPointId,
+      incidentPointFullName);
 
   @JsonKey(ignore: true)
   @override
@@ -237,8 +228,8 @@ abstract class _AddRequestDto implements AddRequestDto {
       {required final String title,
       required final String description,
       required final List<String> images,
-      required final List<String> incidentPointList,
-      required final String incidentPointListAsString}) = _$_AddRequestDto;
+      required final String incidentPointId,
+      required final String incidentPointFullName}) = _$_AddRequestDto;
 
   factory _AddRequestDto.fromJson(Map<String, dynamic> json) =
       _$_AddRequestDto.fromJson;
@@ -250,9 +241,9 @@ abstract class _AddRequestDto implements AddRequestDto {
   @override
   List<String> get images;
   @override
-  List<String> get incidentPointList;
+  String get incidentPointId;
   @override
-  String get incidentPointListAsString;
+  String get incidentPointFullName;
   @override
   @JsonKey(ignore: true)
   _$$_AddRequestDtoCopyWith<_$_AddRequestDto> get copyWith =>

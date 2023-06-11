@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../core/repositories/user/user_repository.dart';
+import '../contracts/incident_point_dto/incident_point_dto.dart';
 import '../contracts/request_dto/request_dto.dart';
 import '../repositories/request_repository.dart';
 
@@ -9,11 +11,14 @@ part 'request_bloc.freezed.dart';
 /// Блок заявок
 class RequestBloc extends Bloc<RequestEvent, RequestState> {
   final IRequestRepository _requestRepository;
+  final IUserRepository _userRepository;
 
   RequestBloc({
     required RequestState initialState,
     required IRequestRepository requestRepository,
+    required IUserRepository userRepository,
   })  : _requestRepository = requestRepository,
+        _userRepository = userRepository,
         super(initialState) {
     on<RequestEvent>(
       (event, emit) => event.map(
@@ -21,6 +26,7 @@ class RequestBloc extends Bloc<RequestEvent, RequestState> {
         refresh: (event) => _refresh(event, emit),
         loadSingle: (event) => _loadSingle(event, emit),
         loadSingleById: (event) => null,
+        loadAddScreen: (event) => _loadAddScreen(event, emit),
       ),
     );
   }
@@ -54,6 +60,20 @@ class RequestBloc extends Bloc<RequestEvent, RequestState> {
     emit(const RequestState.loading());
     emit(RequestState.loadedSingle(request: event.requestDto));
   }
+
+  Future<void> _loadAddScreen(
+    _RequestLoadAddScreenEvent event,
+    Emitter<RequestState> emit,
+  ) async {
+    emit(const RequestState.loading());
+    final apartmentIds = await _userRepository.getApartmentIds();
+    final points = await _requestRepository.loadIncidentPointsByUserAparmentIds(
+      apartmentIds,
+    );
+    emit(RequestState.loadedAddScreen(
+      points: points,
+    ));
+  }
 }
 
 /// Базовое событие заявок
@@ -74,6 +94,9 @@ abstract class RequestEvent with _$RequestEvent {
   const factory RequestEvent.loadSingleById({
     required String requestId,
   }) = _RequestLoadSingleByIdEvent;
+
+  /// Загрузить экран добавления заявки
+  const factory RequestEvent.loadAddScreen() = _RequestLoadAddScreenEvent;
 }
 
 /// Базовое состояние заявок
@@ -94,6 +117,11 @@ abstract class RequestState with _$RequestState {
   const factory RequestState.loadedSingle({
     required RequestDto request,
   }) = _RequestLoadedSingleState;
+
+  /// Состояние успешной загрузки экрана добавления заявки
+  const factory RequestState.loadedAddScreen({
+    required List<IncidentPointDto> points,
+  }) = _RequestLoadedAddScreenState;
 
   /// Состояние отсутствия заявок
   const factory RequestState.empty() = _RequestEmptyState;

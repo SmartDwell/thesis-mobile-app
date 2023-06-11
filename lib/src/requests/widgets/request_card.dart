@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../core/constants/assets_constants.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/widgets/thesis/buttons/thesis_text_button.dart';
 import '../../../theme/theme_extention.dart';
@@ -61,11 +62,11 @@ class RequestCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SvgPicture.asset(
-                  'assets/images/icons/geomark.svg',
+                  ThesisIcons.geoMark,
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  request.incidentPointListAsString,
+                  request.incidentPointFullName,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: context.textTheme.bodySmall,

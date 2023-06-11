@@ -93,7 +93,7 @@ class RequestDetailsScreen extends StatelessWidget {
                       const SizedBox(width: 6),
                       Flexible(
                         child: Text(
-                          requestDto.incidentPointListAsString,
+                          requestDto.incidentPointFullName,
                           style: context.textTheme.titleSmall,
                         ),
                       ),

@@ -12,7 +12,7 @@ class MessageHelper {
   static const _padding = EdgeInsets.all(12);
 
   static void _showDefaultMessage({
-    required BuildContext context,
+    //required BuildContext context,
     required bool isSuccess,
     required String message,
     double fontSize = 16,
@@ -23,7 +23,7 @@ class MessageHelper {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        backgroundColor: context.currentTheme.cardTheme.color,
+        //backgroundColor: context.currentTheme.cardTheme.color,
         duration: _showDuration,
         content: Padding(
           padding: _padding,
@@ -42,7 +42,7 @@ class MessageHelper {
                   message,
                   style: TextStyle(
                     fontSize: fontSize,
-                    color: context.textTheme.titleMedium?.color,
+                    //color: context.textTheme.titleMedium?.color,
                   ),
                 ),
               ),
@@ -72,31 +72,23 @@ class MessageHelper {
   }
 
   /// Вывод сообщения об ошибке
-  static void showError({
-    required BuildContext context,
-    required String message,
-  }) {
-    _showDefaultMessage(context: context, isSuccess: false, message: message);
+  static void showError(String message) {
+    _showDefaultMessage(isSuccess: false, message: message);
   }
 
   /// Вывод сообщения об успешном выполнении
-  static void showSuccess({
-    required BuildContext context,
-    required String message,
-  }) {
-    _showDefaultMessage(context: context, isSuccess: true, message: message);
+  static void showSuccess(String message) {
+    _showDefaultMessage(isSuccess: true, message: message);
   }
 
   /// Вывод сообщения по статусу
   static void showByStatus({
-    required BuildContext context,
     required bool isSuccess,
     String successMessage = "",
     String errorMessage = "",
     double fontSize = 16,
   }) {
     _showDefaultMessage(
-      context: context,
       isSuccess: isSuccess,
       message: isSuccess ? successMessage : errorMessage,
       fontSize: fontSize,
@@ -105,7 +97,6 @@ class MessageHelper {
 
   /// Вывод информационного сообщения
   static void showInfo({
-    required BuildContext context,
     required String message,
     bool showOk = false,
   }) {
@@ -115,7 +106,6 @@ class MessageHelper {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        backgroundColor: context.currentTheme.cardTheme.color,
         duration: const Duration(seconds: 5),
         content: Padding(
           padding: _padding,
@@ -124,10 +114,6 @@ class MessageHelper {
             children: [
               Text(
                 message,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: context.textTheme.titleMedium?.color,
-                ),
               ),
               Align(
                 alignment: Alignment.bottomRight,

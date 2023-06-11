@@ -8,17 +8,31 @@ import '../../../../core/widgets/thesis/image/thesis_pick_images_grid.dart';
 import '../../../../core/widgets/thesis/buttons/thesis_button.dart';
 import '../../../../core/widgets/thesis/thesis_sliver_screen.dart';
 import '../../../../core/widgets/thesis/thesis_split_screen.dart';
+import '../../../../theme/theme_colors.dart';
 import '../../../../theme/theme_extention.dart';
 import '../../contracts/add_request_dto/add_request_dto.dart';
+import '../../contracts/incident_point_dto/incident_point_dto.dart';
 import '../../repositories/request_repository_impl.dart';
+import 'select_incident_point_sheep.dart';
 
 /// Страница создания заявки
 class RequestAddScreen extends StatelessWidget {
-  const RequestAddScreen({super.key});
+  const RequestAddScreen({
+    super.key,
+    required this.incidentPoints,
+  });
+
+  final List<IncidentPointDto> incidentPoints;
 
   @override
   Widget build(BuildContext context) {
     final requestRepository = RequestRepositoryImpl();
+    final selectedIncidentPointNotifier = ValueNotifier<IncidentPointDto>(
+      incidentPoints.first,
+    );
+    final selectedIncidentPointAsStringNotifier = ValueNotifier<String>(
+      incidentPoints.first.name,
+    );
     final titleFormFieldKey = GlobalKey<FormFieldState>();
     final titleController = TextEditingController();
     final descriptionFormFieldKey = GlobalKey<FormFieldState>();
@@ -32,12 +46,24 @@ class RequestAddScreen extends StatelessWidget {
           Flexible(
             child: ThesisSliverScreen(
               title: 'Ваша новая заявка',
-              child: _AddFields(
-                titleFormFieldKey: titleFormFieldKey,
-                titleController: titleController,
-                descriptionFormFieldKey: descriptionFormFieldKey,
-                descriptionController: descriptionController,
-                imagesNotifier: imagesNotifier,
+              child: Column(
+                children: [
+                  _SelectIncidentPoint(
+                    incidentPoints: incidentPoints,
+                    selectedIncidentPointNotifier:
+                        selectedIncidentPointNotifier,
+                    selectedIncidentPointAsStringNotifier:
+                        selectedIncidentPointAsStringNotifier,
+                  ),
+                  const SizedBox(height: 20),
+                  _AddFields(
+                    titleFormFieldKey: titleFormFieldKey,
+                    titleController: titleController,
+                    descriptionFormFieldKey: descriptionFormFieldKey,
+                    descriptionController: descriptionController,
+                    imagesNotifier: imagesNotifier,
+                  ),
+                ],
               ),
             ),
           ),
@@ -47,6 +73,9 @@ class RequestAddScreen extends StatelessWidget {
             imagesNotifier: imagesNotifier,
             titleController: titleController,
             descriptionController: descriptionController,
+            selectedIncidentPointNotifier: selectedIncidentPointNotifier,
+            selectedIncidentPointAsStringNotifier:
+                selectedIncidentPointAsStringNotifier,
             requestRepository: requestRepository,
           ),
         ],
@@ -62,6 +91,8 @@ class _AddButton extends StatelessWidget {
     required this.imagesNotifier,
     required this.titleController,
     required this.descriptionController,
+    required this.selectedIncidentPointNotifier,
+    required this.selectedIncidentPointAsStringNotifier,
     required this.requestRepository,
   });
 
@@ -70,6 +101,8 @@ class _AddButton extends StatelessWidget {
   final ValueNotifier<List<File>> imagesNotifier;
   final TextEditingController titleController;
   final TextEditingController descriptionController;
+  final ValueNotifier<IncidentPointDto> selectedIncidentPointNotifier;
+  final ValueNotifier<String> selectedIncidentPointAsStringNotifier;
   final RequestRepositoryImpl requestRepository;
 
   @override
@@ -103,8 +136,9 @@ class _AddButton extends StatelessWidget {
               title: titleController.text,
               description: descriptionController.text,
               images: images,
-              incidentPointList: ['3fa85f64-5717-4562-b3fc-2c963f66afa6'],
-              incidentPointListAsString: 'Тестовое местоположение',
+              incidentPointId: selectedIncidentPointNotifier.value.id,
+              incidentPointFullName:
+                  selectedIncidentPointAsStringNotifier.value,
             );
 
             final hasBeenAdd = await requestRepository
@@ -114,7 +148,6 @@ class _AddButton extends StatelessWidget {
             });
 
             MessageHelper.showByStatus(
-              context: context,
               isSuccess: hasBeenAdd,
               successMessage: 'Заявка успешно добавлена',
               errorMessage: 'Заявка не была добавлена... попробуйте позже!',
@@ -123,6 +156,230 @@ class _AddButton extends StatelessWidget {
           text: "Добавить",
         ),
       ),
+    );
+  }
+}
+
+class _SelectIncidentPoint extends StatelessWidget {
+  const _SelectIncidentPoint({
+    required this.incidentPoints,
+    required this.selectedIncidentPointNotifier,
+    required this.selectedIncidentPointAsStringNotifier,
+  });
+
+  final List<IncidentPointDto> incidentPoints;
+  final ValueNotifier<IncidentPointDto> selectedIncidentPointNotifier;
+  final ValueNotifier<String> selectedIncidentPointAsStringNotifier;
+
+  @override
+  Widget build(BuildContext context) {
+    final complexNotifier = ValueNotifier<IncidentPointDto>(
+      incidentPoints.first,
+    );
+    final squareNotifier = ValueNotifier<IncidentPointDto?>(null);
+    final entranceNotifier = ValueNotifier<IncidentPointDto?>(null);
+    final apartmentNotifier = ValueNotifier<IncidentPointDto?>(null);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Местоположение',
+              style: context.textTheme.headlineMedium?.copyWith(fontSize: 24),
+            ),
+            IconButton(
+              icon: const Icon(
+                Icons.backspace_rounded,
+                size: 20,
+                color: kGray1Color,
+              ),
+              onPressed: () {
+                complexNotifier.value = incidentPoints.first;
+                selectedIncidentPointNotifier.value = incidentPoints.first;
+                selectedIncidentPointAsStringNotifier.value =
+                    incidentPoints.first.name;
+                squareNotifier.value = null;
+                entranceNotifier.value = null;
+                apartmentNotifier.value = null;
+              },
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        ValueListenableBuilder(
+          valueListenable: complexNotifier,
+          builder: (context, point, child) {
+            final controller = TextEditingController(
+              text: point.name,
+            );
+            return TextFormField(
+              readOnly: true,
+              controller: controller,
+              decoration: const InputDecoration(
+                hintText: 'Выберите жилой комплекс',
+                labelText: 'Жилой комплекс',
+                suffixIcon: Icon(
+                  Icons.keyboard_arrow_down,
+                  color: kGray1Color,
+                ),
+              ),
+              onTap: () async => await SelectIncidentPointSheep.show(
+                context,
+                title: 'Выберите жилой комплекс',
+                incidentPoints: incidentPoints,
+                onSelected: (incidentPoint) {
+                  complexNotifier.value = incidentPoint;
+                  selectedIncidentPointNotifier.value = incidentPoint;
+                  selectedIncidentPointAsStringNotifier.value =
+                      incidentPoint.name;
+                  squareNotifier.value = null;
+                  entranceNotifier.value = null;
+                  apartmentNotifier.value = null;
+                  Navigator.pop(context);
+                },
+              ),
+            );
+          },
+        ),
+        const SizedBox(height: 12),
+        ValueListenableBuilder(
+          valueListenable: squareNotifier,
+          builder: (context, point, child) {
+            final controller = TextEditingController(
+              text: point?.name,
+            );
+            return Column(
+              children: [
+                TextFormField(
+                  readOnly: true,
+                  controller: controller,
+                  decoration: InputDecoration(
+                    hintText: 'Выберите площадку (необязательно)',
+                    labelText: point == null ? null : 'Площадка',
+                    suffixIcon: const Icon(
+                      Icons.keyboard_arrow_down,
+                      color: kGray1Color,
+                    ),
+                  ),
+                  onTap: () async => await SelectIncidentPointSheep.show(
+                    context,
+                    title: 'Выберите площадку',
+                    incidentPoints: complexNotifier.value.children,
+                    onSelected: (incidentPoint) {
+                      squareNotifier.value = incidentPoint;
+                      selectedIncidentPointNotifier.value = incidentPoint;
+                      selectedIncidentPointAsStringNotifier.value =
+                          '${complexNotifier.value.name}, ${incidentPoint.name}'
+                              .trim();
+                      entranceNotifier.value = null;
+                      apartmentNotifier.value = null;
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+                Visibility(
+                  visible: squareNotifier.value != null &&
+                      squareNotifier.value!.children.isNotEmpty,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 12),
+                    child: ValueListenableBuilder(
+                      valueListenable: entranceNotifier,
+                      builder: (context, point, child) {
+                        final entranceController = TextEditingController(
+                          text: point?.name,
+                        );
+                        return Column(
+                          children: [
+                            TextFormField(
+                              readOnly: true,
+                              controller: entranceController,
+                              decoration: InputDecoration(
+                                hintText: 'Выберите подъезд (необязательно)',
+                                labelText: point == null ? null : 'Подъезд',
+                                suffixIcon: const Icon(
+                                  Icons.keyboard_arrow_down,
+                                  color: kGray1Color,
+                                ),
+                              ),
+                              onTap: () async =>
+                                  await SelectIncidentPointSheep.show(
+                                context,
+                                title: 'Выберите подъезд',
+                                incidentPoints: squareNotifier.value!.children,
+                                onSelected: (incidentPoint) {
+                                  entranceNotifier.value = incidentPoint;
+                                  selectedIncidentPointNotifier.value =
+                                      incidentPoint;
+                                  selectedIncidentPointAsStringNotifier.value =
+                                      '${complexNotifier.value.name}, ${squareNotifier.value!.name}, ${incidentPoint.name}'
+                                          .trim();
+                                  apartmentNotifier.value = null;
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ),
+                            Visibility(
+                              visible: entranceNotifier.value != null &&
+                                  entranceNotifier.value!.children.isNotEmpty,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 12),
+                                child: ValueListenableBuilder(
+                                  valueListenable: apartmentNotifier,
+                                  builder: (context, point, child) {
+                                    final apartmentController =
+                                        TextEditingController(
+                                      text: point?.name,
+                                    );
+                                    return TextFormField(
+                                      readOnly: true,
+                                      controller: apartmentController,
+                                      decoration: InputDecoration(
+                                        hintText:
+                                            'Выберите квартиру (необязательно)',
+                                        labelText:
+                                            point == null ? null : 'Квартира',
+                                        suffixIcon: const Icon(
+                                          Icons.keyboard_arrow_down,
+                                          color: kGray1Color,
+                                        ),
+                                      ),
+                                      onTap: () async =>
+                                          await SelectIncidentPointSheep.show(
+                                        context,
+                                        title: 'Выберите квартиру',
+                                        incidentPoints:
+                                            entranceNotifier.value!.children,
+                                        onSelected: (incidentPoint) {
+                                          apartmentNotifier.value =
+                                              incidentPoint;
+                                          selectedIncidentPointNotifier.value =
+                                              incidentPoint;
+                                          selectedIncidentPointAsStringNotifier
+                                                  .value =
+                                              '${complexNotifier.value.name}, ${squareNotifier.value!.name}, ${entranceNotifier.value!.name}, ${incidentPoint.name}'
+                                                  .trim();
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ],
     );
   }
 }

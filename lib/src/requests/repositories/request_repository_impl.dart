@@ -4,6 +4,7 @@ import '../../../core/helpers/dio_helper.dart';
 import '../../../core/repositories/tokens/tokens_repository_impl.dart';
 import '../contracts/add_comment_dto/add_comment_dto.dart';
 import '../contracts/add_request_dto/add_request_dto.dart';
+import '../contracts/incident_point_dto/incident_point_dto.dart';
 import '../contracts/request_cancel_dto/request_cancel_dto.dart';
 import '../contracts/request_comment_dto/request_comment_dto.dart';
 import '../contracts/request_dto/request_dto.dart';
@@ -206,6 +207,38 @@ class RequestRepositoryImpl implements IRequestRepository {
           throw Exception('Переданы некорректные данные');
         case 404:
           throw Exception('Заявка не найдена');
+        default:
+          throw Exception('Что-то пошло не так');
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<IncidentPointDto>> loadIncidentPointsByUserAparmentIds(
+    List<String> userApartmentIds,
+  ) async {
+    try {
+      final apartmentIds = userApartmentIds.join('&apartmentIds=');
+      final accessToken = await _tokensRepository.getAccessToken();
+      final response = await DioHelper.getData(
+        url: '/assets?apartmentIds=$apartmentIds',
+        headers: {
+          'Content-type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+      );
+
+      switch (response.statusCode) {
+        case 200:
+          return (response.data as List<dynamic>)
+              .map((e) => IncidentPointDto.fromJson(e))
+              .toList();
+        case 400:
+          throw Exception('Не была передана информация о собственности');
+        case 404:
+          throw Exception('Одна из собственностей не найдена');
         default:
           throw Exception('Что-то пошло не так');
       }

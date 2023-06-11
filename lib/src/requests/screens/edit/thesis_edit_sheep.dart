@@ -96,7 +96,6 @@ class ThesisEditSheep {
                   RequestScope.load(context);
                 });
                 MessageHelper.showByStatus(
-                  context: context,
                   isSuccess: hasBeenEdit,
                   successMessage: 'Заявка успешно изменена',
                   errorMessage: 'Заявка не была изменена... попробуйте позже!',

@@ -20,4 +20,9 @@ abstract class RequestScope {
   static void loadSingle(BuildContext context, RequestDto requestDto) {
     of(context).add(RequestEvent.loadSingle(requestDto: requestDto));
   }
+
+  /// Показать экран добавления заявки
+  static void loadAddScreen(BuildContext context) {
+    of(context).add(const RequestEvent.loadAddScreen());
+  }
 }

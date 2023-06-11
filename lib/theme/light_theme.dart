@@ -178,6 +178,19 @@ final lightThemeData = ThemeData(
       borderRadius: BorderRadius.circular(16),
     ),
   ),
+  snackBarTheme: SnackBarThemeData(
+    behavior: SnackBarBehavior.floating,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16),
+    ),
+    backgroundColor: kLightBackgroundSecondaryColor,
+    contentTextStyle: const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 0.15,
+      color: kLightTextPrimaryColor,
+    ),
+  ),
   cardTheme: CardTheme(
     color: kLightBackgroundSecondaryColor,
     elevation: 0,
