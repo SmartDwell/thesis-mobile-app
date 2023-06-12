@@ -12,7 +12,6 @@ class MessageHelper {
   static const _padding = EdgeInsets.all(12);
 
   static void _showDefaultMessage({
-    //required BuildContext context,
     required bool isSuccess,
     required String message,
     double fontSize = 16,
@@ -23,7 +22,6 @@ class MessageHelper {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        //backgroundColor: context.currentTheme.cardTheme.color,
         duration: _showDuration,
         content: Padding(
           padding: _padding,
@@ -42,7 +40,6 @@ class MessageHelper {
                   message,
                   style: TextStyle(
                     fontSize: fontSize,
-                    //color: context.textTheme.titleMedium?.color,
                   ),
                 ),
               ),

@@ -37,6 +37,8 @@ class MyHttpOverrides extends HttpOverrides {
 // TODO: Полноэкранный просмотр картинок
 // TODO: Перенести иконки в отдельный класс
 // TODO: Перенести пути в отдельный класс
+// TODO: Внедрить инверсию зависимостей
+// TODO: Установить иконку и название приложения
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

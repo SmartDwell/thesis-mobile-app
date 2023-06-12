@@ -53,9 +53,25 @@ class RequestCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
-            Text(
-              request.title,
-              style: context.textTheme.headlineSmall,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Flexible(
+                  child: Text(
+                    request.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: context.textTheme.headlineSmall,
+                  ),
+                ),
+                Visibility(
+                  visible: request.isEdited,
+                  child: Text(
+                    ' (ред.)',
+                    style: context.textTheme.bodyMedium,
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 10),
             Row(

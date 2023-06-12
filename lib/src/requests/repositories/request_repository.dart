@@ -32,7 +32,7 @@ abstract class IRequestRepository {
   /// Загрузить статусы заявки
   Future<List<RequestStatusDto>> loadRequestStatuses(String requestId);
 
-  /// Загрузить возможноные точки инцидентов для заявки
+  /// Загрузить возможные точки инцидентов для заявки
   Future<List<IncidentPointDto>> loadIncidentPointsByUserAparmentIds(
     List<String> userApartmentIds,
   );

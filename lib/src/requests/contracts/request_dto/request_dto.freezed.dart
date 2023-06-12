@@ -28,6 +28,7 @@ mixin _$RequestDto {
   DateTime get created => throw _privateConstructorUsedError;
   String get incidentPointId => throw _privateConstructorUsedError;
   String get incidentPointFullName => throw _privateConstructorUsedError;
+  bool get isEdited => throw _privateConstructorUsedError;
   RequestStates get currentState => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,6 +52,7 @@ abstract class $RequestDtoCopyWith<$Res> {
       DateTime created,
       String incidentPointId,
       String incidentPointFullName,
+      bool isEdited,
       RequestStates currentState});
 }
 
@@ -75,6 +77,7 @@ class _$RequestDtoCopyWithImpl<$Res, $Val extends RequestDto>
     Object? created = null,
     Object? incidentPointId = null,
     Object? incidentPointFullName = null,
+    Object? isEdited = null,
     Object? currentState = null,
   }) {
     return _then(_value.copyWith(
@@ -110,6 +113,10 @@ class _$RequestDtoCopyWithImpl<$Res, $Val extends RequestDto>
           ? _value.incidentPointFullName
           : incidentPointFullName // ignore: cast_nullable_to_non_nullable
               as String,
+      isEdited: null == isEdited
+          ? _value.isEdited
+          : isEdited // ignore: cast_nullable_to_non_nullable
+              as bool,
       currentState: null == currentState
           ? _value.currentState
           : currentState // ignore: cast_nullable_to_non_nullable
@@ -135,6 +142,7 @@ abstract class _$$_RequestDtoCopyWith<$Res>
       DateTime created,
       String incidentPointId,
       String incidentPointFullName,
+      bool isEdited,
       RequestStates currentState});
 }
 
@@ -157,6 +165,7 @@ class __$$_RequestDtoCopyWithImpl<$Res>
     Object? created = null,
     Object? incidentPointId = null,
     Object? incidentPointFullName = null,
+    Object? isEdited = null,
     Object? currentState = null,
   }) {
     return _then(_$_RequestDto(
@@ -192,6 +201,10 @@ class __$$_RequestDtoCopyWithImpl<$Res>
           ? _value.incidentPointFullName
           : incidentPointFullName // ignore: cast_nullable_to_non_nullable
               as String,
+      isEdited: null == isEdited
+          ? _value.isEdited
+          : isEdited // ignore: cast_nullable_to_non_nullable
+              as bool,
       currentState: null == currentState
           ? _value.currentState
           : currentState // ignore: cast_nullable_to_non_nullable
@@ -212,6 +225,7 @@ class _$_RequestDto extends _RequestDto {
       required this.created,
       required this.incidentPointId,
       required this.incidentPointFullName,
+      required this.isEdited,
       required this.currentState})
       : _images = images,
         super._();
@@ -242,11 +256,13 @@ class _$_RequestDto extends _RequestDto {
   @override
   final String incidentPointFullName;
   @override
+  final bool isEdited;
+  @override
   final RequestStates currentState;
 
   @override
   String toString() {
-    return 'RequestDto(id: $id, number: $number, title: $title, description: $description, images: $images, created: $created, incidentPointId: $incidentPointId, incidentPointFullName: $incidentPointFullName, currentState: $currentState)';
+    return 'RequestDto(id: $id, number: $number, title: $title, description: $description, images: $images, created: $created, incidentPointId: $incidentPointId, incidentPointFullName: $incidentPointFullName, isEdited: $isEdited, currentState: $currentState)';
   }
 
   @override
@@ -265,6 +281,8 @@ class _$_RequestDto extends _RequestDto {
                 other.incidentPointId == incidentPointId) &&
             (identical(other.incidentPointFullName, incidentPointFullName) ||
                 other.incidentPointFullName == incidentPointFullName) &&
+            (identical(other.isEdited, isEdited) ||
+                other.isEdited == isEdited) &&
             (identical(other.currentState, currentState) ||
                 other.currentState == currentState));
   }
@@ -281,6 +299,7 @@ class _$_RequestDto extends _RequestDto {
       created,
       incidentPointId,
       incidentPointFullName,
+      isEdited,
       currentState);
 
   @JsonKey(ignore: true)
@@ -307,6 +326,7 @@ abstract class _RequestDto extends RequestDto {
       required final DateTime created,
       required final String incidentPointId,
       required final String incidentPointFullName,
+      required final bool isEdited,
       required final RequestStates currentState}) = _$_RequestDto;
   const _RequestDto._() : super._();
 
@@ -329,6 +349,8 @@ abstract class _RequestDto extends RequestDto {
   String get incidentPointId;
   @override
   String get incidentPointFullName;
+  @override
+  bool get isEdited;
   @override
   RequestStates get currentState;
   @override

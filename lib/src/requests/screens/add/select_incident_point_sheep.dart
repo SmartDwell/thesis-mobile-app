@@ -5,7 +5,7 @@ import '../../../../../core/widgets/thesis/thesis_bottom_sheep.dart';
 import '../../../../theme/theme_colors.dart';
 import '../../contracts/incident_point_dto/incident_point_dto.dart';
 
-/// BottomSheep для добавления комментария к заявке
+/// BottomSheep для выбора точки инцидента
 class SelectIncidentPointSheep {
   static Future<void> show(
     BuildContext context, {
@@ -48,7 +48,8 @@ class SelectIncidentPointSheep {
                 ),
               ),
             );
-          }),
+          })
+            ..add(const SizedBox(height: 20)),
         ),
       ),
     );

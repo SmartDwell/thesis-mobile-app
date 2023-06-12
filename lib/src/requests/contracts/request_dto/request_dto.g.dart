@@ -17,6 +17,7 @@ _$_RequestDto _$$_RequestDtoFromJson(Map<String, dynamic> json) =>
       created: DateTime.parse(json['created'] as String),
       incidentPointId: json['incidentPointId'] as String,
       incidentPointFullName: json['incidentPointFullName'] as String,
+      isEdited: json['isEdited'] as bool,
       currentState: $enumDecode(_$RequestStatesEnumMap, json['currentState']),
     );
 
@@ -30,6 +31,7 @@ Map<String, dynamic> _$$_RequestDtoToJson(_$_RequestDto instance) =>
       'created': instance.created.toIso8601String(),
       'incidentPointId': instance.incidentPointId,
       'incidentPointFullName': instance.incidentPointFullName,
+      'isEdited': instance.isEdited,
       'currentState': _$RequestStatesEnumMap[instance.currentState]!,
     };
 

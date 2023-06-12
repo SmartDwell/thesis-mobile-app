@@ -25,6 +25,7 @@ abstract class ThesisRoutes {
   static const String addRequest = '/add_request';
   static const String payments = '/payments';
 
+  /// Сгенерировать роут
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     try {
       switch (settings.name) {

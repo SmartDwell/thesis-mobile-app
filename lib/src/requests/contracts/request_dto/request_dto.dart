@@ -20,6 +20,7 @@ class RequestDto with _$RequestDto {
     required DateTime created,
     required String incidentPointId,
     required String incidentPointFullName,
+    required bool isEdited,
     required RequestStates currentState,
   }) = _RequestDto;
 
