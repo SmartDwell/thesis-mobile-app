@@ -38,7 +38,7 @@ class RequestTabScreen extends StatelessWidget {
           builder: (context, filterPattern, child) {
             final requestsByDateTime = requests
                 .where((request) =>
-                    "${request.title}${request.description}${request.incidentPointListAsString}"
+                    "${request.title}${request.description}${request.incidentPointFullName}"
                         .toLowerCase()
                         .contains(filterPattern.toLowerCase()))
                 .toList();

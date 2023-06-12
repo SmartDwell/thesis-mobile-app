@@ -10,16 +10,11 @@ import 'package:intl/date_symbol_data_local.dart';
 
 import 'core/bloc/bloc_global_observer.dart';
 import 'core/constants/constants.dart';
+import 'core/constants/routes_constants.dart';
 import 'core/helpers/message_helper.dart';
 import 'core/repositories/tokens/tokens_repository_impl.dart';
 import 'core/splash_screen.dart';
-import 'src/access/access_page.dart';
-import 'src/home/home_page.dart';
-import 'src/more/settings/settings_screen.dart';
 import 'src/navigation_bar/navigation_bar.dart';
-import 'src/payments/payment_page.dart';
-import 'src/requests/request_page.dart';
-import 'src/requests/screens/add/request_add_screen.dart';
 import 'src/welcome/auth/auth_scope.dart';
 import 'src/welcome/auth/bloc/auth_bloc.dart';
 import 'src/welcome/login/bloc/login_bloc.dart';
@@ -42,6 +37,8 @@ class MyHttpOverrides extends HttpOverrides {
 // TODO: Полноэкранный просмотр картинок
 // TODO: Перенести иконки в отдельный класс
 // TODO: Перенести пути в отдельный класс
+// TODO: Внедрить инверсию зависимостей
+// TODO: Установить иконку и название приложения
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -91,25 +88,7 @@ class ThesisAppConfigurator extends StatelessWidget {
           scaffoldMessengerKey: MessageHelper.rootScaffoldMessengerKey,
           title: 'Thesis mobile app',
           navigatorKey: NavigationService.navigationKey,
-          onGenerateRoute: (RouteSettings settings) {
-            switch (settings.name) {
-              case '/welcome':
-                return MaterialPageRoute(builder: (_) => const WelcomeScreen());
-              default:
-                return null;
-            }
-          },
-          routes: {
-            "/start": (context) => const ThesisApp(),
-            "/welcome": (context) => const WelcomeScreen(),
-            "/navbar": (context) => const ThesisNavigationBar(),
-            "/settings": (context) => const SettingsScreen(),
-            "/home": (context) => const HomePage(),
-            "/access": (context) => const AccessPage(),
-            "/requests": (context) => const RequestPage(),
-            "/add_request": (context) => const RequestAddScreen(),
-            "/payments": (context) => const PaymentPage(),
-          },
+          onGenerateRoute: ThesisRoutes.generateRoute,
           theme: light,
           darkTheme: dark,
           home: const ThesisApp(),

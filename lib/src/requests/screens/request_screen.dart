@@ -4,8 +4,10 @@ import 'package:provider/provider.dart';
 
 import '../../../core/helpers/fab_notifier_helper.dart';
 import '../../../core/widgets/pages/thesis_empty_page.dart';
+import '../../../core/widgets/thesis/thesis_progress_bar.dart';
 import '../../../core/widgets/thesis/thesis_sliver_screen.dart';
 import '../../../theme/theme_colors.dart';
+import '../../../theme/theme_extention.dart';
 import '../bloc/request_bloc.dart';
 import '../bloc/request_scope.dart';
 import '../widgets/request_shimmer.dart';
@@ -29,22 +31,31 @@ class _RequestScreenState extends State<RequestScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<RequestBloc, RequestState>(
-      listener: (context, state) => state.mapOrNull(
-        initial: (state) => RequestScope.load(context),
-        loadedSingle: (state) => Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>
-                RequestDetailsScreen(requestDto: state.request),
-          ),
-        ).whenComplete(() => RequestScope.load(context)),
-      ),
-      child: ChangeNotifierProvider<FabNotifierHelper>(
-        create: (context) => FabNotifierHelper(),
-        child: Builder(
-          builder: (context) {
-            return ThesisSliverScreen(
+    return ChangeNotifierProvider<FabNotifierHelper>(
+      create: (context) => FabNotifierHelper(),
+      child: Builder(
+        builder: (context) {
+          final fabHelper = context.read<FabNotifierHelper>();
+          return BlocListener<RequestBloc, RequestState>(
+            listener: (context, state) => state.mapOrNull(
+              initial: (state) => RequestScope.load(context),
+              loadedSingle: (state) => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      RequestDetailsScreen(requestDto: state.request),
+                ),
+              ).whenComplete(() => RequestScope.load(context)),
+              loadedAddScreen: (state) => Navigator.pushNamed(
+                context,
+                '/add_request',
+                arguments: state.points,
+              ).whenComplete(() {
+                fabHelper.hideLoading();
+                RequestScope.load(context);
+              }),
+            ),
+            child: ThesisSliverScreen(
               title: 'Ваши заявки',
               child: BlocBuilder<RequestBloc, RequestState>(
                 builder: (context, state) => state.maybeMap(
@@ -63,24 +74,33 @@ class _RequestScreenState extends State<RequestScreen> {
               floatingActionButton: Consumer<FabNotifierHelper>(
                 builder: (context, notifier, child) {
                   return Visibility(
-                    visible: notifier.isShow,
+                    visible: notifier.isShowing,
                     child: FloatingActionButton(
                       backgroundColor: kPrimaryLightColor,
                       foregroundColor: Colors.white,
-                      child: const Icon(
-                        Icons.add_rounded,
-                        size: 40,
+                      child: Visibility(
+                        visible: notifier.isLoading,
+                        child: ThesisProgressBar(
+                          color: context.currentTheme.scaffoldBackgroundColor,
+                        ),
+                        replacement: const Icon(
+                          Icons.add_rounded,
+                          size: 40,
+                        ),
                       ),
-                      onPressed: () =>
-                          Navigator.pushNamed(context, '/add_request')
-                              .whenComplete(() => RequestScope.load(context)),
+                      onPressed: () async {
+                        if (notifier.isLoading) return;
+
+                        fabHelper.showLoading();
+                        RequestScope.loadAddScreen(context);
+                      },
                     ),
                   );
                 },
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

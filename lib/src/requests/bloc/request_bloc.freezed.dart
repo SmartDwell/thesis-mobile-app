@@ -22,6 +22,7 @@ mixin _$RequestEvent {
     required TResult Function() refresh,
     required TResult Function(RequestDto requestDto) loadSingle,
     required TResult Function(String requestId) loadSingleById,
+    required TResult Function() loadAddScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$RequestEvent {
     TResult? Function()? refresh,
     TResult? Function(RequestDto requestDto)? loadSingle,
     TResult? Function(String requestId)? loadSingleById,
+    TResult? Function()? loadAddScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$RequestEvent {
     TResult Function()? refresh,
     TResult Function(RequestDto requestDto)? loadSingle,
     TResult Function(String requestId)? loadSingleById,
+    TResult Function()? loadAddScreen,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$RequestEvent {
     required TResult Function(_RequestRefreshEvent value) refresh,
     required TResult Function(_RequestLoadSingleEvent value) loadSingle,
     required TResult Function(_RequestLoadSingleByIdEvent value) loadSingleById,
+    required TResult Function(_RequestLoadAddScreenEvent value) loadAddScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$RequestEvent {
     TResult? Function(_RequestRefreshEvent value)? refresh,
     TResult? Function(_RequestLoadSingleEvent value)? loadSingle,
     TResult? Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
+    TResult? Function(_RequestLoadAddScreenEvent value)? loadAddScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$RequestEvent {
     TResult Function(_RequestRefreshEvent value)? refresh,
     TResult Function(_RequestLoadSingleEvent value)? loadSingle,
     TResult Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
+    TResult Function(_RequestLoadAddScreenEvent value)? loadAddScreen,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -128,6 +134,7 @@ class _$_RequestLoadEvent implements _RequestLoadEvent {
     required TResult Function() refresh,
     required TResult Function(RequestDto requestDto) loadSingle,
     required TResult Function(String requestId) loadSingleById,
+    required TResult Function() loadAddScreen,
   }) {
     return load();
   }
@@ -139,6 +146,7 @@ class _$_RequestLoadEvent implements _RequestLoadEvent {
     TResult? Function()? refresh,
     TResult? Function(RequestDto requestDto)? loadSingle,
     TResult? Function(String requestId)? loadSingleById,
+    TResult? Function()? loadAddScreen,
   }) {
     return load?.call();
   }
@@ -150,6 +158,7 @@ class _$_RequestLoadEvent implements _RequestLoadEvent {
     TResult Function()? refresh,
     TResult Function(RequestDto requestDto)? loadSingle,
     TResult Function(String requestId)? loadSingleById,
+    TResult Function()? loadAddScreen,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -165,6 +174,7 @@ class _$_RequestLoadEvent implements _RequestLoadEvent {
     required TResult Function(_RequestRefreshEvent value) refresh,
     required TResult Function(_RequestLoadSingleEvent value) loadSingle,
     required TResult Function(_RequestLoadSingleByIdEvent value) loadSingleById,
+    required TResult Function(_RequestLoadAddScreenEvent value) loadAddScreen,
   }) {
     return load(this);
   }
@@ -176,6 +186,7 @@ class _$_RequestLoadEvent implements _RequestLoadEvent {
     TResult? Function(_RequestRefreshEvent value)? refresh,
     TResult? Function(_RequestLoadSingleEvent value)? loadSingle,
     TResult? Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
+    TResult? Function(_RequestLoadAddScreenEvent value)? loadAddScreen,
   }) {
     return load?.call(this);
   }
@@ -187,6 +198,7 @@ class _$_RequestLoadEvent implements _RequestLoadEvent {
     TResult Function(_RequestRefreshEvent value)? refresh,
     TResult Function(_RequestLoadSingleEvent value)? loadSingle,
     TResult Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
+    TResult Function(_RequestLoadAddScreenEvent value)? loadAddScreen,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -242,6 +254,7 @@ class _$_RequestRefreshEvent implements _RequestRefreshEvent {
     required TResult Function() refresh,
     required TResult Function(RequestDto requestDto) loadSingle,
     required TResult Function(String requestId) loadSingleById,
+    required TResult Function() loadAddScreen,
   }) {
     return refresh();
   }
@@ -253,6 +266,7 @@ class _$_RequestRefreshEvent implements _RequestRefreshEvent {
     TResult? Function()? refresh,
     TResult? Function(RequestDto requestDto)? loadSingle,
     TResult? Function(String requestId)? loadSingleById,
+    TResult? Function()? loadAddScreen,
   }) {
     return refresh?.call();
   }
@@ -264,6 +278,7 @@ class _$_RequestRefreshEvent implements _RequestRefreshEvent {
     TResult Function()? refresh,
     TResult Function(RequestDto requestDto)? loadSingle,
     TResult Function(String requestId)? loadSingleById,
+    TResult Function()? loadAddScreen,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -279,6 +294,7 @@ class _$_RequestRefreshEvent implements _RequestRefreshEvent {
     required TResult Function(_RequestRefreshEvent value) refresh,
     required TResult Function(_RequestLoadSingleEvent value) loadSingle,
     required TResult Function(_RequestLoadSingleByIdEvent value) loadSingleById,
+    required TResult Function(_RequestLoadAddScreenEvent value) loadAddScreen,
   }) {
     return refresh(this);
   }
@@ -290,6 +306,7 @@ class _$_RequestRefreshEvent implements _RequestRefreshEvent {
     TResult? Function(_RequestRefreshEvent value)? refresh,
     TResult? Function(_RequestLoadSingleEvent value)? loadSingle,
     TResult? Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
+    TResult? Function(_RequestLoadAddScreenEvent value)? loadAddScreen,
   }) {
     return refresh?.call(this);
   }
@@ -301,6 +318,7 @@ class _$_RequestRefreshEvent implements _RequestRefreshEvent {
     TResult Function(_RequestRefreshEvent value)? refresh,
     TResult Function(_RequestLoadSingleEvent value)? loadSingle,
     TResult Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
+    TResult Function(_RequestLoadAddScreenEvent value)? loadAddScreen,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -394,6 +412,7 @@ class _$_RequestLoadSingleEvent implements _RequestLoadSingleEvent {
     required TResult Function() refresh,
     required TResult Function(RequestDto requestDto) loadSingle,
     required TResult Function(String requestId) loadSingleById,
+    required TResult Function() loadAddScreen,
   }) {
     return loadSingle(requestDto);
   }
@@ -405,6 +424,7 @@ class _$_RequestLoadSingleEvent implements _RequestLoadSingleEvent {
     TResult? Function()? refresh,
     TResult? Function(RequestDto requestDto)? loadSingle,
     TResult? Function(String requestId)? loadSingleById,
+    TResult? Function()? loadAddScreen,
   }) {
     return loadSingle?.call(requestDto);
   }
@@ -416,6 +436,7 @@ class _$_RequestLoadSingleEvent implements _RequestLoadSingleEvent {
     TResult Function()? refresh,
     TResult Function(RequestDto requestDto)? loadSingle,
     TResult Function(String requestId)? loadSingleById,
+    TResult Function()? loadAddScreen,
     required TResult orElse(),
   }) {
     if (loadSingle != null) {
@@ -431,6 +452,7 @@ class _$_RequestLoadSingleEvent implements _RequestLoadSingleEvent {
     required TResult Function(_RequestRefreshEvent value) refresh,
     required TResult Function(_RequestLoadSingleEvent value) loadSingle,
     required TResult Function(_RequestLoadSingleByIdEvent value) loadSingleById,
+    required TResult Function(_RequestLoadAddScreenEvent value) loadAddScreen,
   }) {
     return loadSingle(this);
   }
@@ -442,6 +464,7 @@ class _$_RequestLoadSingleEvent implements _RequestLoadSingleEvent {
     TResult? Function(_RequestRefreshEvent value)? refresh,
     TResult? Function(_RequestLoadSingleEvent value)? loadSingle,
     TResult? Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
+    TResult? Function(_RequestLoadAddScreenEvent value)? loadAddScreen,
   }) {
     return loadSingle?.call(this);
   }
@@ -453,6 +476,7 @@ class _$_RequestLoadSingleEvent implements _RequestLoadSingleEvent {
     TResult Function(_RequestRefreshEvent value)? refresh,
     TResult Function(_RequestLoadSingleEvent value)? loadSingle,
     TResult Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
+    TResult Function(_RequestLoadAddScreenEvent value)? loadAddScreen,
     required TResult orElse(),
   }) {
     if (loadSingle != null) {
@@ -544,6 +568,7 @@ class _$_RequestLoadSingleByIdEvent implements _RequestLoadSingleByIdEvent {
     required TResult Function() refresh,
     required TResult Function(RequestDto requestDto) loadSingle,
     required TResult Function(String requestId) loadSingleById,
+    required TResult Function() loadAddScreen,
   }) {
     return loadSingleById(requestId);
   }
@@ -555,6 +580,7 @@ class _$_RequestLoadSingleByIdEvent implements _RequestLoadSingleByIdEvent {
     TResult? Function()? refresh,
     TResult? Function(RequestDto requestDto)? loadSingle,
     TResult? Function(String requestId)? loadSingleById,
+    TResult? Function()? loadAddScreen,
   }) {
     return loadSingleById?.call(requestId);
   }
@@ -566,6 +592,7 @@ class _$_RequestLoadSingleByIdEvent implements _RequestLoadSingleByIdEvent {
     TResult Function()? refresh,
     TResult Function(RequestDto requestDto)? loadSingle,
     TResult Function(String requestId)? loadSingleById,
+    TResult Function()? loadAddScreen,
     required TResult orElse(),
   }) {
     if (loadSingleById != null) {
@@ -581,6 +608,7 @@ class _$_RequestLoadSingleByIdEvent implements _RequestLoadSingleByIdEvent {
     required TResult Function(_RequestRefreshEvent value) refresh,
     required TResult Function(_RequestLoadSingleEvent value) loadSingle,
     required TResult Function(_RequestLoadSingleByIdEvent value) loadSingleById,
+    required TResult Function(_RequestLoadAddScreenEvent value) loadAddScreen,
   }) {
     return loadSingleById(this);
   }
@@ -592,6 +620,7 @@ class _$_RequestLoadSingleByIdEvent implements _RequestLoadSingleByIdEvent {
     TResult? Function(_RequestRefreshEvent value)? refresh,
     TResult? Function(_RequestLoadSingleEvent value)? loadSingle,
     TResult? Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
+    TResult? Function(_RequestLoadAddScreenEvent value)? loadAddScreen,
   }) {
     return loadSingleById?.call(this);
   }
@@ -603,6 +632,7 @@ class _$_RequestLoadSingleByIdEvent implements _RequestLoadSingleByIdEvent {
     TResult Function(_RequestRefreshEvent value)? refresh,
     TResult Function(_RequestLoadSingleEvent value)? loadSingle,
     TResult Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
+    TResult Function(_RequestLoadAddScreenEvent value)? loadAddScreen,
     required TResult orElse(),
   }) {
     if (loadSingleById != null) {
@@ -623,6 +653,129 @@ abstract class _RequestLoadSingleByIdEvent implements RequestEvent {
 }
 
 /// @nodoc
+abstract class _$$_RequestLoadAddScreenEventCopyWith<$Res> {
+  factory _$$_RequestLoadAddScreenEventCopyWith(
+          _$_RequestLoadAddScreenEvent value,
+          $Res Function(_$_RequestLoadAddScreenEvent) then) =
+      __$$_RequestLoadAddScreenEventCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_RequestLoadAddScreenEventCopyWithImpl<$Res>
+    extends _$RequestEventCopyWithImpl<$Res, _$_RequestLoadAddScreenEvent>
+    implements _$$_RequestLoadAddScreenEventCopyWith<$Res> {
+  __$$_RequestLoadAddScreenEventCopyWithImpl(
+      _$_RequestLoadAddScreenEvent _value,
+      $Res Function(_$_RequestLoadAddScreenEvent) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_RequestLoadAddScreenEvent implements _RequestLoadAddScreenEvent {
+  const _$_RequestLoadAddScreenEvent();
+
+  @override
+  String toString() {
+    return 'RequestEvent.loadAddScreen()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RequestLoadAddScreenEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function() refresh,
+    required TResult Function(RequestDto requestDto) loadSingle,
+    required TResult Function(String requestId) loadSingleById,
+    required TResult Function() loadAddScreen,
+  }) {
+    return loadAddScreen();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function()? refresh,
+    TResult? Function(RequestDto requestDto)? loadSingle,
+    TResult? Function(String requestId)? loadSingleById,
+    TResult? Function()? loadAddScreen,
+  }) {
+    return loadAddScreen?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function()? refresh,
+    TResult Function(RequestDto requestDto)? loadSingle,
+    TResult Function(String requestId)? loadSingleById,
+    TResult Function()? loadAddScreen,
+    required TResult orElse(),
+  }) {
+    if (loadAddScreen != null) {
+      return loadAddScreen();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RequestLoadEvent value) load,
+    required TResult Function(_RequestRefreshEvent value) refresh,
+    required TResult Function(_RequestLoadSingleEvent value) loadSingle,
+    required TResult Function(_RequestLoadSingleByIdEvent value) loadSingleById,
+    required TResult Function(_RequestLoadAddScreenEvent value) loadAddScreen,
+  }) {
+    return loadAddScreen(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_RequestLoadEvent value)? load,
+    TResult? Function(_RequestRefreshEvent value)? refresh,
+    TResult? Function(_RequestLoadSingleEvent value)? loadSingle,
+    TResult? Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
+    TResult? Function(_RequestLoadAddScreenEvent value)? loadAddScreen,
+  }) {
+    return loadAddScreen?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RequestLoadEvent value)? load,
+    TResult Function(_RequestRefreshEvent value)? refresh,
+    TResult Function(_RequestLoadSingleEvent value)? loadSingle,
+    TResult Function(_RequestLoadSingleByIdEvent value)? loadSingleById,
+    TResult Function(_RequestLoadAddScreenEvent value)? loadAddScreen,
+    required TResult orElse(),
+  }) {
+    if (loadAddScreen != null) {
+      return loadAddScreen(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RequestLoadAddScreenEvent implements RequestEvent {
+  const factory _RequestLoadAddScreenEvent() = _$_RequestLoadAddScreenEvent;
+}
+
+/// @nodoc
 mixin _$RequestState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -630,6 +783,7 @@ mixin _$RequestState {
     required TResult Function() loading,
     required TResult Function(List<RequestDto> requests) loaded,
     required TResult Function(RequestDto request) loadedSingle,
+    required TResult Function(List<IncidentPointDto> points) loadedAddScreen,
     required TResult Function() empty,
     required TResult Function() error,
   }) =>
@@ -640,6 +794,7 @@ mixin _$RequestState {
     TResult? Function()? loading,
     TResult? Function(List<RequestDto> requests)? loaded,
     TResult? Function(RequestDto request)? loadedSingle,
+    TResult? Function(List<IncidentPointDto> points)? loadedAddScreen,
     TResult? Function()? empty,
     TResult? Function()? error,
   }) =>
@@ -650,6 +805,7 @@ mixin _$RequestState {
     TResult Function()? loading,
     TResult Function(List<RequestDto> requests)? loaded,
     TResult Function(RequestDto request)? loadedSingle,
+    TResult Function(List<IncidentPointDto> points)? loadedAddScreen,
     TResult Function()? empty,
     TResult Function()? error,
     required TResult orElse(),
@@ -661,6 +817,8 @@ mixin _$RequestState {
     required TResult Function(_RequestLoadingState value) loading,
     required TResult Function(_RequestLoadedState value) loaded,
     required TResult Function(_RequestLoadedSingleState value) loadedSingle,
+    required TResult Function(_RequestLoadedAddScreenState value)
+        loadedAddScreen,
     required TResult Function(_RequestEmptyState value) empty,
     required TResult Function(_RequestErrorState value) error,
   }) =>
@@ -671,6 +829,7 @@ mixin _$RequestState {
     TResult? Function(_RequestLoadingState value)? loading,
     TResult? Function(_RequestLoadedState value)? loaded,
     TResult? Function(_RequestLoadedSingleState value)? loadedSingle,
+    TResult? Function(_RequestLoadedAddScreenState value)? loadedAddScreen,
     TResult? Function(_RequestEmptyState value)? empty,
     TResult? Function(_RequestErrorState value)? error,
   }) =>
@@ -681,6 +840,7 @@ mixin _$RequestState {
     TResult Function(_RequestLoadingState value)? loading,
     TResult Function(_RequestLoadedState value)? loaded,
     TResult Function(_RequestLoadedSingleState value)? loadedSingle,
+    TResult Function(_RequestLoadedAddScreenState value)? loadedAddScreen,
     TResult Function(_RequestEmptyState value)? empty,
     TResult Function(_RequestErrorState value)? error,
     required TResult orElse(),
@@ -748,6 +908,7 @@ class _$_RequestInitialState implements _RequestInitialState {
     required TResult Function() loading,
     required TResult Function(List<RequestDto> requests) loaded,
     required TResult Function(RequestDto request) loadedSingle,
+    required TResult Function(List<IncidentPointDto> points) loadedAddScreen,
     required TResult Function() empty,
     required TResult Function() error,
   }) {
@@ -761,6 +922,7 @@ class _$_RequestInitialState implements _RequestInitialState {
     TResult? Function()? loading,
     TResult? Function(List<RequestDto> requests)? loaded,
     TResult? Function(RequestDto request)? loadedSingle,
+    TResult? Function(List<IncidentPointDto> points)? loadedAddScreen,
     TResult? Function()? empty,
     TResult? Function()? error,
   }) {
@@ -774,6 +936,7 @@ class _$_RequestInitialState implements _RequestInitialState {
     TResult Function()? loading,
     TResult Function(List<RequestDto> requests)? loaded,
     TResult Function(RequestDto request)? loadedSingle,
+    TResult Function(List<IncidentPointDto> points)? loadedAddScreen,
     TResult Function()? empty,
     TResult Function()? error,
     required TResult orElse(),
@@ -791,6 +954,8 @@ class _$_RequestInitialState implements _RequestInitialState {
     required TResult Function(_RequestLoadingState value) loading,
     required TResult Function(_RequestLoadedState value) loaded,
     required TResult Function(_RequestLoadedSingleState value) loadedSingle,
+    required TResult Function(_RequestLoadedAddScreenState value)
+        loadedAddScreen,
     required TResult Function(_RequestEmptyState value) empty,
     required TResult Function(_RequestErrorState value) error,
   }) {
@@ -804,6 +969,7 @@ class _$_RequestInitialState implements _RequestInitialState {
     TResult? Function(_RequestLoadingState value)? loading,
     TResult? Function(_RequestLoadedState value)? loaded,
     TResult? Function(_RequestLoadedSingleState value)? loadedSingle,
+    TResult? Function(_RequestLoadedAddScreenState value)? loadedAddScreen,
     TResult? Function(_RequestEmptyState value)? empty,
     TResult? Function(_RequestErrorState value)? error,
   }) {
@@ -817,6 +983,7 @@ class _$_RequestInitialState implements _RequestInitialState {
     TResult Function(_RequestLoadingState value)? loading,
     TResult Function(_RequestLoadedState value)? loaded,
     TResult Function(_RequestLoadedSingleState value)? loadedSingle,
+    TResult Function(_RequestLoadedAddScreenState value)? loadedAddScreen,
     TResult Function(_RequestEmptyState value)? empty,
     TResult Function(_RequestErrorState value)? error,
     required TResult orElse(),
@@ -874,6 +1041,7 @@ class _$_RequestLoadingState implements _RequestLoadingState {
     required TResult Function() loading,
     required TResult Function(List<RequestDto> requests) loaded,
     required TResult Function(RequestDto request) loadedSingle,
+    required TResult Function(List<IncidentPointDto> points) loadedAddScreen,
     required TResult Function() empty,
     required TResult Function() error,
   }) {
@@ -887,6 +1055,7 @@ class _$_RequestLoadingState implements _RequestLoadingState {
     TResult? Function()? loading,
     TResult? Function(List<RequestDto> requests)? loaded,
     TResult? Function(RequestDto request)? loadedSingle,
+    TResult? Function(List<IncidentPointDto> points)? loadedAddScreen,
     TResult? Function()? empty,
     TResult? Function()? error,
   }) {
@@ -900,6 +1069,7 @@ class _$_RequestLoadingState implements _RequestLoadingState {
     TResult Function()? loading,
     TResult Function(List<RequestDto> requests)? loaded,
     TResult Function(RequestDto request)? loadedSingle,
+    TResult Function(List<IncidentPointDto> points)? loadedAddScreen,
     TResult Function()? empty,
     TResult Function()? error,
     required TResult orElse(),
@@ -917,6 +1087,8 @@ class _$_RequestLoadingState implements _RequestLoadingState {
     required TResult Function(_RequestLoadingState value) loading,
     required TResult Function(_RequestLoadedState value) loaded,
     required TResult Function(_RequestLoadedSingleState value) loadedSingle,
+    required TResult Function(_RequestLoadedAddScreenState value)
+        loadedAddScreen,
     required TResult Function(_RequestEmptyState value) empty,
     required TResult Function(_RequestErrorState value) error,
   }) {
@@ -930,6 +1102,7 @@ class _$_RequestLoadingState implements _RequestLoadingState {
     TResult? Function(_RequestLoadingState value)? loading,
     TResult? Function(_RequestLoadedState value)? loaded,
     TResult? Function(_RequestLoadedSingleState value)? loadedSingle,
+    TResult? Function(_RequestLoadedAddScreenState value)? loadedAddScreen,
     TResult? Function(_RequestEmptyState value)? empty,
     TResult? Function(_RequestErrorState value)? error,
   }) {
@@ -943,6 +1116,7 @@ class _$_RequestLoadingState implements _RequestLoadingState {
     TResult Function(_RequestLoadingState value)? loading,
     TResult Function(_RequestLoadedState value)? loaded,
     TResult Function(_RequestLoadedSingleState value)? loadedSingle,
+    TResult Function(_RequestLoadedAddScreenState value)? loadedAddScreen,
     TResult Function(_RequestEmptyState value)? empty,
     TResult Function(_RequestErrorState value)? error,
     required TResult orElse(),
@@ -1034,6 +1208,7 @@ class _$_RequestLoadedState implements _RequestLoadedState {
     required TResult Function() loading,
     required TResult Function(List<RequestDto> requests) loaded,
     required TResult Function(RequestDto request) loadedSingle,
+    required TResult Function(List<IncidentPointDto> points) loadedAddScreen,
     required TResult Function() empty,
     required TResult Function() error,
   }) {
@@ -1047,6 +1222,7 @@ class _$_RequestLoadedState implements _RequestLoadedState {
     TResult? Function()? loading,
     TResult? Function(List<RequestDto> requests)? loaded,
     TResult? Function(RequestDto request)? loadedSingle,
+    TResult? Function(List<IncidentPointDto> points)? loadedAddScreen,
     TResult? Function()? empty,
     TResult? Function()? error,
   }) {
@@ -1060,6 +1236,7 @@ class _$_RequestLoadedState implements _RequestLoadedState {
     TResult Function()? loading,
     TResult Function(List<RequestDto> requests)? loaded,
     TResult Function(RequestDto request)? loadedSingle,
+    TResult Function(List<IncidentPointDto> points)? loadedAddScreen,
     TResult Function()? empty,
     TResult Function()? error,
     required TResult orElse(),
@@ -1077,6 +1254,8 @@ class _$_RequestLoadedState implements _RequestLoadedState {
     required TResult Function(_RequestLoadingState value) loading,
     required TResult Function(_RequestLoadedState value) loaded,
     required TResult Function(_RequestLoadedSingleState value) loadedSingle,
+    required TResult Function(_RequestLoadedAddScreenState value)
+        loadedAddScreen,
     required TResult Function(_RequestEmptyState value) empty,
     required TResult Function(_RequestErrorState value) error,
   }) {
@@ -1090,6 +1269,7 @@ class _$_RequestLoadedState implements _RequestLoadedState {
     TResult? Function(_RequestLoadingState value)? loading,
     TResult? Function(_RequestLoadedState value)? loaded,
     TResult? Function(_RequestLoadedSingleState value)? loadedSingle,
+    TResult? Function(_RequestLoadedAddScreenState value)? loadedAddScreen,
     TResult? Function(_RequestEmptyState value)? empty,
     TResult? Function(_RequestErrorState value)? error,
   }) {
@@ -1103,6 +1283,7 @@ class _$_RequestLoadedState implements _RequestLoadedState {
     TResult Function(_RequestLoadingState value)? loading,
     TResult Function(_RequestLoadedState value)? loaded,
     TResult Function(_RequestLoadedSingleState value)? loadedSingle,
+    TResult Function(_RequestLoadedAddScreenState value)? loadedAddScreen,
     TResult Function(_RequestEmptyState value)? empty,
     TResult Function(_RequestErrorState value)? error,
     required TResult orElse(),
@@ -1204,6 +1385,7 @@ class _$_RequestLoadedSingleState implements _RequestLoadedSingleState {
     required TResult Function() loading,
     required TResult Function(List<RequestDto> requests) loaded,
     required TResult Function(RequestDto request) loadedSingle,
+    required TResult Function(List<IncidentPointDto> points) loadedAddScreen,
     required TResult Function() empty,
     required TResult Function() error,
   }) {
@@ -1217,6 +1399,7 @@ class _$_RequestLoadedSingleState implements _RequestLoadedSingleState {
     TResult? Function()? loading,
     TResult? Function(List<RequestDto> requests)? loaded,
     TResult? Function(RequestDto request)? loadedSingle,
+    TResult? Function(List<IncidentPointDto> points)? loadedAddScreen,
     TResult? Function()? empty,
     TResult? Function()? error,
   }) {
@@ -1230,6 +1413,7 @@ class _$_RequestLoadedSingleState implements _RequestLoadedSingleState {
     TResult Function()? loading,
     TResult Function(List<RequestDto> requests)? loaded,
     TResult Function(RequestDto request)? loadedSingle,
+    TResult Function(List<IncidentPointDto> points)? loadedAddScreen,
     TResult Function()? empty,
     TResult Function()? error,
     required TResult orElse(),
@@ -1247,6 +1431,8 @@ class _$_RequestLoadedSingleState implements _RequestLoadedSingleState {
     required TResult Function(_RequestLoadingState value) loading,
     required TResult Function(_RequestLoadedState value) loaded,
     required TResult Function(_RequestLoadedSingleState value) loadedSingle,
+    required TResult Function(_RequestLoadedAddScreenState value)
+        loadedAddScreen,
     required TResult Function(_RequestEmptyState value) empty,
     required TResult Function(_RequestErrorState value) error,
   }) {
@@ -1260,6 +1446,7 @@ class _$_RequestLoadedSingleState implements _RequestLoadedSingleState {
     TResult? Function(_RequestLoadingState value)? loading,
     TResult? Function(_RequestLoadedState value)? loaded,
     TResult? Function(_RequestLoadedSingleState value)? loadedSingle,
+    TResult? Function(_RequestLoadedAddScreenState value)? loadedAddScreen,
     TResult? Function(_RequestEmptyState value)? empty,
     TResult? Function(_RequestErrorState value)? error,
   }) {
@@ -1273,6 +1460,7 @@ class _$_RequestLoadedSingleState implements _RequestLoadedSingleState {
     TResult Function(_RequestLoadingState value)? loading,
     TResult Function(_RequestLoadedState value)? loaded,
     TResult Function(_RequestLoadedSingleState value)? loadedSingle,
+    TResult Function(_RequestLoadedAddScreenState value)? loadedAddScreen,
     TResult Function(_RequestEmptyState value)? empty,
     TResult Function(_RequestErrorState value)? error,
     required TResult orElse(),
@@ -1291,6 +1479,183 @@ abstract class _RequestLoadedSingleState implements RequestState {
   RequestDto get request;
   @JsonKey(ignore: true)
   _$$_RequestLoadedSingleStateCopyWith<_$_RequestLoadedSingleState>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_RequestLoadedAddScreenStateCopyWith<$Res> {
+  factory _$$_RequestLoadedAddScreenStateCopyWith(
+          _$_RequestLoadedAddScreenState value,
+          $Res Function(_$_RequestLoadedAddScreenState) then) =
+      __$$_RequestLoadedAddScreenStateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<IncidentPointDto> points});
+}
+
+/// @nodoc
+class __$$_RequestLoadedAddScreenStateCopyWithImpl<$Res>
+    extends _$RequestStateCopyWithImpl<$Res, _$_RequestLoadedAddScreenState>
+    implements _$$_RequestLoadedAddScreenStateCopyWith<$Res> {
+  __$$_RequestLoadedAddScreenStateCopyWithImpl(
+      _$_RequestLoadedAddScreenState _value,
+      $Res Function(_$_RequestLoadedAddScreenState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? points = null,
+  }) {
+    return _then(_$_RequestLoadedAddScreenState(
+      points: null == points
+          ? _value._points
+          : points // ignore: cast_nullable_to_non_nullable
+              as List<IncidentPointDto>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RequestLoadedAddScreenState implements _RequestLoadedAddScreenState {
+  const _$_RequestLoadedAddScreenState(
+      {required final List<IncidentPointDto> points})
+      : _points = points;
+
+  final List<IncidentPointDto> _points;
+  @override
+  List<IncidentPointDto> get points {
+    if (_points is EqualUnmodifiableListView) return _points;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_points);
+  }
+
+  @override
+  String toString() {
+    return 'RequestState.loadedAddScreen(points: $points)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RequestLoadedAddScreenState &&
+            const DeepCollectionEquality().equals(other._points, _points));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_points));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RequestLoadedAddScreenStateCopyWith<_$_RequestLoadedAddScreenState>
+      get copyWith => __$$_RequestLoadedAddScreenStateCopyWithImpl<
+          _$_RequestLoadedAddScreenState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<RequestDto> requests) loaded,
+    required TResult Function(RequestDto request) loadedSingle,
+    required TResult Function(List<IncidentPointDto> points) loadedAddScreen,
+    required TResult Function() empty,
+    required TResult Function() error,
+  }) {
+    return loadedAddScreen(points);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<RequestDto> requests)? loaded,
+    TResult? Function(RequestDto request)? loadedSingle,
+    TResult? Function(List<IncidentPointDto> points)? loadedAddScreen,
+    TResult? Function()? empty,
+    TResult? Function()? error,
+  }) {
+    return loadedAddScreen?.call(points);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<RequestDto> requests)? loaded,
+    TResult Function(RequestDto request)? loadedSingle,
+    TResult Function(List<IncidentPointDto> points)? loadedAddScreen,
+    TResult Function()? empty,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (loadedAddScreen != null) {
+      return loadedAddScreen(points);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RequestInitialState value) initial,
+    required TResult Function(_RequestLoadingState value) loading,
+    required TResult Function(_RequestLoadedState value) loaded,
+    required TResult Function(_RequestLoadedSingleState value) loadedSingle,
+    required TResult Function(_RequestLoadedAddScreenState value)
+        loadedAddScreen,
+    required TResult Function(_RequestEmptyState value) empty,
+    required TResult Function(_RequestErrorState value) error,
+  }) {
+    return loadedAddScreen(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_RequestInitialState value)? initial,
+    TResult? Function(_RequestLoadingState value)? loading,
+    TResult? Function(_RequestLoadedState value)? loaded,
+    TResult? Function(_RequestLoadedSingleState value)? loadedSingle,
+    TResult? Function(_RequestLoadedAddScreenState value)? loadedAddScreen,
+    TResult? Function(_RequestEmptyState value)? empty,
+    TResult? Function(_RequestErrorState value)? error,
+  }) {
+    return loadedAddScreen?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RequestInitialState value)? initial,
+    TResult Function(_RequestLoadingState value)? loading,
+    TResult Function(_RequestLoadedState value)? loaded,
+    TResult Function(_RequestLoadedSingleState value)? loadedSingle,
+    TResult Function(_RequestLoadedAddScreenState value)? loadedAddScreen,
+    TResult Function(_RequestEmptyState value)? empty,
+    TResult Function(_RequestErrorState value)? error,
+    required TResult orElse(),
+  }) {
+    if (loadedAddScreen != null) {
+      return loadedAddScreen(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RequestLoadedAddScreenState implements RequestState {
+  const factory _RequestLoadedAddScreenState(
+          {required final List<IncidentPointDto> points}) =
+      _$_RequestLoadedAddScreenState;
+
+  List<IncidentPointDto> get points;
+  @JsonKey(ignore: true)
+  _$$_RequestLoadedAddScreenStateCopyWith<_$_RequestLoadedAddScreenState>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1336,6 +1701,7 @@ class _$_RequestEmptyState implements _RequestEmptyState {
     required TResult Function() loading,
     required TResult Function(List<RequestDto> requests) loaded,
     required TResult Function(RequestDto request) loadedSingle,
+    required TResult Function(List<IncidentPointDto> points) loadedAddScreen,
     required TResult Function() empty,
     required TResult Function() error,
   }) {
@@ -1349,6 +1715,7 @@ class _$_RequestEmptyState implements _RequestEmptyState {
     TResult? Function()? loading,
     TResult? Function(List<RequestDto> requests)? loaded,
     TResult? Function(RequestDto request)? loadedSingle,
+    TResult? Function(List<IncidentPointDto> points)? loadedAddScreen,
     TResult? Function()? empty,
     TResult? Function()? error,
   }) {
@@ -1362,6 +1729,7 @@ class _$_RequestEmptyState implements _RequestEmptyState {
     TResult Function()? loading,
     TResult Function(List<RequestDto> requests)? loaded,
     TResult Function(RequestDto request)? loadedSingle,
+    TResult Function(List<IncidentPointDto> points)? loadedAddScreen,
     TResult Function()? empty,
     TResult Function()? error,
     required TResult orElse(),
@@ -1379,6 +1747,8 @@ class _$_RequestEmptyState implements _RequestEmptyState {
     required TResult Function(_RequestLoadingState value) loading,
     required TResult Function(_RequestLoadedState value) loaded,
     required TResult Function(_RequestLoadedSingleState value) loadedSingle,
+    required TResult Function(_RequestLoadedAddScreenState value)
+        loadedAddScreen,
     required TResult Function(_RequestEmptyState value) empty,
     required TResult Function(_RequestErrorState value) error,
   }) {
@@ -1392,6 +1762,7 @@ class _$_RequestEmptyState implements _RequestEmptyState {
     TResult? Function(_RequestLoadingState value)? loading,
     TResult? Function(_RequestLoadedState value)? loaded,
     TResult? Function(_RequestLoadedSingleState value)? loadedSingle,
+    TResult? Function(_RequestLoadedAddScreenState value)? loadedAddScreen,
     TResult? Function(_RequestEmptyState value)? empty,
     TResult? Function(_RequestErrorState value)? error,
   }) {
@@ -1405,6 +1776,7 @@ class _$_RequestEmptyState implements _RequestEmptyState {
     TResult Function(_RequestLoadingState value)? loading,
     TResult Function(_RequestLoadedState value)? loaded,
     TResult Function(_RequestLoadedSingleState value)? loadedSingle,
+    TResult Function(_RequestLoadedAddScreenState value)? loadedAddScreen,
     TResult Function(_RequestEmptyState value)? empty,
     TResult Function(_RequestErrorState value)? error,
     required TResult orElse(),
@@ -1462,6 +1834,7 @@ class _$_RequestErrorState implements _RequestErrorState {
     required TResult Function() loading,
     required TResult Function(List<RequestDto> requests) loaded,
     required TResult Function(RequestDto request) loadedSingle,
+    required TResult Function(List<IncidentPointDto> points) loadedAddScreen,
     required TResult Function() empty,
     required TResult Function() error,
   }) {
@@ -1475,6 +1848,7 @@ class _$_RequestErrorState implements _RequestErrorState {
     TResult? Function()? loading,
     TResult? Function(List<RequestDto> requests)? loaded,
     TResult? Function(RequestDto request)? loadedSingle,
+    TResult? Function(List<IncidentPointDto> points)? loadedAddScreen,
     TResult? Function()? empty,
     TResult? Function()? error,
   }) {
@@ -1488,6 +1862,7 @@ class _$_RequestErrorState implements _RequestErrorState {
     TResult Function()? loading,
     TResult Function(List<RequestDto> requests)? loaded,
     TResult Function(RequestDto request)? loadedSingle,
+    TResult Function(List<IncidentPointDto> points)? loadedAddScreen,
     TResult Function()? empty,
     TResult Function()? error,
     required TResult orElse(),
@@ -1505,6 +1880,8 @@ class _$_RequestErrorState implements _RequestErrorState {
     required TResult Function(_RequestLoadingState value) loading,
     required TResult Function(_RequestLoadedState value) loaded,
     required TResult Function(_RequestLoadedSingleState value) loadedSingle,
+    required TResult Function(_RequestLoadedAddScreenState value)
+        loadedAddScreen,
     required TResult Function(_RequestEmptyState value) empty,
     required TResult Function(_RequestErrorState value) error,
   }) {
@@ -1518,6 +1895,7 @@ class _$_RequestErrorState implements _RequestErrorState {
     TResult? Function(_RequestLoadingState value)? loading,
     TResult? Function(_RequestLoadedState value)? loaded,
     TResult? Function(_RequestLoadedSingleState value)? loadedSingle,
+    TResult? Function(_RequestLoadedAddScreenState value)? loadedAddScreen,
     TResult? Function(_RequestEmptyState value)? empty,
     TResult? Function(_RequestErrorState value)? error,
   }) {
@@ -1531,6 +1909,7 @@ class _$_RequestErrorState implements _RequestErrorState {
     TResult Function(_RequestLoadingState value)? loading,
     TResult Function(_RequestLoadedState value)? loaded,
     TResult Function(_RequestLoadedSingleState value)? loadedSingle,
+    TResult Function(_RequestLoadedAddScreenState value)? loadedAddScreen,
     TResult Function(_RequestEmptyState value)? empty,
     TResult Function(_RequestErrorState value)? error,
     required TResult orElse(),

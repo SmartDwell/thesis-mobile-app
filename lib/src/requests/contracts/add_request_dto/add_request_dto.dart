@@ -10,8 +10,8 @@ class AddRequestDto with _$AddRequestDto {
     required String title,
     required String description,
     required List<String> images,
-    required List<String> incidentPointList,
-    required String incidentPointListAsString,
+    required String incidentPointId,
+    required String incidentPointFullName,
   }) = _AddRequestDto;
 
   factory AddRequestDto.fromJson(Map<String, dynamic> json) =>

@@ -12,10 +12,8 @@ _$_AddRequestDto _$$_AddRequestDtoFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String,
       images:
           (json['images'] as List<dynamic>).map((e) => e as String).toList(),
-      incidentPointList: (json['incidentPointList'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
-      incidentPointListAsString: json['incidentPointListAsString'] as String,
+      incidentPointId: json['incidentPointId'] as String,
+      incidentPointFullName: json['incidentPointFullName'] as String,
     );
 
 Map<String, dynamic> _$$_AddRequestDtoToJson(_$_AddRequestDto instance) =>
@@ -23,6 +21,6 @@ Map<String, dynamic> _$$_AddRequestDtoToJson(_$_AddRequestDto instance) =>
       'title': instance.title,
       'description': instance.description,
       'images': instance.images,
-      'incidentPointList': instance.incidentPointList,
-      'incidentPointListAsString': instance.incidentPointListAsString,
+      'incidentPointId': instance.incidentPointId,
+      'incidentPointFullName': instance.incidentPointFullName,
     };

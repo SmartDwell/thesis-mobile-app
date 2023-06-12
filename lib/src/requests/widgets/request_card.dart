@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../core/constants/assets_constants.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/widgets/thesis/buttons/thesis_text_button.dart';
 import '../../../theme/theme_extention.dart';
@@ -52,20 +53,36 @@ class RequestCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
-            Text(
-              request.title,
-              style: context.textTheme.headlineSmall,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Flexible(
+                  child: Text(
+                    request.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: context.textTheme.headlineSmall,
+                  ),
+                ),
+                Visibility(
+                  visible: request.isEdited,
+                  child: Text(
+                    ' (ред.)',
+                    style: context.textTheme.bodyMedium,
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 10),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SvgPicture.asset(
-                  'assets/images/icons/geomark.svg',
+                  ThesisIcons.geoMark,
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  request.incidentPointListAsString,
+                  request.incidentPointFullName,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: context.textTheme.bodySmall,

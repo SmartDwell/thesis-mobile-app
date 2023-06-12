@@ -1,5 +1,6 @@
 import '../contracts/add_comment_dto/add_comment_dto.dart';
 import '../contracts/add_request_dto/add_request_dto.dart';
+import '../contracts/incident_point_dto/incident_point_dto.dart';
 import '../contracts/request_cancel_dto/request_cancel_dto.dart';
 import '../contracts/request_comment_dto/request_comment_dto.dart';
 import '../contracts/request_dto/request_dto.dart';
@@ -30,4 +31,9 @@ abstract class IRequestRepository {
 
   /// Загрузить статусы заявки
   Future<List<RequestStatusDto>> loadRequestStatuses(String requestId);
+
+  /// Загрузить возможные точки инцидентов для заявки
+  Future<List<IncidentPointDto>> loadIncidentPointsByUserAparmentIds(
+    List<String> userApartmentIds,
+  );
 }

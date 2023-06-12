@@ -171,6 +171,19 @@ final darkThemeData = ThemeData(
       borderRadius: BorderRadius.circular(16),
     ),
   ),
+  snackBarTheme: SnackBarThemeData(
+    behavior: SnackBarBehavior.floating,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16),
+    ),
+    backgroundColor: kDarkBackgroundSecondaryColor,
+    contentTextStyle: const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 0.15,
+      color: kDarkTextPrimaryColor,
+    ),
+  ),
   cardTheme: CardTheme(
     color: kDarkBackgroundSecondaryColor,
     elevation: 0,

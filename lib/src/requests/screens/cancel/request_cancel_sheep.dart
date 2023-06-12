@@ -70,7 +70,6 @@ class ThesisCancelSheep {
                   RequestScope.load(context);
                 });
                 MessageHelper.showByStatus(
-                  context: context,
                   isSuccess: hasBeenCancel,
                   successMessage: 'Заявка успешно отменена',
                   errorMessage: 'Заявка не была отменеа... попробуйте позже!',

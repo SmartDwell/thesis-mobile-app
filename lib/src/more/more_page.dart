@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/constants/assets_constants.dart';
+import '../../core/constants/routes_constants.dart';
 import 'menu/logout_widget.dart';
 import 'menu/menu_item_widget.dart';
 import 'widgets/user_widget.dart';
@@ -35,19 +36,28 @@ class MorePage extends StatelessWidget {
                   MenuItemWidget(
                     icon: ThesisIcons.requests,
                     title: 'Мои заявки',
-                    onPressed: () => Navigator.pushNamed(context, '/requests'),
+                    onPressed: () => Navigator.pushNamed(
+                      context,
+                      ThesisRoutes.requests,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   MenuItemWidget(
                     icon: ThesisIcons.payments,
                     title: 'Платежи',
-                    onPressed: () => Navigator.pushNamed(context, '/payments'),
+                    onPressed: () => Navigator.pushNamed(
+                      context,
+                      ThesisRoutes.payments,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   MenuItemWidget(
                     icon: ThesisIcons.news,
                     title: 'Новости и события',
-                    onPressed: () => Navigator.pushNamed(context, '/home'),
+                    onPressed: () => Navigator.pushNamed(
+                      context,
+                      ThesisRoutes.home,
+                    ),
                   ),
                   // const SizedBox(height: 16),
                   // MenuItemWidget(
@@ -63,7 +73,10 @@ class MorePage extends StatelessWidget {
                   MenuItemWidget(
                     icon: ThesisIcons.settings,
                     title: 'Настройки',
-                    onPressed: () => Navigator.pushNamed(context, '/settings'),
+                    onPressed: () => Navigator.pushNamed(
+                      context,
+                      ThesisRoutes.settingsScreen,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   const LogOutWidget(),

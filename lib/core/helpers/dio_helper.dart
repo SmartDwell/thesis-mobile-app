@@ -9,7 +9,7 @@ import '../repositories/tokens/tokens_repository_impl.dart';
 abstract class DioHelper {
   //static final _host = Platform.isAndroid ? '10.0.2.2' : '127.0.0.1';
   //static final _localBaseUrl = "https://$_host:7001/api";
-  static const String _baseUrl = 'http://194.99.22.243:1480/api';
+  static const String _baseUrl = 'http://78.40.219.169:1480/api';
 
   static String get baseUrl => _baseUrl;
 

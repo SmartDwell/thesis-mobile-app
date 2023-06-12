@@ -18,8 +18,9 @@ class RequestDto with _$RequestDto {
     required String description,
     required List<String> images,
     required DateTime created,
-    required List<String> incidentPointList,
-    required String incidentPointListAsString,
+    required String incidentPointId,
+    required String incidentPointFullName,
+    required bool isEdited,
     required RequestStates currentState,
   }) = _RequestDto;
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../core/constants/assets_constants.dart';
+import '../../../core/constants/routes_constants.dart';
 import '../../../core/repositories/tokens/tokens_repository_impl.dart';
 import '../../../core/widgets/thesis/thesis_progress_bar.dart';
 import '../../../theme/theme_colors.dart';
@@ -20,7 +21,7 @@ class LogOutWidget extends StatelessWidget {
         clickNotifier.value = true;
         final tokensRepository = TokensRepositoryImpl();
         await tokensRepository.deleteTokens();
-        Navigator.pushReplacementNamed(context, '/start');
+        Navigator.pushReplacementNamed(context, ThesisRoutes.start);
         AuthScope.start(context);
         clickNotifier.value = false;
       },

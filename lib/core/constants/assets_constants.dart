@@ -8,6 +8,7 @@ abstract class ThesisIcons {
   static String get settings => 'assets/images/icons/settings.svg';
   static String get more => 'assets/images/icons/more.svg';
   static String get logout => 'assets/images/icons/logout.svg';
+  static String get geoMark => 'assets/images/icons/geomark.svg';
 }
 
 /// Коллекция изображений
