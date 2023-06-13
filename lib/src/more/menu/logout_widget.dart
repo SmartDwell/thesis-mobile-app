@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../core/constants/assets_constants.dart';
@@ -21,6 +22,8 @@ class LogOutWidget extends StatelessWidget {
         clickNotifier.value = true;
         final tokensRepository = TokensRepositoryImpl();
         await tokensRepository.deleteTokens();
+        const storage = FlutterSecureStorage();
+        await storage.deleteAll();
         Navigator.pushReplacementNamed(context, ThesisRoutes.start);
         AuthScope.start(context);
         clickNotifier.value = false;

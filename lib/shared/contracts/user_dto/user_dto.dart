@@ -6,14 +6,14 @@ part 'user_dto.g.dart';
 /// Модель данных пользователя
 @freezed
 class UserDto with _$UserDto {
-  const factory UserDto({
+  factory UserDto({
     required String id,
     required String phone,
     required String email,
     required String name,
     required String surname,
     required String? patronymic,
-    required String fullname,
+    required String fullName,
   }) = _UserDto;
 
   factory UserDto.fromJson(Map<String, dynamic> json) =>

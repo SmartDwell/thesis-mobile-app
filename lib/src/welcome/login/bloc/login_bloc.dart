@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/extension/formatted_message.dart';
 import '../../../../core/repositories/tokens/tokens_repository.dart';
+import '../../../../shared/repositories/ownership/ownership_repository.dart';
 import '../../../../shared/repositories/user/user_repository.dart';
 import '../repositories/login_repository.dart';
 
@@ -13,15 +14,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final TokensRepository _tokensRepository;
   final ILoginRepository _loginRepository;
   final IUserRepository _userRepository;
+  final IOwnershipRepository _ownershipRepository;
 
   LoginBloc({
     required LoginState initialState,
     required TokensRepository tokensRepository,
     required ILoginRepository loginRepository,
     required IUserRepository userRepository,
+    required IOwnershipRepository ownershipRepository,
   })  : _tokensRepository = tokensRepository,
         _loginRepository = loginRepository,
         _userRepository = userRepository,
+        _ownershipRepository = ownershipRepository,
         super(initialState) {
     on<LoginEvent>(
       (event, emit) => event.map(
@@ -61,6 +65,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         authCompletedDto.tokens.refreshToken,
       );
       await _userRepository.saveUserIntoCache(authCompletedDto.user);
+      await _ownershipRepository.loadOwnershipFromServer();
       emit(const LoginState.successVerifyCode());
     } on Exception catch (e) {
       emit(LoginState.failureVerifyCode(message: e.getMessage));

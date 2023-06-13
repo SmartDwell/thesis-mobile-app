@@ -13,7 +13,7 @@ _$_UserDto _$$_UserDtoFromJson(Map<String, dynamic> json) => _$_UserDto(
       name: json['name'] as String,
       surname: json['surname'] as String,
       patronymic: json['patronymic'] as String?,
-      fullname: json['fullname'] as String,
+      fullName: json['fullName'] as String,
     );
 
 Map<String, dynamic> _$$_UserDtoToJson(_$_UserDto instance) =>
@@ -24,5 +24,5 @@ Map<String, dynamic> _$$_UserDtoToJson(_$_UserDto instance) =>
       'name': instance.name,
       'surname': instance.surname,
       'patronymic': instance.patronymic,
-      'fullname': instance.fullname,
+      'fullName': instance.fullName,
     };

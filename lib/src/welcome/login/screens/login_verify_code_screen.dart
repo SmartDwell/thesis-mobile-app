@@ -116,7 +116,7 @@ class _LoginTitleWidget extends StatelessWidget {
       children: [
         Text(
           'Здравствуйте, $username! Подтвердите смс-код.',
-          style: context.textTheme.headlineSmall,
+          style: context.textTheme.headlineMedium,
         ),
         const SizedBox(height: 16),
         Text(

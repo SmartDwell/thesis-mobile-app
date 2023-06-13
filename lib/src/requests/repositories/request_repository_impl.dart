@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import '../../../core/helpers/dio_helper.dart';
 import '../../../core/repositories/tokens/tokens_repository_impl.dart';
+import '../../../shared/repositories/user/user_repository_impl.dart';
 import '../contracts/add_comment_dto/add_comment_dto.dart';
 import '../contracts/add_request_dto/add_request_dto.dart';
 import '../contracts/incident_point_dto/incident_point_dto.dart';
@@ -15,14 +14,15 @@ import 'request_repository.dart';
 /// Репозиторий заявок
 class RequestRepositoryImpl implements IRequestRepository {
   final _tokensRepository = TokensRepositoryImpl();
+  final _userRepository = UserRepositoryImpl();
 
   @override
   Future<List<RequestDto>> loadRequests() async {
     try {
+      final userId = await _userRepository.getUserIdFromCache();
       final accessToken = await _tokensRepository.getAccessToken();
-      debugPrint(accessToken);
       final response = await DioHelper.getData(
-        url: '/requests/ffd61783-3fb2-431a-b824-3f2afbef0a82',
+        url: '/requests/$userId',
         headers: {
           'Content-type': ' application/json',
           'Authorization': 'Bearer $accessToken',

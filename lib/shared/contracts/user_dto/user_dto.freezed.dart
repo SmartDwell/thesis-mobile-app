@@ -26,7 +26,7 @@ mixin _$UserDto {
   String get name => throw _privateConstructorUsedError;
   String get surname => throw _privateConstructorUsedError;
   String? get patronymic => throw _privateConstructorUsedError;
-  String get fullname => throw _privateConstructorUsedError;
+  String get fullName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +45,7 @@ abstract class $UserDtoCopyWith<$Res> {
       String name,
       String surname,
       String? patronymic,
-      String fullname});
+      String fullName});
 }
 
 /// @nodoc
@@ -67,7 +67,7 @@ class _$UserDtoCopyWithImpl<$Res, $Val extends UserDto>
     Object? name = null,
     Object? surname = null,
     Object? patronymic = freezed,
-    Object? fullname = null,
+    Object? fullName = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -94,9 +94,9 @@ class _$UserDtoCopyWithImpl<$Res, $Val extends UserDto>
           ? _value.patronymic
           : patronymic // ignore: cast_nullable_to_non_nullable
               as String?,
-      fullname: null == fullname
-          ? _value.fullname
-          : fullname // ignore: cast_nullable_to_non_nullable
+      fullName: null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -116,7 +116,7 @@ abstract class _$$_UserDtoCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
       String name,
       String surname,
       String? patronymic,
-      String fullname});
+      String fullName});
 }
 
 /// @nodoc
@@ -135,7 +135,7 @@ class __$$_UserDtoCopyWithImpl<$Res>
     Object? name = null,
     Object? surname = null,
     Object? patronymic = freezed,
-    Object? fullname = null,
+    Object? fullName = null,
   }) {
     return _then(_$_UserDto(
       id: null == id
@@ -162,9 +162,9 @@ class __$$_UserDtoCopyWithImpl<$Res>
           ? _value.patronymic
           : patronymic // ignore: cast_nullable_to_non_nullable
               as String?,
-      fullname: null == fullname
-          ? _value.fullname
-          : fullname // ignore: cast_nullable_to_non_nullable
+      fullName: null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -173,14 +173,14 @@ class __$$_UserDtoCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_UserDto implements _UserDto {
-  const _$_UserDto(
+  _$_UserDto(
       {required this.id,
       required this.phone,
       required this.email,
       required this.name,
       required this.surname,
       required this.patronymic,
-      required this.fullname});
+      required this.fullName});
 
   factory _$_UserDto.fromJson(Map<String, dynamic> json) =>
       _$$_UserDtoFromJson(json);
@@ -198,11 +198,11 @@ class _$_UserDto implements _UserDto {
   @override
   final String? patronymic;
   @override
-  final String fullname;
+  final String fullName;
 
   @override
   String toString() {
-    return 'UserDto(id: $id, phone: $phone, email: $email, name: $name, surname: $surname, patronymic: $patronymic, fullname: $fullname)';
+    return 'UserDto(id: $id, phone: $phone, email: $email, name: $name, surname: $surname, patronymic: $patronymic, fullName: $fullName)';
   }
 
   @override
@@ -217,14 +217,14 @@ class _$_UserDto implements _UserDto {
             (identical(other.surname, surname) || other.surname == surname) &&
             (identical(other.patronymic, patronymic) ||
                 other.patronymic == patronymic) &&
-            (identical(other.fullname, fullname) ||
-                other.fullname == fullname));
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, phone, email, name, surname, patronymic, fullname);
+      runtimeType, id, phone, email, name, surname, patronymic, fullName);
 
   @JsonKey(ignore: true)
   @override
@@ -241,14 +241,14 @@ class _$_UserDto implements _UserDto {
 }
 
 abstract class _UserDto implements UserDto {
-  const factory _UserDto(
+  factory _UserDto(
       {required final String id,
       required final String phone,
       required final String email,
       required final String name,
       required final String surname,
       required final String? patronymic,
-      required final String fullname}) = _$_UserDto;
+      required final String fullName}) = _$_UserDto;
 
   factory _UserDto.fromJson(Map<String, dynamic> json) = _$_UserDto.fromJson;
 
@@ -265,7 +265,7 @@ abstract class _UserDto implements UserDto {
   @override
   String? get patronymic;
   @override
-  String get fullname;
+  String get fullName;
   @override
   @JsonKey(ignore: true)
   _$$_UserDtoCopyWith<_$_UserDto> get copyWith =>

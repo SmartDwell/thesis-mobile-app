@@ -1,6 +1,5 @@
 import '../../../../core/helpers/dio_helper.dart';
 import '../../contacts/auth_completed_dto/auth_completed_dto.dart';
-import '../../contacts/tokens_dto/tokens_dto.dart';
 import '../../contacts/ticket_dto/ticket_dto.dart';
 import 'login_repository.dart';
 

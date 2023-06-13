@@ -8,7 +8,7 @@ abstract class IOwnershipRepository {
   Future<List<OwnershipDto>> getOwnershipFromCache();
 
   /// Сохранить владения пользователя в кэш
-  Future<bool> saveOwnershipIntoCache(List<OwnershipDto> ownership);
+  Future<bool> saveOwnershipIntoCache(List<OwnershipDto> ownerships);
 
   /// Получить идентификаторы квартир пользователя
   Future<List<String>> getApartmentIds();
