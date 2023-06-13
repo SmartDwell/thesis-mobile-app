@@ -14,6 +14,7 @@ import 'core/constants/routes_constants.dart';
 import 'core/helpers/message_helper.dart';
 import 'core/repositories/tokens/tokens_repository_impl.dart';
 import 'core/splash_screen.dart';
+import 'shared/repositories/user/user_repository_impl.dart';
 import 'src/navigation_bar/navigation_bar.dart';
 import 'src/welcome/auth/auth_scope.dart';
 import 'src/welcome/auth/bloc/auth_bloc.dart';
@@ -76,6 +77,7 @@ class ThesisAppConfigurator extends StatelessWidget {
             initialState: const LoginState.loading(),
             tokensRepository: TokensRepositoryImpl(),
             loginRepository: LoginRepositoryImpl(),
+            userRepository: UserRepositoryImpl(),
           ),
         ),
       ],

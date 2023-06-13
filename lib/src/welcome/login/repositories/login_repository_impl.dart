@@ -1,10 +1,11 @@
 import '../../../../core/helpers/dio_helper.dart';
+import '../../contacts/auth_completed_dto/auth_completed_dto.dart';
 import '../../contacts/tokens_dto/tokens_dto.dart';
 import '../../contacts/ticket_dto/ticket_dto.dart';
 import 'login_repository.dart';
 
 /// Репозиторий авторизации
-class LoginRepositoryImpl implements LoginRepository {
+class LoginRepositoryImpl implements ILoginRepository {
   @override
   Future<TicketDto> requestCode(String login) async {
     try {
@@ -35,7 +36,7 @@ class LoginRepositoryImpl implements LoginRepository {
   }
 
   @override
-  Future<TokensDto> verifyCode(String ticketId, String code) async {
+  Future<AuthCompletedDto> verifyCode(String ticketId, String code) async {
     try {
       final data = {
         'ticketId': ticketId,
@@ -50,7 +51,7 @@ class LoginRepositoryImpl implements LoginRepository {
 
       switch (response.statusCode) {
         case 200:
-          return TokensDto.fromJson(response.data);
+          return AuthCompletedDto.fromJson(response.data);
         case 400:
           throw Exception('Переданы некорректные данные!');
         case 404:

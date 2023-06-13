@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/extension/formatted_message.dart';
 import '../../../../core/repositories/tokens/tokens_repository.dart';
+import '../../../../shared/repositories/user/user_repository.dart';
 import '../repositories/login_repository.dart';
 
 part 'login_bloc.freezed.dart';
@@ -10,14 +11,17 @@ part 'login_bloc.freezed.dart';
 /// Блок логина
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final TokensRepository _tokensRepository;
-  final LoginRepository _loginRepository;
+  final ILoginRepository _loginRepository;
+  final IUserRepository _userRepository;
 
   LoginBloc({
     required LoginState initialState,
     required TokensRepository tokensRepository,
-    required LoginRepository loginRepository,
+    required ILoginRepository loginRepository,
+    required IUserRepository userRepository,
   })  : _tokensRepository = tokensRepository,
         _loginRepository = loginRepository,
+        _userRepository = userRepository,
         super(initialState) {
     on<LoginEvent>(
       (event, emit) => event.map(
@@ -48,14 +52,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) async {
     try {
-      final tokensDto = await _loginRepository.verifyCode(
+      final authCompletedDto = await _loginRepository.verifyCode(
         event.tickedId,
         event.code,
       );
       await _tokensRepository.saveTokens(
-        tokensDto.accessToken,
-        tokensDto.refreshToken,
+        authCompletedDto.tokens.accessToken,
+        authCompletedDto.tokens.refreshToken,
       );
+      await _userRepository.saveUserIntoCache(authCompletedDto.user);
       emit(const LoginState.successVerifyCode());
     } on Exception catch (e) {
       emit(LoginState.failureVerifyCode(message: e.getMessage));

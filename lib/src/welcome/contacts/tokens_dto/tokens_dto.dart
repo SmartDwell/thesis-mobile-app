@@ -10,6 +10,7 @@ class TokensDto with _$TokensDto {
   const factory TokensDto({
     required String accessToken,
     required String refreshToken,
+    required String userId,
   }) = _TokensDto;
 
   factory TokensDto.fromJson(Map<String, dynamic> json) =>
