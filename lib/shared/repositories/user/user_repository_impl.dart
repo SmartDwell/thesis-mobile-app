@@ -1,7 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
+import '../../../core/constants/constants.dart';
 import '../../../core/helpers/dio_helper.dart';
 import '../../../core/repositories/tokens/tokens_repository_impl.dart';
 import '../../contracts/user_dto/user_dto.dart';
@@ -16,9 +15,13 @@ class UserRepositoryImpl implements IUserRepository {
   @override
   Future<UserDto> getUserFromCache() async {
     try {
-      const storage = FlutterSecureStorage();
-      final userJson = await storage.read(key: _userKey);
-      final user = UserDto.fromJson(json.decode(userJson!));
+      final userString = await storage.read(key: _userKey);
+      if (userString == null) {
+        throw Exception('Не найдена информация о пользователе');
+      }
+
+      final userJson = json.decode(userString);
+      final user = UserDto.fromJson(userJson);
       return Future.value(user);
     } catch (e) {
       rethrow;
@@ -26,12 +29,11 @@ class UserRepositoryImpl implements IUserRepository {
   }
 
   @override
-  Future<bool> saveUserIntoCache(UserDto user) {
+  Future<bool> saveUserIntoCache(UserDto user) async {
     try {
-      const storage = FlutterSecureStorage();
       final userJson = user.toJson();
       final id = userJson['id'];
-      storage.write(key: _userKey, value: userJson.toString());
+      await storage.write(key: _userKey, value: json.encode(userJson));
       return saveUserIdIntoCache(id);
     } catch (e) {
       rethrow;
@@ -45,7 +47,7 @@ class UserRepositoryImpl implements IUserRepository {
       final accessToken = await _tokensRepository.getAccessToken();
 
       final response = await DioHelper.getData(
-        url: '/requests/$id',
+        url: '/user/$id',
         headers: {
           'Content-type': ' application/json',
           'Authorization': 'Bearer $accessToken',
@@ -67,7 +69,6 @@ class UserRepositoryImpl implements IUserRepository {
   @override
   Future<String> getUserIdFromCache() async {
     try {
-      const storage = FlutterSecureStorage();
       final id = await storage.read(key: _userIdKey);
       return id ?? '';
     } catch (e) {
@@ -76,11 +77,10 @@ class UserRepositoryImpl implements IUserRepository {
   }
 
   @override
-  Future<bool> saveUserIdIntoCache(String id) {
+  Future<bool> saveUserIdIntoCache(String id) async {
     try {
-      const storage = FlutterSecureStorage();
-      storage.write(key: _userIdKey, value: id);
-      return Future.value(true);
+      await storage.write(key: _userIdKey, value: id);
+      return true;
     } catch (e) {
       rethrow;
     }

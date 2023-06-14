@@ -1,7 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
+import '../../../core/constants/constants.dart';
 import '../../../core/helpers/dio_helper.dart';
 import '../../../core/repositories/tokens/tokens_repository_impl.dart';
 import '../../contracts/ownership_dto/ownership_dto.dart';
@@ -27,7 +26,6 @@ class OwnershipRepositoryImpl implements IOwnershipRepository {
   @override
   Future<List<OwnershipDto>> getOwnershipFromCache() async {
     try {
-      const storage = FlutterSecureStorage();
       final ownershipsString = await storage.read(key: _ownershipKey);
       if (ownershipsString == null) {
         throw Exception('Не найдена информация о собственности');
@@ -44,11 +42,13 @@ class OwnershipRepositoryImpl implements IOwnershipRepository {
   }
 
   @override
-  Future<bool> saveOwnershipIntoCache(List<OwnershipDto> ownerships) {
+  Future<bool> saveOwnershipIntoCache(List<OwnershipDto> ownerships) async {
     try {
-      const storage = FlutterSecureStorage();
       final ownershipsJson = ownerships.map((e) => e.toJson()).toList();
-      storage.write(key: _ownershipKey, value: json.encode(ownershipsJson));
+      await storage.write(
+        key: _ownershipKey,
+        value: json.encode(ownershipsJson),
+      );
       return Future.value(true);
     } catch (e) {
       rethrow;

@@ -15,7 +15,7 @@ class NewsRepositoryImpl implements INewsRepository {
       description:
           'Совсем скоро рядом с нашим жилым комплексом откроектся магазин сладостей "Рахат-лукум", в котором будет представлен широкий ассортимент сладостей для каждого. При предъявлении купона "Комплекс", вы получите скидку на первую покупку 15%.',
       images: [
-        'a0f29024-68fd-413c-8258-6590e90a199d',
+        'e663f7a9-d70a-4b74-8c12-99bdb3ce541c',
       ],
       created: DateTime(2023, 04, 22),
     ),
@@ -24,7 +24,7 @@ class NewsRepositoryImpl implements INewsRepository {
       title: 'Мир! Труд! Май!',
       description: 'Выходите с детьми на праздник труда 1 мая в 10:00!',
       images: [
-        '768c8b5d-3dd6-43dd-aea5-3545f94bcab9',
+        '768a727d-1faf-4018-a231-bbcd4baea4e6',
       ],
       created: DateTime(2023, 04, 28),
     ),
@@ -34,7 +34,7 @@ class NewsRepositoryImpl implements INewsRepository {
       description:
           '78 годовщина победы Советского Союза над фашистской Германией! Выходите с детьми на парад 9 мая в 10:00!',
       images: [
-        'ae73831a-ad28-4ef1-895e-899d995b0661',
+        'a671f723-832d-4fcf-9b2d-f17554bfffad',
       ],
       created: DateTime(2023, 05, 05),
     ),
