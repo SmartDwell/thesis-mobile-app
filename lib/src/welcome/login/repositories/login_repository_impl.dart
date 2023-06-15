@@ -64,4 +64,29 @@ class LoginRepositoryImpl implements ILoginRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<AuthCompletedDto> guestLogin() async {
+    try {
+      final response = await DioHelper.postData(
+        url: '/auth/guest-login',
+        useAuthErrorInterceptor: false,
+      );
+
+      switch (response.statusCode) {
+        case 200:
+          return AuthCompletedDto.fromJson(response.data);
+        case 400:
+          throw Exception('Переданы некорректные данные!');
+        case 404:
+          throw Exception('Время действия смс-кода истекло!');
+        case 409:
+          throw Exception('Передан неверный смс-код!');
+        default:
+          throw Exception('Что-то пошло не так...');
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

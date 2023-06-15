@@ -8,4 +8,7 @@ abstract class ILoginRepository {
 
   /// Подтвердить код авторизации
   Future<AuthCompletedDto> verifyCode(String ticketId, String code);
+
+  /// Получить информацию о госте
+  Future<AuthCompletedDto> guestLogin();
 }

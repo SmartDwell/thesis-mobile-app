@@ -5,6 +5,7 @@ import '../../../../core/extension/formatted_message.dart';
 import '../../../../core/repositories/tokens/tokens_repository.dart';
 import '../../../../shared/repositories/ownership/ownership_repository.dart';
 import '../../../../shared/repositories/user/user_repository.dart';
+import '../../contacts/auth_completed_dto/auth_completed_dto.dart';
 import '../repositories/login_repository.dart';
 
 part 'login_bloc.freezed.dart';
@@ -40,6 +41,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) async {
     try {
+      const guestLoginMatch = 'guest@example.com, 79887893311';
+      if (guestLoginMatch.contains(event.login)) {
+        final authCompletedDto = await _loginRepository.guestLogin();
+        await _saveUserInfo(authCompletedDto);
+        emit(const LoginState.successVerifyCode());
+      }
       final ticketDto = await _loginRepository.requestCode(event.login);
       emit(LoginState.successRequestCode(
         tickedId: ticketDto.ticketId,
@@ -60,16 +67,24 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         event.tickedId,
         event.code,
       );
-      await _tokensRepository.saveTokens(
-        authCompletedDto.tokens.accessToken,
-        authCompletedDto.tokens.refreshToken,
-      );
-      await _userRepository.saveUserIntoCache(authCompletedDto.user);
-      await _ownershipRepository.loadOwnershipFromServer();
+      await _saveUserInfo(authCompletedDto);
       emit(const LoginState.successVerifyCode());
     } on Exception catch (e) {
       emit(LoginState.failureVerifyCode(message: e.getMessage));
       rethrow;
+    }
+  }
+
+  Future<void> _saveUserInfo(AuthCompletedDto authCompletedDto) async {
+    await _tokensRepository.saveTokens(
+      authCompletedDto.tokens.accessToken,
+      authCompletedDto.tokens.refreshToken,
+    );
+    if (!await _userRepository.saveUserIntoCache(authCompletedDto.user)) {
+      throw Exception('Не удалось сохранить информацию о пользователе');
+    }
+    if (!await _ownershipRepository.loadOwnershipFromServer()) {
+      throw Exception('Не удалось загрузить информацию о владении');
     }
   }
 }

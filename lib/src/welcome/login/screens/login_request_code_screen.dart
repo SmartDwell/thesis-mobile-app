@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:validators/validators.dart';
 
+import '../../../../core/constants/routes_constants.dart';
 import '../../../../core/widgets/thesis/buttons/thesis_button.dart';
 import '../../../../theme/theme_colors.dart';
 import '../../../../theme/theme_constants.dart';
@@ -16,7 +17,7 @@ class LoginRequestCodeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final loginController = TextEditingController(text: 'seljmov@list.ru');
+    final loginController = TextEditingController(text: 'guest@example.com');
     final buttonDisableNotifier =
         ValueNotifier<bool>(loginController.text.isEmpty);
     final formFieldKey = GlobalKey<FormFieldState>();
@@ -28,6 +29,10 @@ class LoginRequestCodeScreen extends StatelessWidget {
           context,
           ticketId: state.tickedId,
           username: state.username,
+        ),
+        successVerifyCode: (state) => Navigator.pushReplacementNamed(
+          context,
+          ThesisRoutes.navbar,
         ),
       ),
       child: Padding(
