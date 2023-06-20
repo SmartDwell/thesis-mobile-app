@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+import '../../constants/constants.dart';
 import '../../helpers/dio_helper.dart';
 import 'tokens_repository.dart';
 
@@ -12,46 +12,22 @@ class TokensRepositoryImpl implements TokensRepository {
 
   @override
   Future<void> saveTokens(String accessToken, String refreshToken) async {
-    const storage = FlutterSecureStorage(
-      aOptions: AndroidOptions(
-        encryptedSharedPreferences: true,
-      ),
-    );
-
     await storage.write(key: _accessToken, value: accessToken);
     await storage.write(key: _refreshToken, value: refreshToken);
   }
 
   @override
   Future<String?> getAccessToken() async {
-    const storage = FlutterSecureStorage(
-      aOptions: AndroidOptions(
-        encryptedSharedPreferences: true,
-      ),
-    );
-
-    return storage.read(key: _accessToken);
+    return await storage.read(key: _accessToken);
   }
 
   @override
   Future<String?> getRefreshToken() async {
-    const storage = FlutterSecureStorage(
-      aOptions: AndroidOptions(
-        encryptedSharedPreferences: true,
-      ),
-    );
-
-    return storage.read(key: _refreshToken);
+    return await storage.read(key: _refreshToken);
   }
 
   @override
   Future<void> deleteTokens() async {
-    const storage = FlutterSecureStorage(
-      aOptions: AndroidOptions(
-        encryptedSharedPreferences: true,
-      ),
-    );
-
     await storage.delete(key: _accessToken);
     await storage.delete(key: _refreshToken);
   }

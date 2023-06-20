@@ -3,6 +3,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/extension/formatted_message.dart';
 import '../../../../core/repositories/tokens/tokens_repository.dart';
+import '../../../../shared/repositories/ownership/ownership_repository.dart';
+import '../../../../shared/repositories/user/user_repository.dart';
+import '../../contacts/auth_completed_dto/auth_completed_dto.dart';
 import '../repositories/login_repository.dart';
 
 part 'login_bloc.freezed.dart';
@@ -10,14 +13,20 @@ part 'login_bloc.freezed.dart';
 /// Блок логина
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final TokensRepository _tokensRepository;
-  final LoginRepository _loginRepository;
+  final ILoginRepository _loginRepository;
+  final IUserRepository _userRepository;
+  final IOwnershipRepository _ownershipRepository;
 
   LoginBloc({
     required LoginState initialState,
     required TokensRepository tokensRepository,
-    required LoginRepository loginRepository,
+    required ILoginRepository loginRepository,
+    required IUserRepository userRepository,
+    required IOwnershipRepository ownershipRepository,
   })  : _tokensRepository = tokensRepository,
         _loginRepository = loginRepository,
+        _userRepository = userRepository,
+        _ownershipRepository = ownershipRepository,
         super(initialState) {
     on<LoginEvent>(
       (event, emit) => event.map(
@@ -32,6 +41,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) async {
     try {
+      const guestLoginMatch = 'guest@example.com, 79887893311';
+      if (guestLoginMatch.contains(event.login)) {
+        final authCompletedDto = await _loginRepository.guestLogin();
+        await _saveUserInfo(authCompletedDto);
+        emit(const LoginState.successVerifyCode());
+      }
       final ticketDto = await _loginRepository.requestCode(event.login);
       emit(LoginState.successRequestCode(
         tickedId: ticketDto.ticketId,
@@ -48,18 +63,28 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) async {
     try {
-      final tokensDto = await _loginRepository.verifyCode(
+      final authCompletedDto = await _loginRepository.verifyCode(
         event.tickedId,
         event.code,
       );
-      await _tokensRepository.saveTokens(
-        tokensDto.accessToken,
-        tokensDto.refreshToken,
-      );
+      await _saveUserInfo(authCompletedDto);
       emit(const LoginState.successVerifyCode());
     } on Exception catch (e) {
       emit(LoginState.failureVerifyCode(message: e.getMessage));
       rethrow;
+    }
+  }
+
+  Future<void> _saveUserInfo(AuthCompletedDto authCompletedDto) async {
+    await _tokensRepository.saveTokens(
+      authCompletedDto.tokens.accessToken,
+      authCompletedDto.tokens.refreshToken,
+    );
+    if (!await _userRepository.saveUserIntoCache(authCompletedDto.user)) {
+      throw Exception('Не удалось сохранить информацию о пользователе');
+    }
+    if (!await _ownershipRepository.loadOwnershipFromServer()) {
+      throw Exception('Не удалось загрузить информацию о владении');
     }
   }
 }

@@ -1,11 +1,14 @@
+import '../../contacts/auth_completed_dto/auth_completed_dto.dart';
 import '../../contacts/ticket_dto/ticket_dto.dart';
-import '../../contacts/tokens_dto/tokens_dto.dart';
 
 /// Интерфейс репозитория авторизации
-abstract class LoginRepository {
+abstract class ILoginRepository {
   /// Запросить код для авторизации
   Future<TicketDto> requestCode(String login);
 
   /// Подтвердить код авторизации
-  Future<TokensDto> verifyCode(String ticketId, String code);
+  Future<AuthCompletedDto> verifyCode(String ticketId, String code);
+
+  /// Получить информацию о госте
+  Future<AuthCompletedDto> guestLogin();
 }

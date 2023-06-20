@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/helpers/fab_notifier_helper.dart';
+import '../../../core/helpers/message_helper.dart';
 import '../../../core/widgets/pages/thesis_empty_page.dart';
 import '../../../core/widgets/thesis/thesis_progress_bar.dart';
 import '../../../core/widgets/thesis/thesis_sliver_screen.dart';
@@ -39,6 +40,12 @@ class _RequestScreenState extends State<RequestScreen> {
           return BlocListener<RequestBloc, RequestState>(
             listener: (context, state) => state.mapOrNull(
               initial: (state) => RequestScope.load(context),
+              error: (state) {
+                MessageHelper.showError(state.message);
+                fabHelper.hideLoading();
+                RequestScope.load(context);
+                return null;
+              },
               loadedSingle: (state) => Navigator.push(
                 context,
                 MaterialPageRoute(

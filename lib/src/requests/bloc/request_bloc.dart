@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../core/repositories/user/user_repository.dart';
+import '../../../shared/repositories/ownership/ownership_repository.dart';
 import '../contracts/incident_point_dto/incident_point_dto.dart';
 import '../contracts/request_dto/request_dto.dart';
 import '../repositories/request_repository.dart';
@@ -11,14 +11,14 @@ part 'request_bloc.freezed.dart';
 /// Блок заявок
 class RequestBloc extends Bloc<RequestEvent, RequestState> {
   final IRequestRepository _requestRepository;
-  final IUserRepository _userRepository;
+  final IOwnershipRepository _ownershipRepository;
 
   RequestBloc({
     required RequestState initialState,
     required IRequestRepository requestRepository,
-    required IUserRepository userRepository,
+    required IOwnershipRepository ownershipRepository,
   })  : _requestRepository = requestRepository,
-        _userRepository = userRepository,
+        _ownershipRepository = ownershipRepository,
         super(initialState) {
     on<RequestEvent>(
       (event, emit) => event.map(
@@ -66,7 +66,14 @@ class RequestBloc extends Bloc<RequestEvent, RequestState> {
     Emitter<RequestState> emit,
   ) async {
     emit(const RequestState.loading());
-    final apartmentIds = await _userRepository.getApartmentIds();
+    final apartmentIds = await _ownershipRepository.getApartmentIds();
+    if (apartmentIds.isEmpty) {
+      emit(const RequestState.error(
+        message:
+            'Вы не можете создать заявку, потому что у вас нет собственности. Обратитесь к администратору.',
+      ));
+      return;
+    }
     final points = await _requestRepository.loadIncidentPointsByUserAparmentIds(
       apartmentIds,
     );
@@ -127,5 +134,7 @@ abstract class RequestState with _$RequestState {
   const factory RequestState.empty() = _RequestEmptyState;
 
   /// Состояние ошибки
-  const factory RequestState.error() = _RequestErrorState;
+  const factory RequestState.error({
+    required String message,
+  }) = _RequestErrorState;
 }

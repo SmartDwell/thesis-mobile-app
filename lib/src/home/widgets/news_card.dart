@@ -44,17 +44,20 @@ class NewsCard extends StatelessWidget {
               ],
             ),
           ),
-          ThesisNetworkImagePreview(
-            imageUrl: "${DioHelper.baseUrl}/images/${news.images[0]}",
-            options: ThesisNetworkImagePreviewOptions(
-              //width: MediaQuery.of(context).size.width,
-              //height: 180,
-              height: MediaQuery.of(context).size.height * 0.2,
-              fit: BoxFit.cover,
+          if (news.images.isNotEmpty)
+            ThesisNetworkImagePreview(
+              imageUrl: "${DioHelper.baseUrl}/images/${news.images.first}",
+              options: ThesisNetworkImagePreviewOptions(
+                //width: MediaQuery.of(context).size.width,
+                //height: 180,
+                height: MediaQuery.of(context).size.height * 0.2,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0).copyWith(
+              top: news.images.isNotEmpty ? 16 : 0,
+            ),
             child: ThesisTextButton(
               title: 'Подробнее'.toUpperCase(),
               onTap: onMore,

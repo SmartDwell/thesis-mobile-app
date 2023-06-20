@@ -34,9 +34,11 @@ class RequestAddScreen extends StatelessWidget {
       incidentPoints.first.name,
     );
     final titleFormFieldKey = GlobalKey<FormFieldState>();
-    final titleController = TextEditingController();
+    final titleController = TextEditingController(text: 'Проблемы с лифтом');
     final descriptionFormFieldKey = GlobalKey<FormFieldState>();
-    final descriptionController = TextEditingController();
+    final descriptionController = TextEditingController(
+      text: 'Лифт стоит с приоткрытой дверью. Невозможно воспользоваться.',
+    );
     final imagesNotifier = ValueNotifier<List<File>>([]);
     return ThesisSplitScreen(
       child: Column(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/constants/routes_constants.dart';
 import '../../../../core/widgets/thesis/buttons/thesis_button.dart';
 import '../../../../theme/theme_colors.dart';
 import '../../../../theme/theme_constants.dart';
@@ -27,8 +28,10 @@ class LoginVerifyCodeScreen extends StatelessWidget {
     final errorNotifier = ValueNotifier<String>('');
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) => state.mapOrNull(
-        successVerifyCode: (state) =>
-            Navigator.pushReplacementNamed(context, '/navbar'),
+        successVerifyCode: (state) => Navigator.pushReplacementNamed(
+          context,
+          ThesisRoutes.navbar,
+        ),
         failureVerifyCode: (state) => errorNotifier.value = state.message,
       ),
       child: Padding(
@@ -116,7 +119,7 @@ class _LoginTitleWidget extends StatelessWidget {
       children: [
         Text(
           'Здравствуйте, $username! Подтвердите смс-код.',
-          style: context.textTheme.headlineSmall,
+          style: context.textTheme.headlineMedium,
         ),
         const SizedBox(height: 16),
         Text(
