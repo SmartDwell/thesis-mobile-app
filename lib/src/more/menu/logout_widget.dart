@@ -68,7 +68,7 @@ class LogOutWidget extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               Text(
-                'Выйти из аккаунт',
+                'Выйти из аккаунта',
                 style: context.textTheme.titleLarge,
               ),
             ],

@@ -67,6 +67,13 @@ class RequestBloc extends Bloc<RequestEvent, RequestState> {
   ) async {
     emit(const RequestState.loading());
     final apartmentIds = await _ownershipRepository.getApartmentIds();
+    if (apartmentIds.isEmpty) {
+      emit(const RequestState.error(
+        message:
+            'Вы не можете создать заявку, потому что у вас нет собственности. Обратитесь к администратору.',
+      ));
+      return;
+    }
     final points = await _requestRepository.loadIncidentPointsByUserAparmentIds(
       apartmentIds,
     );
@@ -127,5 +134,7 @@ abstract class RequestState with _$RequestState {
   const factory RequestState.empty() = _RequestEmptyState;
 
   /// Состояние ошибки
-  const factory RequestState.error() = _RequestErrorState;
+  const factory RequestState.error({
+    required String message,
+  }) = _RequestErrorState;
 }

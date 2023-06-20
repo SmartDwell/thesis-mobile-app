@@ -21,7 +21,7 @@ class ThesisNavigationBar extends StatelessWidget {
       RequestPage(),
       MorePage(),
     ];
-    final selectedPageNotifier = ValueNotifier<int>(0);
+    final selectedPageNotifier = ValueNotifier<int>(2);
     return ValueListenableBuilder<int>(
       valueListenable: selectedPageNotifier,
       builder: (context, selectedPage, child) {

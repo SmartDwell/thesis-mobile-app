@@ -12,7 +12,7 @@ class PaymentRepositoryImpl extends IPaymentRepository {
   final _storage = [
     PaymentDto(
       id: '1',
-      location: 'ЖК Чистые пруды, д. 6, кор. 8, под. 1, кв. 38',
+      location: 'ЖК Атмосфера, д. 6, кор. 8, под. 1, кв. 38',
       isPaid: false,
       details: const [
         PaymentDetailsDto(
@@ -36,7 +36,7 @@ class PaymentRepositoryImpl extends IPaymentRepository {
     ),
     PaymentDto(
       id: '2',
-      location: 'ЖК Чистые пруды, д. 6, кор. 8, под. 1, кв. 38',
+      location: 'ЖК Атмосфера, д. 6, кор. 8, под. 1, кв. 38',
       isPaid: true,
       details: const [
         PaymentDetailsDto(
@@ -49,6 +49,30 @@ class PaymentRepositoryImpl extends IPaymentRepository {
         ),
       ],
       period: DateTime(2023, 04, 05),
+    ),
+    PaymentDto(
+      id: '3',
+      location: 'ЖК Атмосфера, д. 6, кор. 8, под. 1, кв. 38',
+      isPaid: false,
+      details: const [
+        PaymentDetailsDto(
+          name: 'Техническое обслуживание и содержание жилья',
+          summa: 2051.18,
+        ),
+        PaymentDetailsDto(
+          name: 'Электроэнергия',
+          summa: 1021.18,
+        ),
+        PaymentDetailsDto(
+          name: 'Водоснабжение',
+          summa: 21.18,
+        ),
+        PaymentDetailsDto(
+          name: 'Водоотведение',
+          summa: 24.18,
+        ),
+      ],
+      period: DateTime(2023, 06, 05),
     ),
   ];
 }

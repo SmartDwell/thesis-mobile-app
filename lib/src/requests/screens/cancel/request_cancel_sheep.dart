@@ -21,7 +21,7 @@ class ThesisCancelSheep {
     fabHelper.hide();
     final requestRepository = RequestRepositoryImpl();
     final reasonFormFieldKey = GlobalKey<FormFieldState>();
-    final reasonController = TextEditingController();
+    final reasonController = TextEditingController(text: 'Неактуально');
     ThesisBottomSheep.showSheep(
       context,
       expand: false,

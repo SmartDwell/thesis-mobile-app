@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import '../../../core/helpers/dio_helper.dart';
 import '../../../core/repositories/tokens/tokens_repository_impl.dart';
 import '../../../shared/repositories/user/user_repository_impl.dart';
@@ -35,6 +37,7 @@ class RequestRepositoryImpl implements IRequestRepository {
               .map((e) => RequestDto.fromJson(e))
               .toList();
         default:
+          debugPrint(response.data.toString());
           throw Exception('Что-то пошло не так');
       }
     } catch (e) {
@@ -219,6 +222,7 @@ class RequestRepositoryImpl implements IRequestRepository {
   Future<List<IncidentPointDto>> loadIncidentPointsByUserAparmentIds(
     List<String> userApartmentIds,
   ) async {
+    debugPrint(userApartmentIds.toString());
     try {
       final apartmentIds = userApartmentIds.join('&apartmentIds=');
       final accessToken = await _tokensRepository.getAccessToken();
