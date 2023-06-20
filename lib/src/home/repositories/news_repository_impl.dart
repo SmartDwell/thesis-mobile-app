@@ -38,5 +38,12 @@ class NewsRepositoryImpl implements INewsRepository {
       ],
       created: DateTime(2023, 05, 05),
     ),
+    NewsDto(
+      id: '4',
+      title: 'Проблемы с лифтом в 2Б',
+      description: 'Зафиксированы проблемы с лифтом в 2Б. Уже решаем!',
+      images: [],
+      created: DateTime(2023, 06, 20),
+    ),
   ];
 }
