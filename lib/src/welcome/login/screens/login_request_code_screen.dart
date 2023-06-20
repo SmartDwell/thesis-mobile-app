@@ -18,6 +18,7 @@ class LoginRequestCodeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginController = TextEditingController(text: 'guest@example.com');
+    //final loginController = TextEditingController(text: 'seljmov@list.ru');
     final buttonDisableNotifier =
         ValueNotifier<bool>(loginController.text.isEmpty);
     final formFieldKey = GlobalKey<FormFieldState>();

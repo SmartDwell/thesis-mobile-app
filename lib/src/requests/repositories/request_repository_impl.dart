@@ -37,6 +37,7 @@ class RequestRepositoryImpl implements IRequestRepository {
               .map((e) => RequestDto.fromJson(e))
               .toList();
         default:
+          debugPrint(response.data.toString());
           throw Exception('Что-то пошло не так');
       }
     } catch (e) {

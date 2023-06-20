@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import '../../../../core/helpers/dio_helper.dart';
 import '../../contacts/auth_completed_dto/auth_completed_dto.dart';
 import '../../contacts/ticket_dto/ticket_dto.dart';
@@ -72,6 +74,8 @@ class LoginRepositoryImpl implements ILoginRepository {
         url: '/auth/guest-login',
         useAuthErrorInterceptor: false,
       );
+
+      debugPrint(response.data.toString());
 
       switch (response.statusCode) {
         case 200:
