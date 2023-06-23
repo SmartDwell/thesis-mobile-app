@@ -85,4 +85,10 @@ class UserRepositoryImpl implements IUserRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<bool> existUserInfoIntoCache() async {
+    final userString = await storage.read(key: _userKey);
+    return userString != null && userString.isNotEmpty;
+  }
 }
