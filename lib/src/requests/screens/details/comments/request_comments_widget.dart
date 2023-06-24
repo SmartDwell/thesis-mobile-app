@@ -6,6 +6,7 @@ import '../../../../../core/widgets/thesis/buttons/thesis_outlined_button.dart';
 import '../../../../../theme/theme_colors.dart';
 import '../../../contracts/request_comment_dto/request_comment_dto.dart';
 import '../../../repositories/request_repository_impl.dart';
+import '../../../widgets/request_states.dart';
 import 'request_add_comment_sheep.dart';
 import 'request_comment_item_widget.dart';
 import 'request_comments_shimmer.dart';
@@ -15,9 +16,16 @@ class RequestCommentsWidget extends StatelessWidget {
   const RequestCommentsWidget({
     super.key,
     required this.requestId,
+    required this.requestState,
   });
 
   final String requestId;
+  final RequestStates requestState;
+
+  bool get _canAddComment =>
+      requestState == RequestStates.New ||
+      requestState == RequestStates.InProgress ||
+      requestState == RequestStates.UnderCompletion;
 
   @override
   Widget build(BuildContext context) {
@@ -76,64 +84,75 @@ class RequestCommentsWidget extends StatelessWidget {
               ),
               replacement: Column(
                 children: [
-                  ThesisOutlinedButton(
-                    onPressed: () => RequestAddCommentSheep.show(
-                      context,
-                      requestId: requestId,
-                      onAddComment: () => commentStreamNotifier.value =
-                          requestRepository
-                              .loadRequestComments(requestId)
-                              .asStream(),
-                    ),
-                    text: "+ Добавить",
-                    options: const ThesisButtonOptions(
-                      borderRadius: 10,
-                      height: 44,
+                  Visibility(
+                    visible: requestState == RequestStates.New ||
+                        requestState == RequestStates.InProgress ||
+                        requestState == RequestStates.UnderCompletion,
+                    child: ThesisOutlinedButton(
+                      onPressed: () => RequestAddCommentSheep.show(
+                        context,
+                        requestId: requestId,
+                        onAddComment: () => commentStreamNotifier.value =
+                            requestRepository
+                                .loadRequestComments(requestId)
+                                .asStream(),
+                      ),
+                      text: "+ Добавить",
+                      options: const ThesisButtonOptions(
+                        borderRadius: 10,
+                        height: 44,
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 25),
-                  ValueListenableBuilder<Stream<List<RequestCommentDto>>>(
-                    valueListenable: commentStreamNotifier,
-                    builder: (context, currentStream, child) {
-                      return StreamBuilder(
-                        stream: currentStream,
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const RequestCommentsShimmer();
-                          }
+                  Padding(
+                    padding: const EdgeInsets.only(top: 25),
+                    child:
+                        ValueListenableBuilder<Stream<List<RequestCommentDto>>>(
+                      valueListenable: commentStreamNotifier,
+                      builder: (context, currentStream, child) {
+                        return StreamBuilder(
+                          stream: currentStream,
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const RequestCommentsShimmer();
+                            }
 
-                          final comments = snapshot.data == null
-                              ? <RequestCommentDto>[]
-                              : snapshot.data!.reversed.toList();
-                          return Visibility(
-                            visible: comments.isEmpty,
-                            child: Text(
-                              "Пока нет комментариев",
-                              textAlign: TextAlign.center,
-                              style: AdaptiveTheme.of(context)
-                                  .theme
-                                  .textTheme
-                                  .bodyMedium,
-                            ),
-                            replacement: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: List.generate(comments.length, (index) {
-                                return Padding(
-                                  padding: EdgeInsets.only(
-                                    top: index == 0 ? 0 : 16,
-                                  ),
-                                  child: RequestCommentItemWidget(
-                                    commentDto: comments[index],
-                                  ),
-                                );
-                              }),
-                            ),
-                          );
-                        },
-                      );
-                    },
+                            final comments = snapshot.data == null
+                                ? <RequestCommentDto>[]
+                                : snapshot.data!.reversed.toList();
+                            return Visibility(
+                              visible: comments.isEmpty,
+                              child: Text(
+                                _canAddComment
+                                    ? "Пока нет комментариев"
+                                    : "Не было ни одного комментария",
+                                textAlign: TextAlign.center,
+                                style: AdaptiveTheme.of(context)
+                                    .theme
+                                    .textTheme
+                                    .bodyMedium,
+                              ),
+                              replacement: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children:
+                                    List.generate(comments.length, (index) {
+                                  return Padding(
+                                    padding: EdgeInsets.only(
+                                      top: index == 0 ? 0 : 16,
+                                    ),
+                                    child: RequestCommentItemWidget(
+                                      commentDto: comments[index],
+                                    ),
+                                  );
+                                }),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),

@@ -17,24 +17,24 @@ class ThesisStaggeredList<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimationLimiter(
-      child: ListView.builder(
-        shrinkWrap: true,
+      child: SingleChildScrollView(
         physics: kDefaultPhysics,
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          return AnimationConfiguration.staggeredList(
-            position: index,
-            duration: const Duration(milliseconds: 375),
-            child: SlideAnimation(
-              child: FadeInAnimation(
-                child: Padding(
-                  padding: kCardBottomPadding,
-                  child: renderChild(items[index]),
+        child: Column(
+          children: List.generate(items.length, (index) {
+            return AnimationConfiguration.staggeredList(
+              position: index,
+              duration: const Duration(milliseconds: 375),
+              child: SlideAnimation(
+                child: FadeInAnimation(
+                  child: Padding(
+                    padding: kCardBottomPadding,
+                    child: renderChild(items[index]),
+                  ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          }),
+        ),
       ),
     );
   }

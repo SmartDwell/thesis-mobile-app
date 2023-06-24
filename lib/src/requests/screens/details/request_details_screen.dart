@@ -106,7 +106,10 @@ class RequestDetailsScreen extends StatelessWidget {
                     style: context.textTheme.titleMedium,
                   ),
                   const SizedBox(height: 20),
-                  RequestCommentsWidget(requestId: requestDto.id),
+                  RequestCommentsWidget(
+                    requestId: requestDto.id,
+                    requestState: requestDto.currentState,
+                  ),
                   const SizedBox(height: 64),
                 ],
               ),

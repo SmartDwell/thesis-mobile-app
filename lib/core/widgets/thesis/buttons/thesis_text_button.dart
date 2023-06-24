@@ -24,7 +24,7 @@ class ThesisTextButton extends StatelessWidget {
         title,
         style: style ??
             TextStyle(
-              fontSize: 14,
+              fontSize: 16,
               fontWeight: FontWeight.w600,
               color: context.isDarkMode
                   ? kPrimaryLighterColor
