@@ -12,13 +12,28 @@ class IntroductionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final PageController pageController = PageController(initialPage: 0);
-    final tempItems = List.generate(
-      4,
-      (index) => IntroductionItem(
-        title: 'Основной текст ' + index.toString(),
-        description: 'Дополнительный текст ' + index.toString(),
+    const tempItems = [
+      IntroductionItem(
+        title: 'Улучшаем вашу жизнь, решая проблемы',
+        description:
+            'Мы предоставляем возможность создавать заявки о проблемах, чтобы создать комфортную среду для жизни',
       ),
-    );
+      IntroductionItem(
+        title: 'Всегда в курсе последних новостей',
+        description:
+            'Получайте свежие новости о нашей компании и актуальную информацию, чтобы быть в курсе всех событий и изменений',
+      ),
+      IntroductionItem(
+        title: 'Удобные и безопасные платежи',
+        description:
+            'Оплачивайте свои счета быстро и безопасно прямо через наше приложение, экономя время и избегая неудобства',
+      ),
+      IntroductionItem(
+        title: 'Контроль доступа на территорию',
+        description:
+            'Наше приложение позволяет вам контролировать доступ на территорию, обеспечивая безопасность и удобство для всех пользователей',
+      ),
+    ];
 
     final currentPositionNotifier = ValueNotifier<int>(0);
     return Expanded(
@@ -46,11 +61,13 @@ class IntroductionScreen extends StatelessWidget {
                     ),
                     Text(
                       tempItems[index].title,
+                      textAlign: TextAlign.center,
                       style: context.textTheme.headlineMedium,
                     ),
                     const SizedBox(height: 12),
                     Text(
                       tempItems[index].description,
+                      textAlign: TextAlign.center,
                       style: context.textTheme.titleSmall,
                     ),
                   ],
