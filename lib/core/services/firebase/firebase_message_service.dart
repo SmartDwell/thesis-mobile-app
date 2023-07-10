@@ -72,7 +72,8 @@ abstract class FirebaseMessageService {
           debugPrint("FirebaseMessaging.getInitialMessage");
           if (message != null && message.notification != null) {
             await LocalNotificationService.handleNotificationClick(
-                message.data);
+              message.data,
+            );
           }
         });
       }

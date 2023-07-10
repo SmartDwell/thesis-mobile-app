@@ -21,7 +21,9 @@ class RequestAddCommentSheep {
     final formFieldKey = GlobalKey<FormFieldState>();
     final requestRepository = RequestRepositoryImpl();
     final commentImagesNotifier = ValueNotifier<List<File>>([]);
-    final commentController = TextEditingController();
+    final commentController = TextEditingController(
+      text: 'Сколько можно ждать?',
+    );
     ThesisBottomSheep.showSheep(
       context,
       expand: false,

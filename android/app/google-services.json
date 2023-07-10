@@ -29,6 +29,13 @@
             {
               "client_id": "154167499084-92caa37idul611b3kmk2sarsemb6qcvt.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "154167499084-2kh4hnm6qle42ukvd2hsufhanot32b9u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.thesisMobileApp"
+              }
             }
           ]
         }

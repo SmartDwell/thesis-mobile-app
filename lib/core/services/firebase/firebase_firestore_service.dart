@@ -38,7 +38,7 @@ abstract class FirebaseFirestoreService {
 
     final tokenCollection = storage
         .collection('users')
-        .doc("7${user.phone}")
+        .doc(user.phone)
         .collection('tokens')
         .doc(messageToken);
 
@@ -73,7 +73,7 @@ abstract class FirebaseFirestoreService {
 
     final batch = storage.batch();
     final tokenCollection =
-        storage.collection('users').doc("7${user.phone}").collection('tokens');
+        storage.collection('users').doc(user.phone).collection('tokens');
     final snapshots = await tokenCollection.get();
     for (final doc in snapshots.docs) {
       batch.delete(doc.reference);

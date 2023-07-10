@@ -11,8 +11,12 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'core/bloc/bloc_global_observer.dart';
 import 'core/constants/constants.dart';
 import 'core/constants/routes_constants.dart';
+import 'core/extension/formatted_message.dart';
+import 'core/helpers/google_service_checker.dart';
 import 'core/helpers/message_helper.dart';
 import 'core/repositories/tokens/tokens_repository_impl.dart';
+import 'core/services/firebase/firebase_message_service.dart';
+import 'core/services/firebase/firebase_service.dart';
 import 'core/splash_screen.dart';
 import 'shared/repositories/ownership/ownership_repository_impl.dart';
 import 'shared/repositories/user/user_repository_impl.dart';
@@ -48,6 +52,18 @@ Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
   Bloc.observer = BlocGlobalObserver();
   Bloc.transformer = bloc_concurrency.sequential();
+
+  try {
+    if (await GoogleServiceChecker.isAvailable) {
+      debugPrint("Start init firebase");
+      await FirebaseService.init();
+      await FirebaseMessageService.init();
+      debugPrint("End init firebase");
+    }
+  } on Exception catch (e) {
+    debugPrint(e.getMessage);
+  }
+
   final savedTheme = await AdaptiveTheme.getThemeMode();
   runApp(ThesisAppConfigurator(
     savedTheme: savedTheme,

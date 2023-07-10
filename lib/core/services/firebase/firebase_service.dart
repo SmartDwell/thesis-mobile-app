@@ -10,6 +10,7 @@ abstract class FirebaseService {
     if (!await GoogleServiceChecker.isAvailable) return;
 
     await Firebase.initializeApp(
+      name: 'thesis-app',
       options: DefaultFirebaseOptions.currentPlatform,
     );
   }

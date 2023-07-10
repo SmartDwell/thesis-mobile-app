@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/extension/formatted_message.dart';
 import '../../../../core/repositories/tokens/tokens_repository.dart';
+import '../../../../core/services/firebase/firebase_firestore_service.dart';
 import '../../../../shared/repositories/ownership/ownership_repository.dart';
 import '../../../../shared/repositories/user/user_repository.dart';
 import '../../contacts/auth_completed_dto/auth_completed_dto.dart';
@@ -68,6 +69,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         event.code,
       );
       await _saveUserInfo(authCompletedDto);
+      FirebaseFirestoreService.sendDevicePushNotificationToken();
       emit(const LoginState.successVerifyCode());
     } on Exception catch (e) {
       emit(LoginState.failureVerifyCode(message: e.getMessage));
@@ -84,7 +86,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       throw Exception('Не удалось сохранить информацию о пользователе');
     }
     if (!await _ownershipRepository.loadOwnershipFromServer()) {
-      throw Exception('Не удалось загрузить информацию о владении');
+      throw Exception('Не удалось загрузить информацию о собственности');
     }
   }
 }

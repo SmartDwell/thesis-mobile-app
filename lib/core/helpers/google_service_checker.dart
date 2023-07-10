@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/services.dart';
 import 'package:google_api_availability/google_api_availability.dart';
 
@@ -17,5 +19,6 @@ abstract class GoogleServiceChecker {
 
   /// Признак доступности Google Services
   static Future<bool> get isAvailable async =>
+      Platform.isAndroid &&
       await _getGoogleServiceStatus() == GooglePlayServicesAvailability.success;
 }

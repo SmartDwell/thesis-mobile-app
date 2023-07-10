@@ -40,8 +40,8 @@ class NewsRepositoryImpl implements INewsRepository {
     ),
     NewsDto(
       id: '4',
-      title: 'Проблемы с лифтом в 2Б',
-      description: 'Зафиксированы проблемы с лифтом в 2Б. Уже решаем!',
+      title: 'Проблемы с лифтом в 2B',
+      description: 'Зафиксированы проблемы с лифтом в 2B. Уже решаем!',
       images: [],
       created: DateTime(2023, 06, 20),
     ),

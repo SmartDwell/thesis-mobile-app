@@ -46,6 +46,33 @@ class RequestRepositoryImpl implements IRequestRepository {
   }
 
   @override
+  Future<RequestDto> loadRequestById(String requestId) async {
+    try {
+      final accessToken = await _tokensRepository.getAccessToken();
+      final response = await DioHelper.getData(
+        url: '/requests/$requestId/details',
+        headers: {
+          'Content-type': ' application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+      );
+
+      switch (response.statusCode) {
+        case 200:
+          return RequestDto.fromJson(response.data);
+        case 400:
+          throw Exception('Передан некорректный идентификатор заявки');
+        case 404:
+          throw Exception('Заявка не найдена');
+        default:
+          throw Exception('Что-то пошло не так');
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
   Future<List<RequestCommentDto>> loadRequestComments(String requestId) async {
     try {
       final accessToken = await _tokensRepository.getAccessToken();
