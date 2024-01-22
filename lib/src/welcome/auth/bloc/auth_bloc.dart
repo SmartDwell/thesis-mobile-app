@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/repositories/tokens/tokens_repository.dart';
-import '../../../../core/services/firebase/firebase_firestore_service.dart';
 
 part 'auth_bloc.freezed.dart';
 
@@ -27,7 +26,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(const AuthState.loading());
       final accessToken = await _tokensRepository.getAccessToken();
       // TODO: Перенести в отдельный блок
-      FirebaseFirestoreService.sendDevicePushNotificationToken();
+      //FirebaseFirestoreService.sendDevicePushNotificationToken();
       emit(accessToken == null || accessToken.isEmpty
           ? const AuthState.unauthenticated()
           : const AuthState.authenticated());

@@ -1,17 +1,20 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_pretty_dio_logger/flutter_pretty_dio_logger.dart';
 import 'package:no_context_navigation/no_context_navigation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../repositories/tokens/tokens_repository_impl.dart';
 
 /// Помощник работы с Dio
 abstract class DioHelper {
-  //static final _host = Platform.isAndroid ? '10.0.2.2' : '127.0.0.1';
-  //static final _localBaseUrl = "https://$_host:7001/api";
-  static const String _baseUrl = 'http://78.40.219.169:1480/api';
+  static final _host = Platform.isAndroid ? '10.0.2.2' : '127.0.0.1';
+  static final _localBaseUrl = "https://$_host:7001/api";
+  //static const String _baseUrl = 'http://78.40.219.169:1480/api';
 
-  static String get baseUrl => _baseUrl;
+  static String get baseUrl => dotenv.env['main_api'] ?? _localBaseUrl;
 
   /// Получить данные
   static Future<Response> getData({
@@ -70,7 +73,7 @@ abstract class DioHelper {
   ) {
     final client = Dio(
       BaseOptions(
-        baseUrl: _baseUrl,
+        baseUrl: baseUrl,
         receiveDataWhenStatusError: true,
         connectTimeout: const Duration(seconds: 32),
         receiveTimeout: const Duration(seconds: 32),
@@ -105,8 +108,8 @@ abstract class DioHelper {
 
               final accessToken = await tokensRepository.getAccessToken();
               final headers = error.requestOptions.headers;
-              if (headers.containsKey('access_token')) {
-                headers['Authorization'] = 'Bearer: $accessToken';
+              if (headers.containsKey('accessToken')) {
+                headers['Authorization'] = 'Bearer $accessToken';
                 options.headers = headers;
               }
 

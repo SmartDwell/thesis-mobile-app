@@ -178,6 +178,7 @@ class RequestRepositoryImpl implements IRequestRepository {
         case 400:
           throw Exception('Переданы некорректные данные');
         default:
+          debugPrint('RequestRepositoryImpl -> addRequest -> ${response.data}');
           throw Exception('Что-то пошло не так');
       }
     } catch (e) {
