@@ -13,10 +13,10 @@ jobs:
       - uses: actions/setup-java@v2
         with:
           distribution: 'zulu'
-          java-version: '11'
+          java-version: '20.0.2'
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.7.11'
+          flutter-version: '3.16.9'
       - run: flutter --version
       - run: flutter pub get
       - run: flutter build apk
