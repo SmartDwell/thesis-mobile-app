@@ -82,7 +82,7 @@ class IntroductionScreen extends StatelessWidget {
                 color: Colors.transparent,
                 child: DotsIndicator(
                   dotsCount: tempItems.length,
-                  position: value.toDouble(),
+                  position: value,
                   onTap: (position) {
                     pageController.animateToPage(
                       position.toInt(),
