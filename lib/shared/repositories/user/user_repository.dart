@@ -5,6 +5,8 @@ abstract class IUserRepository {
   /// Загрузить пользователя с сервера
   Future<bool> loadUserFromServer();
 
+  Future<bool> existUserInfoIntoCache();
+
   /// Получить пользователя из кэша
   Future<UserDto> getUserFromCache();
 

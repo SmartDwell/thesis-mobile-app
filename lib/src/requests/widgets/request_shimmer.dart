@@ -53,10 +53,9 @@ class RequestShimmer extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      // ignore: prefer_const_literals_to_create_immutables
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         ThesisShimmerWidget(
                           width: 96,
                           height: 14,

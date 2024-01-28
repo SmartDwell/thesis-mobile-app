@@ -246,140 +246,152 @@ class _SelectIncidentPoint extends StatelessWidget {
             );
           },
         ),
-        const SizedBox(height: 12),
-        ValueListenableBuilder(
-          valueListenable: squareNotifier,
-          builder: (context, point, child) {
-            final controller = TextEditingController(
-              text: point?.name,
-            );
-            return Column(
-              children: [
-                TextFormField(
-                  readOnly: true,
-                  controller: controller,
-                  decoration: InputDecoration(
-                    hintText: 'Выберите площадку (необязательно)',
-                    labelText: point == null ? null : 'Площадка',
-                    suffixIcon: const Icon(
-                      Icons.keyboard_arrow_down,
-                      color: kGray1Color,
+        //const SizedBox(height: 12),
+        Visibility(
+          visible: complexNotifier.value.children.isNotEmpty,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: ValueListenableBuilder(
+              valueListenable: squareNotifier,
+              builder: (context, point, child) {
+                final controller = TextEditingController(
+                  text: point?.name,
+                );
+                return Column(
+                  children: [
+                    TextFormField(
+                      readOnly: true,
+                      controller: controller,
+                      decoration: InputDecoration(
+                        hintText: 'Выберите площадку (необязательно)',
+                        labelText: point == null ? null : 'Площадка',
+                        suffixIcon: const Icon(
+                          Icons.keyboard_arrow_down,
+                          color: kGray1Color,
+                        ),
+                      ),
+                      onTap: () async => await SelectIncidentPointSheep.show(
+                        context,
+                        title: 'Выберите площадку',
+                        incidentPoints: complexNotifier.value.children,
+                        onSelected: (incidentPoint) {
+                          squareNotifier.value = incidentPoint;
+                          selectedIncidentPointNotifier.value = incidentPoint;
+                          selectedIncidentPointAsStringNotifier.value =
+                              '${complexNotifier.value.name}, ${incidentPoint.name}'
+                                  .trim();
+                          entranceNotifier.value = null;
+                          apartmentNotifier.value = null;
+                          Navigator.pop(context);
+                        },
+                      ),
                     ),
-                  ),
-                  onTap: () async => await SelectIncidentPointSheep.show(
-                    context,
-                    title: 'Выберите площадку',
-                    incidentPoints: complexNotifier.value.children,
-                    onSelected: (incidentPoint) {
-                      squareNotifier.value = incidentPoint;
-                      selectedIncidentPointNotifier.value = incidentPoint;
-                      selectedIncidentPointAsStringNotifier.value =
-                          '${complexNotifier.value.name}, ${incidentPoint.name}'
-                              .trim();
-                      entranceNotifier.value = null;
-                      apartmentNotifier.value = null;
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-                Visibility(
-                  visible: squareNotifier.value != null &&
-                      squareNotifier.value!.children.isNotEmpty,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 12),
-                    child: ValueListenableBuilder(
-                      valueListenable: entranceNotifier,
-                      builder: (context, point, child) {
-                        final entranceController = TextEditingController(
-                          text: point?.name,
-                        );
-                        return Column(
-                          children: [
-                            TextFormField(
-                              readOnly: true,
-                              controller: entranceController,
-                              decoration: InputDecoration(
-                                hintText: 'Выберите подъезд (необязательно)',
-                                labelText: point == null ? null : 'Подъезд',
-                                suffixIcon: const Icon(
-                                  Icons.keyboard_arrow_down,
-                                  color: kGray1Color,
+                    Visibility(
+                      visible: squareNotifier.value != null &&
+                          squareNotifier.value!.children.isNotEmpty,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 12),
+                        child: ValueListenableBuilder(
+                          valueListenable: entranceNotifier,
+                          builder: (context, point, child) {
+                            final entranceController = TextEditingController(
+                              text: point?.name,
+                            );
+                            return Column(
+                              children: [
+                                TextFormField(
+                                  readOnly: true,
+                                  controller: entranceController,
+                                  decoration: InputDecoration(
+                                    hintText:
+                                        'Выберите подъезд (необязательно)',
+                                    labelText: point == null ? null : 'Подъезд',
+                                    suffixIcon: const Icon(
+                                      Icons.keyboard_arrow_down,
+                                      color: kGray1Color,
+                                    ),
+                                  ),
+                                  onTap: () async =>
+                                      await SelectIncidentPointSheep.show(
+                                    context,
+                                    title: 'Выберите подъезд',
+                                    incidentPoints:
+                                        squareNotifier.value!.children,
+                                    onSelected: (incidentPoint) {
+                                      entranceNotifier.value = incidentPoint;
+                                      selectedIncidentPointNotifier.value =
+                                          incidentPoint;
+                                      selectedIncidentPointAsStringNotifier
+                                              .value =
+                                          '${complexNotifier.value.name}, ${squareNotifier.value!.name}, ${incidentPoint.name}'
+                                              .trim();
+                                      apartmentNotifier.value = null;
+                                      Navigator.pop(context);
+                                    },
+                                  ),
                                 ),
-                              ),
-                              onTap: () async =>
-                                  await SelectIncidentPointSheep.show(
-                                context,
-                                title: 'Выберите подъезд',
-                                incidentPoints: squareNotifier.value!.children,
-                                onSelected: (incidentPoint) {
-                                  entranceNotifier.value = incidentPoint;
-                                  selectedIncidentPointNotifier.value =
-                                      incidentPoint;
-                                  selectedIncidentPointAsStringNotifier.value =
-                                      '${complexNotifier.value.name}, ${squareNotifier.value!.name}, ${incidentPoint.name}'
-                                          .trim();
-                                  apartmentNotifier.value = null;
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ),
-                            Visibility(
-                              visible: entranceNotifier.value != null &&
-                                  entranceNotifier.value!.children.isNotEmpty,
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 12),
-                                child: ValueListenableBuilder(
-                                  valueListenable: apartmentNotifier,
-                                  builder: (context, point, child) {
-                                    final apartmentController =
-                                        TextEditingController(
-                                      text: point?.name,
-                                    );
-                                    return TextFormField(
-                                      readOnly: true,
-                                      controller: apartmentController,
-                                      decoration: InputDecoration(
-                                        hintText:
-                                            'Выберите квартиру (необязательно)',
-                                        labelText:
-                                            point == null ? null : 'Квартира',
-                                        suffixIcon: const Icon(
-                                          Icons.keyboard_arrow_down,
-                                          color: kGray1Color,
-                                        ),
-                                      ),
-                                      onTap: () async =>
-                                          await SelectIncidentPointSheep.show(
-                                        context,
-                                        title: 'Выберите квартиру',
-                                        incidentPoints:
-                                            entranceNotifier.value!.children,
-                                        onSelected: (incidentPoint) {
-                                          apartmentNotifier.value =
-                                              incidentPoint;
-                                          selectedIncidentPointNotifier.value =
-                                              incidentPoint;
-                                          selectedIncidentPointAsStringNotifier
-                                                  .value =
-                                              '${complexNotifier.value.name}, ${squareNotifier.value!.name}, ${entranceNotifier.value!.name}, ${incidentPoint.name}'
-                                                  .trim();
-                                          Navigator.pop(context);
-                                        },
-                                      ),
-                                    );
-                                  },
+                                Visibility(
+                                  visible: entranceNotifier.value != null &&
+                                      entranceNotifier
+                                          .value!.children.isNotEmpty,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 12),
+                                    child: ValueListenableBuilder(
+                                      valueListenable: apartmentNotifier,
+                                      builder: (context, point, child) {
+                                        final apartmentController =
+                                            TextEditingController(
+                                          text: point?.name,
+                                        );
+                                        return TextFormField(
+                                          readOnly: true,
+                                          controller: apartmentController,
+                                          decoration: InputDecoration(
+                                            hintText:
+                                                'Выберите квартиру (необязательно)',
+                                            labelText: point == null
+                                                ? null
+                                                : 'Квартира',
+                                            suffixIcon: const Icon(
+                                              Icons.keyboard_arrow_down,
+                                              color: kGray1Color,
+                                            ),
+                                          ),
+                                          onTap: () async =>
+                                              await SelectIncidentPointSheep
+                                                  .show(
+                                            context,
+                                            title: 'Выберите квартиру',
+                                            incidentPoints: entranceNotifier
+                                                .value!.children,
+                                            onSelected: (incidentPoint) {
+                                              apartmentNotifier.value =
+                                                  incidentPoint;
+                                              selectedIncidentPointNotifier
+                                                  .value = incidentPoint;
+                                              selectedIncidentPointAsStringNotifier
+                                                      .value =
+                                                  '${complexNotifier.value.name}, ${squareNotifier.value!.name}, ${entranceNotifier.value!.name}, ${incidentPoint.name}'
+                                                      .trim();
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                          ],
-                        );
-                      },
+                              ],
+                            );
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ],
-            );
-          },
+                  ],
+                );
+              },
+            ),
+          ),
         ),
       ],
     );

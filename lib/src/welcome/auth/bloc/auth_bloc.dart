@@ -25,6 +25,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       emit(const AuthState.loading());
       final accessToken = await _tokensRepository.getAccessToken();
+      // TODO: Перенести в отдельный блок
+      //FirebaseFirestoreService.sendDevicePushNotificationToken();
       emit(accessToken == null || accessToken.isEmpty
           ? const AuthState.unauthenticated()
           : const AuthState.authenticated());

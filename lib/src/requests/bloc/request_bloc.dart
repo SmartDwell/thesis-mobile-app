@@ -11,6 +11,7 @@ part 'request_bloc.freezed.dart';
 /// Блок заявок
 class RequestBloc extends Bloc<RequestEvent, RequestState> {
   final IRequestRepository _requestRepository;
+  // ignore: unused_field
   final IOwnershipRepository _ownershipRepository;
 
   RequestBloc({
@@ -66,18 +67,30 @@ class RequestBloc extends Bloc<RequestEvent, RequestState> {
     Emitter<RequestState> emit,
   ) async {
     emit(const RequestState.loading());
-    final apartmentIds = await _ownershipRepository.getApartmentIds();
-    if (apartmentIds.isEmpty) {
-      emit(const RequestState.error(
-        message:
-            'Вы не можете создать заявку, потому что у вас нет собственности. Обратитесь к администратору.',
-      ));
-      return;
-    }
-    final points = await _requestRepository.loadIncidentPointsByUserAparmentIds(
-      apartmentIds,
-    );
-    emit(RequestState.loadedAddScreen(
+    // final apartmentIds = await _ownershipRepository.getApartmentIds();
+    // if (apartmentIds.isEmpty) {
+    //   emit(const RequestState.error(
+    //     message:
+    //         'Вы не можете создать заявку, потому что у вас нет собственности. Обратитесь к администратору.',
+    //   ));
+    //   return;
+    // }
+    // final points = await _requestRepository.loadIncidentPointsByUserAparmentIds(
+    //   apartmentIds,
+    // );
+    const points = [
+      IncidentPointDto(
+        id: '31cc18f1-4712-40b3-80fe-9b5955c6fb90',
+        name: 'ЖК Атмосфера',
+        children: [],
+      ),
+      IncidentPointDto(
+        id: '32cc18f1-4712-40b3-80fe-9b5955c6fb90',
+        name: 'ЖК Прогресс',
+        children: [],
+      ),
+    ];
+    emit(const RequestState.loadedAddScreen(
       points: points,
     ));
   }

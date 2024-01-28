@@ -41,7 +41,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) async {
     try {
-      const guestLoginMatch = 'guest@example.com, 79887893311';
+      const guestLoginMatch = 'guest@example.com, 79889998877';
       if (guestLoginMatch.contains(event.login)) {
         final authCompletedDto = await _loginRepository.guestLogin();
         await _saveUserInfo(authCompletedDto);
@@ -68,6 +68,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         event.code,
       );
       await _saveUserInfo(authCompletedDto);
+      //FirebaseFirestoreService.sendDevicePushNotificationToken();
       emit(const LoginState.successVerifyCode());
     } on Exception catch (e) {
       emit(LoginState.failureVerifyCode(message: e.getMessage));
@@ -84,7 +85,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       throw Exception('Не удалось сохранить информацию о пользователе');
     }
     if (!await _ownershipRepository.loadOwnershipFromServer()) {
-      throw Exception('Не удалось загрузить информацию о владении');
+      throw Exception('Не удалось загрузить информацию о собственности');
     }
   }
 }

@@ -12,6 +12,9 @@ abstract class IRequestRepository {
   /// Загрузить все заявки
   Future<List<RequestDto>> loadRequests();
 
+  /// Загрузить заявку по идентификатору
+  Future<RequestDto> loadRequestById(String requestId);
+
   /// Загрузить комментарии заявки
   Future<List<RequestCommentDto>> loadRequestComments(String requestId);
 

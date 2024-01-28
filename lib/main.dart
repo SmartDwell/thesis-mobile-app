@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:no_context_navigation/no_context_navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'core/bloc/bloc_global_observer.dart';
 import 'core/constants/constants.dart';
@@ -44,10 +45,24 @@ class MyHttpOverrides extends HttpOverrides {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await dotenv.load(fileName: '.env');
   await initializeDateFormatting('ru_RU', null);
   HttpOverrides.global = MyHttpOverrides();
   Bloc.observer = BlocGlobalObserver();
   Bloc.transformer = bloc_concurrency.sequential();
+
+  // try {
+  //   if (await GoogleServiceChecker.isAvailable) {
+  //     debugPrint("Start init firebase");
+  //     await FirebaseService.init();
+  //     await FirebaseMessageService.init();
+  //     debugPrint("End init firebase");
+  //   }
+  // } on Exception catch (e) {
+  //   debugPrint(e.getMessage);
+  // }
+
   final savedTheme = await AdaptiveTheme.getThemeMode();
   runApp(ThesisAppConfigurator(
     savedTheme: savedTheme,
